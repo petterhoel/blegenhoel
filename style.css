@@ -1,0 +1,523 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+@import url(http://fonts.googleapis.com/css?family=PT+Serif);
+
+body {
+	font-family: "PT Serif";
+	margin: 0;
+	background: #fff;
+}
+
+header {
+	text-align: center;
+	position: relative;
+	z-index: 0;
+}
+
+p.lead-in {
+	font-size: 1.4em;
+	line-height: 1.4em;
+}
+
+h1 {
+	font-family: "PT Sans";
+	font-size: 2.4em;
+}
+
+li {
+	list-style: none;
+}
+
+a:link {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: grey;
+}
+
+a:visited {
+	color: black;
+}
+
+a:active {
+	color: black;
+}
+
+header h1 a:before {
+	content: "Ø B H";
+}
+
+article, section#contact-info {
+	max-width: 800px;
+	margin: 0 auto;
+	font-size: 1.7em;
+	padding: 2.6%;
+}
+
+form {
+	clear: both;
+	margin: 0 auto;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+}
+
+label {
+	font-family: 'PT Sans';
+	font-size: 0.8em;
+	color: teal;
+	display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select  {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 1em;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 95%;
+  background-color: #e8eeef;
+  color: #black	;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+.nobr { 
+	white-space: nowrap; 
+}
+
+textarea{
+	height: 10em;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #8a97a0;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #8a97a0;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #8a97a0;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #8a97a0;
+}
+
+
+
+input[type="text"], 
+input[type="email"]{
+	width: 70%;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+	background-color: red !important;
+	-webkit-box-shadow:0 0 0 50px #e8eeef inset;
+}
+
+.g-recaptcha {
+	margin-bottom: 30px;
+}
+
+.contact .button {
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	background-color: rgb(81, 166, 166);
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	border-radius: 5px;
+	width: 100%;
+	border: 1px solid rgb(150, 205, 205);
+	border-width: 1px 1px 3px;
+	box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+	margin-bottom: 10px;
+}
+
+.contact .button:hover {
+	background-color: teal;
+}
+
+
+.center{
+	text-align: center;
+}
+
+.error{
+	color: rgb(153, 77, 153);
+}
+
+section#contact-info img{
+	border-radius: 50%;	
+	width: 300px;
+	display: block;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+section#contact-info img.right{
+	position: relative;
+	width: 200px;
+	min-width: 200px;
+	top: -.6em;
+	float: right;
+	margin-left: 1em;
+}
+
+section h1, h2, h3, h4, h5, h6{
+	margin-top: 2em;
+	font-family: "PT Sans";
+}
+
+article {
+	line-height: 1.7em;
+}
+
+section.body-text{
+	max-width: 696px;
+	margin: 0 auto;
+	font-size: 0.9em;
+}
+
+section.body-text img{
+	margin-top: 1.2em;
+	width: 100%;
+	max-width: 696px
+	height: auto;
+}
+
+#contact-info li {
+	position: relative;
+	left: -1.8em;
+}
+
+article#bio section.body-text img{
+	float: right;
+	margin: 1%;
+	width: 100%;
+	height: auto;
+}
+
+@media all and (min-width: 599px){
+	article#bio section.body-text img{
+		float: right;
+		margin: 1%;
+		width: 50%;
+		height: auto;
+	}
+}
+
+@media all and (min-width: 599px){
+	article#bio section.body-text img.full{
+		float: right;
+		margin: 1%;
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+
+nav {
+	font-family: "PT Sans";
+}
+
+@media all and (min-width: 599px){
+	header h1 a:before {
+		content: "Øystein Blegen Hoel";
+	}
+}
+
+.menu-btn{
+	font-size: 2em;
+	position: absolute;
+	left: 1em;
+	padding: 0 8px 2px 8px;
+}
+
+header .language-selector{
+	position: absolute;
+	right: 1em;
+	top: 0em;
+	padding: 0 8px 2px 8px;
+}
+
+header .language-selector li{
+	font-family: 'Pt Sans';
+	display: inline;
+}
+
+header .language-selector li a{
+	padding: .5em;
+	color: rgb(237, 226, 252);
+}
+
+header .language-selector li a:hover{
+	color: white;
+	background-color: rgb(222, 212, 236);
+}
+
+header .language-selector li.active a{
+	color: white;
+	background-color: rgb(237, 226, 252);
+	
+}
+
+footer{
+	clear: both;
+	font-family: 'PT Sans';
+	color: black;
+	font-size: 0.8em;
+	text-align: center;
+	padding-top: 3em;
+}
+
+.menu-btn {	
+	cursor: pointer;
+}
+
+.menu-btn:before{
+	content: '\2630';
+	color: teal;
+	background: rgb(237, 242, 242);
+	padding: .2em;
+}
+
+.menu-btn:hover:before {	
+	background-color: teal;
+	color: white;
+	content: '\2630';
+}
+
+.menu-btn.active:before{
+	content: '\2715';
+	color: rgb(153, 77, 153);
+	color: white;
+	background: rgb(246, 240, 255);
+}
+
+.menu-btn.active:before{
+	background-color: rgb(224, 203, 255);
+	cursor: pointer;
+}
+
+.pushy li{
+	font-size: 1em;
+	width: 100%;
+}
+
+.pushy li.superscription {
+	border-bottom: none;
+	font-size: 0.8em;
+	margin-top: 30px;
+	margin-bottom: 0px;
+}
+
+@media all and (min-width: 400px){
+	.pushy li{
+		font-size: 1em;
+	}
+	.pushy li.superscription {
+		font-size: 0.9em;
+	}
+}
+
+.carousel {
+	text-align: center;
+	display: none;
+}
+
+.carousel i {
+	padding-left: 2%;
+	font-size: 1.4em;
+	color: #ccc;
+}
+
+.caption {
+	color: silver;
+	margin-bottom: 0;
+}
+
+.title {
+	font-style: italic; 
+}
+
+.title.artwork{
+	color: black;
+}
+
+.title.series {
+	color: darkGray;
+}
+
+ul.overlay {
+	z-index: 200;
+	background-color: white;
+	background-color: rgba(255,255,255,0.85);
+	position: absolute;
+	bottom: 0px;
+	margin: 0 auto;
+	padding: 1em;
+	right: 0;
+	left: 0;
+}
+
+ul.overlay a, ul.overlay a:visited, ul.overlay a:active{
+	color: teal;
+}
+
+ul.overlay a:hover{
+	color: black;
+}
+
+.image-wrapper{
+	position: relative;
+}
+
+.sold{
+	color:rgb(237, 20, 107);
+	font-size: 1.5em;
+}
+
+.poem{
+	width: 10em; /*temporary solution*/
+	margin: 3em auto;
+	color: slategray;
+	font-style: italic;
+	font-size: 1em;
+}
+
+.header-image{
+	clip:rect(00px,2346px,325px,0px);
+	position: fixed;
+	width: 100%;
+	margin: 0;
+	z-index:-1;
+}
+
+.caption-preview{
+	/*reset font style*/
+	padding-top: 20px;
+	font-style: none; 
+	text-align: left;
+	font-family: "PT Sans";
+	position: relative;
+	width: 80%;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.teal {
+	color: teal;
+}
+
+section.narrow {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+quote{		
+	margin: 1.5em auto;
+	text-align: center;
+	font-size: 1.4em;
+	color: teal;
+	display: block;
+}
+
+
+button.info {
+	background-color:transparent;
+	-moz-border-radius:34px;
+	-webkit-border-radius:34px;
+	border-radius:34px;
+	font-size: 1em;
+	border: none;
+	display:inline-block;
+	cursor:pointer;
+	color: teal;
+	background-color: rgb(237, 242, 242);
+	padding:0.2em 0.7em;
+	text-decoration:none;
+	margin-left: 1em;
+	margin-bottom: 3px;
+	outline: none;
+}
+
+button.info:hover {
+	background-color:teal;
+	color: white;
+	border: none;
+}
+
+button.info:active {
+	position:relative;
+	top:1px;
+}
+
+#sign {
+	position: relative;
+	padding-bottom: 10em;
+}
+
+#sign img{
+	width: 150px;
+	position: absolute;
+	right: 6.2em;
+}
+
+@media all and (min-width: 599px){
+	#sign img{
+		right: 8.2em;
+	}
+}
+
+#loader{
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	z-index: 99;
+}
+
+
+
+#about-1{
+	background-image: url("img/natura/oil-01.jpg");
+}
+
+#about-2{
+	background-image: url("img/natura/oil-08.jpg");
+}
+
+#about-3{
+	background-image: url("img/natura/oil-11.jpg");
+}
+
+#about-4{
+	background-image: url("img/natura/oil-05.jpg");
+}
+
+.scroll-over-image {
+    width: 100%;
+    height: 14em;
+    background-attachment: fixed;
+}

@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body,td,th {
+	font-family: "Gill Sans", "Gill Sans MT", "Arial", sans-serif;
+	font-size: 12px;
+	color: #333;
+	background-image: url(../img/bg2.jpg);
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+a {
+	font-size: 12px;
+	color: #000;
+}
+a:visited {
+	color: #000;
+}
+a:hover {
+	color: #000;
+}
+a:active {
+	color: #000;
+}
+.tekstbokstekst {
+	text-align:justify;
+	width: 298px;
+	height:auto;
+	padding: 3px;
+	position: absolute;
+	top: 158px;
+	left: 625px;
+	background-color: #fff;
+	font-family: "Gill Sans", "Gill Sans MT", "Arial", sans-serif;
+	font-size: 12px;
+}
+.tekstboksnavn {
+	text-align:right;
+	width: auto;
+	height: 45px;
+	position: absolute;
+	top: 294px;
+	left: 619px;
+	background-color: #fff;
+	font-family: "Gill Sans", "Gill Sans MT", "Arial", sans-serif;
+	font-weight:lighter;
+	text-align: center;
+	font-size: 38px;
+	padding: 6px;
+}
+.tekstboksadr {
+	text-align:left;
+	width: auto;
+	height:auto;
+	padding: 4px;
+	position: absolute;
+	top: 397px;
+	left: 625px;
+	background-color: #fff;
+	font-family: "Gill Sans", "Gill Sans MT", "Arial", sans-serif;
+	font-size: 12px;
+}
+
