@@ -1,7 +1,0 @@
-<Limit GET POST>
-  Order deny,allow
-  AuthType Basic
-  AuthUserFile /home/4/b/blegenhoel/.htpasswd
-  AuthName "Password protected area"
-  Require valid-user
-</Limit>
