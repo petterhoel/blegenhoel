@@ -119,6 +119,7 @@ const { title } = Astro.props;
 	}
 
 	.logo {
+		color:#005490;
 		font-size: 3.6rem;
 		margin: 2rem;
 	}
@@ -147,6 +148,7 @@ const { title } = Astro.props;
 	}
 
 	nav a {
+		color: var(--color-text);
 		text-decoration: none;
 		font-size: 2rem;
 		opacity: 0;
@@ -204,12 +206,11 @@ const { title } = Astro.props;
 
 		header {
 			display: grid;
-			grid-template-columns: 1fr auto minmax(470px, 3fr) 1fr;
+			grid-template-columns: 1fr auto minmax(350px, 3fr) 1fr;
 		}
 
 		.logo {
 			grid-column: 2 / 3;
-			color: #005490;
 		}
 
 		nav {
