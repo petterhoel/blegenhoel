@@ -16,9 +16,19 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<script is:inline>
+			function toggleIcon() {
+				const input = document.getElementById('nav-toggle');
+				const label = document.getElementById('nav-toggle-label');
+				if (input && !input.checked) {
+					label.classList.remove('closed');
+				} else {
+					label.classList.add('closed');
+				}
+			}
+		</script>
 		<header>
 			<h1 class="logo text-gradient">Øystein Blegen Hoel</h1>
-			
 			<input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle">
 			<nav>
 				<ul>
@@ -27,8 +37,12 @@ const { title } = Astro.props;
 					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</nav>
-			<label for="nav-toggle" class="nav-toggle-label">
-				<span>X</span>
+			<label 
+				for="nav-toggle" 
+				id="nav-toggle-label" 
+				class="nav-toggle-label closed" 
+				onclick="toggleIcon()">
+				<span></span>
 			</label>
 		</header>
 		<main>
@@ -37,18 +51,41 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style>
+	
+
+	@font-face {
+		font-family: Montserrat;
+		font-weight: 100 900;
+		font-display: swap;
+		font-style: italic;
+		src: url("/assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+	}
+
+	@font-face {
+		font-family: 'Source Serif Pro';
+		font-weight: 500;
+		font-display: swap;
+		font-style: normal;
+		font-named-instance: 'Regular';
+		src: url("/assets/fonts/SourceSerifPro-Regular.ttf") format("truetype");
+	}
+
 	:root {
+		--accent: #f96a87;
 		--nav-background: whitesmoke;
 		--font-size-base: 10px;
 		--color-text: hsl(12, 5%, 4%);
 		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
-
+		--serif-font: 'Source Serif Pro', monospace;
+		--sans-font: Montserrat, sans-serif;
+		--vanlig-tekst-str: 1.4rem;
 	}
 
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: var(--serif-font);
 		font-size: var(--font-size-base);
 		color: var(--color-text);
+		letter-spacing: 0.1rem;
 	}
 
 	body {
@@ -72,14 +109,18 @@ const { title } = Astro.props;
 
 	header {
 		background-color: var(--nav-background);
+		font-family: var(--sans-font);
 		text-align: center;
 		position: fixed;
 		width: 100%;
 		z-index: 999;
+		letter-spacing: 0.1rem;
+
 	}
 
 	.logo {
 		font-size: 3.6rem;
+		margin: 2rem;
 	}
 
 	nav {
@@ -106,7 +147,6 @@ const { title } = Astro.props;
 	}
 
 	nav a {
-		color: hotpink;
 		text-decoration: none;
 		font-size: 2rem;
 		opacity: 0;
@@ -114,7 +154,6 @@ const { title } = Astro.props;
 	}
 
 	nav a:hover {
-		color: #da62c4;
 
 	}
 
@@ -135,6 +174,19 @@ const { title } = Astro.props;
   		left: -9999px !important;
 	}
 
+
+	.nav-toggle-label span {
+		cursor: pointer; 
+		--size: 2.6rem;
+		background-image: url('/assets/icons/xmark-solid.svg');
+		background-size: var(--size) var(--size);
+		height: var(--size);
+		width: var(--size);
+	}
+
+	.nav-toggle-label.closed span{
+		background-image: url('/assets/icons/bars-solid.svg');
+	}
 
 	.nav-toggle:checked ~ nav {
 		transform: scale(1, 1);
@@ -157,6 +209,7 @@ const { title } = Astro.props;
 
 		.logo {
 			grid-column: 2 / 3;
+			color: #005490;
 		}
 
 		nav {
@@ -185,7 +238,7 @@ const { title } = Astro.props;
 			content: '';
 			display: block;
 			height: 5px;
-			background: black;
+			background: var(--accent);
 			position: absolute;
 			top: -1rem;
 			left: 0;
@@ -197,30 +250,6 @@ const { title } = Astro.props;
 
 		nav a:hover::before {
 			transform: scale(1,1);
-		}
-	}
-
-
-
-	  
-	.text-gradient {
-		font-weight: 600;
-		background-image: var(--astro-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 100% 200%;
-		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			background-position-y: 0%;
-		}
-		50% {
-			background-position-y: 80%;
 		}
 	}
 
