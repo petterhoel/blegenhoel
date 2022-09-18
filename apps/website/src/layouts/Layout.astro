@@ -22,8 +22,8 @@ const { title } = Astro.props;
 			<input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle">
 			<nav>
 				<ul>
+					<li><a href="#">Works</a></li> 
 					<li><a href="#">About</a></li>
-					<li><a href="#">Works</a></li>
 					<li><a href="#">Contact</a></li>
 				</ul>
 			</nav>
@@ -39,13 +39,8 @@ const { title } = Astro.props;
 <style>
 	:root {
 		--nav-background: whitesmoke;
-		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
-		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-
+		--font-size-base: 10px;
 		--color-text: hsl(12, 5%, 4%);
-		--color-bg: hsl(10, 21%, 95%);
-		--color-border: hsl(17, 24%, 90%);
 		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
 
 	}
@@ -54,8 +49,16 @@ const { title } = Astro.props;
 		font-family: system-ui, sans-serif;
 		font-size: var(--font-size-base);
 		color: var(--color-text);
-		background-color: var(--color-bg);
 	}
+
+	body {
+		margin: 0;
+	}
+
+	body, body * {
+		font-size: 1.6rem;
+	}
+
 
 	main {
       height: 200vh;
@@ -73,6 +76,10 @@ const { title } = Astro.props;
 		position: fixed;
 		width: 100%;
 		z-index: 999;
+	}
+
+	.logo {
+		font-size: 3.6rem;
 	}
 
 	nav {
@@ -101,7 +108,7 @@ const { title } = Astro.props;
 	nav a {
 		color: hotpink;
 		text-decoration: none;
-		font-size: 1.2rem;
+		font-size: 2rem;
 		opacity: 0;
 		transition: opacity 150ms ease-in-out;
 	}
@@ -137,6 +144,64 @@ const { title } = Astro.props;
 		opacity: 1;
 		transition: opacity 200ms ease-in-out 200ms;
 	}
+
+	@media screen and (min-width: 800px) {
+		.nav-toggle-label {
+			display: none;
+		}
+
+		header {
+			display: grid;
+			grid-template-columns: 1fr auto minmax(470px, 3fr) 1fr;
+		}
+
+		.logo {
+			grid-column: 2 / 3;
+		}
+
+		nav {
+			all: unset;
+			grid-column: 3 / 4;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		nav ul {
+			display: flex;
+		}
+
+		nav li {
+			margin-bottom: 0;
+			margin-left: 3em;
+		}
+
+		nav a {
+			opacity: 1;
+			position: relative;
+		}
+
+		nav a::before {
+			content: '';
+			display: block;
+			height: 5px;
+			background: black;
+			position: absolute;
+			top: -1rem;
+			left: 0;
+			right: 0;
+			border-radius: 5px;
+			transform: scale(0, 1);
+			transition: ease-in-out 250ms;
+		}
+
+		nav a:hover::before {
+			transform: scale(1,1);
+		}
+	}
+
+
+
 	  
 	.text-gradient {
 		font-weight: 600;
@@ -159,10 +224,7 @@ const { title } = Astro.props;
 		}
 	}
 
-	body {
-		margin: 0;
-	}
-
+	
 
 </style>
 
