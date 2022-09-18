@@ -4,7 +4,10 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
 ---
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +35,9 @@ const { title } = Astro.props;
 			<input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle">
 			<nav>
 				<ul>
-					<li><a href="/works">Works</a></li> 
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
+					<li><a href="/works" class={currentPath === "works" ? "active" : ""}>Works</a></li> 
+					<li><a href="/about" class={currentPath === "about" ? "active" : ""}>About</a></li>
+					<li><a href="/contact" class={currentPath === "contact" ? "active" : ""}>Contact</a></li>
 				</ul>
 			</nav>
 			<label 
@@ -98,11 +101,8 @@ const { title } = Astro.props;
 
 
 	main {
-      height: 200vh;
-      background-image: url(//unsplash.it/1000/1000);
+      height: 100vh;
       background-color: white;
-      background-blend-mode: multiply;
-      background-size: cover;
       display: grid;
       place-items: center;
 	}
@@ -120,7 +120,7 @@ const { title } = Astro.props;
 
 	.logo {
 		color:#005490;
-		font-size: 3.6rem;
+		font-size: 2.6rem;
 		margin: 2rem;
 	}
 
@@ -233,6 +233,17 @@ const { title } = Astro.props;
 		nav a {
 			opacity: 1;
 			position: relative;
+
+		}
+
+		nav a.active {
+			opacity: 1;
+			position: relative;
+
+		}
+
+		nav a.active::before {
+			transform: scale(1,1);
 		}
 
 		nav a::before {
@@ -253,8 +264,6 @@ const { title } = Astro.props;
 			transform: scale(1,1);
 		}
 	}
-
-	
 
 </style>
 
