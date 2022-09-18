@@ -1,0 +1,282 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<script is:inline>
+			function toggleIcon() {
+				const input = document.getElementById('nav-toggle');
+				const label = document.getElementById('nav-toggle-label');
+				if (input && !input.checked) {
+					label.classList.remove('closed');
+				} else {
+					label.classList.add('closed');
+				}
+			}
+		</script>
+		<header>
+			<h1 class="logo text-gradient">Øystein Blegen Hoel</h1>
+			<input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle">
+			<nav>
+				<ul>
+					<li><a href="/works" class={currentPath === "works" ? "active" : ""}>Works</a></li> 
+					<li><a href="/about" class={currentPath === "about" ? "active" : ""}>About</a></li>
+					<li><a href="/contact" class={currentPath === "contact" ? "active" : ""}>Contact</a></li>
+				</ul>
+			</nav>
+			<label 
+				for="nav-toggle" 
+				id="nav-toggle-label" 
+				class="nav-toggle-label closed" 
+				onclick="toggleIcon()">
+				<span></span>
+			</label>
+		</header>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
+<style>
+	
+
+	@font-face {
+		font-family: Montserrat;
+		font-weight: 100 900;
+		font-display: swap;
+		font-style: italic;
+		src: url("/assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+	}
+
+	@font-face {
+		font-family: 'Source Serif Pro';
+		font-weight: 500;
+		font-display: swap;
+		font-style: normal;
+		font-named-instance: 'Regular';
+		src: url("/assets/fonts/SourceSerifPro-Regular.ttf") format("truetype");
+	}
+
+	:root {
+		--accent: #f96a87;
+		--nav-background: whitesmoke;
+		--font-size-base: 10px;
+		--color-text: hsl(12, 5%, 4%);
+		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+		--serif-font: 'Source Serif Pro', monospace;
+		--sans-font: Montserrat, sans-serif;
+		--vanlig-tekst-str: 1.4rem;
+	}
+
+	html {
+		font-family: var(--serif-font);
+		font-size: var(--font-size-base);
+		color: var(--color-text);
+		letter-spacing: 0.1rem;
+	}
+
+	body {
+		margin: 0;
+	}
+
+	body, body * {
+		font-size: 1.6rem;
+	}
+
+
+	main {
+      height: 100vh;
+      background-color: white;
+      display: grid;
+      place-items: center;
+	}
+
+	header {
+		background-color: var(--nav-background);
+		font-family: var(--sans-font);
+		text-align: center;
+		position: fixed;
+		width: 100%;
+		z-index: 999;
+		letter-spacing: 0.1rem;
+
+	}
+
+	.logo {
+		color:#005490;
+		font-size: 2.6rem;
+		margin: 2rem;
+	}
+
+	nav {
+		background-color: var(--nav-background);
+		position: absolute;
+		text-align: left;
+		top: 100%;	
+		left: 0;
+		width: 100%;
+		transform: scale(1, 0);
+		transform-origin: top;
+		transition: transform 300ms ease;
+	}
+
+	nav ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	nav li {
+		margin-bottom: 1em;
+		margin-left: 1em;
+	}
+
+	nav a {
+		color: var(--color-text);
+		text-decoration: none;
+		font-size: 2rem;
+		opacity: 0;
+		transition: opacity 150ms ease-in-out;
+	}
+
+	nav a:hover {
+
+	}
+
+	.nav-toggle-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-left: 1em;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+
+
+	.nav-toggle {
+  		position: absolute !important;
+  		top: -9999px !important;
+  		left: -9999px !important;
+	}
+
+
+	.nav-toggle-label span {
+		cursor: pointer; 
+		--size: 2.6rem;
+		background-image: url('/assets/icons/xmark-solid.svg');
+		background-size: var(--size) var(--size);
+		height: var(--size);
+		width: var(--size);
+	}
+
+	.nav-toggle-label.closed span{
+		background-image: url('/assets/icons/bars-solid.svg');
+	}
+
+	.nav-toggle:checked ~ nav {
+		transform: scale(1, 1);
+	}
+
+	.nav-toggle:checked ~ nav a {
+		opacity: 1;
+		transition: opacity 200ms ease-in-out 200ms;
+	}
+
+	@media screen and (min-width: 800px) {
+		.nav-toggle-label {
+			display: none;
+		}
+
+		header {
+			display: grid;
+			grid-template-columns: 1fr auto minmax(350px, 3fr) 1fr;
+		}
+
+		.logo {
+			grid-column: 2 / 3;
+		}
+
+		nav {
+			all: unset;
+			grid-column: 3 / 4;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		nav ul {
+			display: flex;
+		}
+
+		nav li {
+			margin-bottom: 0;
+			margin-left: 3em;
+		}
+
+		nav a {
+			opacity: 1;
+			position: relative;
+
+		}
+
+		nav a.active {
+			opacity: 1;
+			position: relative;
+
+		}
+
+		nav a.active::before {
+			transform: scale(1,1);
+		}
+
+		nav a::before {
+			content: '';
+			display: block;
+			height: 5px;
+			background: var(--accent);
+			position: absolute;
+			top: -1rem;
+			left: 0;
+			right: 0;
+			border-radius: 5px;
+			transform: scale(0, 1);
+			transition: ease-in-out 250ms;
+		}
+
+		nav a:hover::before {
+			transform: scale(1,1);
+		}
+	}
+
+</style>
+
+<style is:global>
+	h1 {
+		font-size: var(--font-size-xl);
+	}
+
+	h2 {
+		font-size: var(--font-size-lg);
+	}
+
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+</style>
