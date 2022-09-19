@@ -2,12 +2,8 @@
 dist/
 .output/
 
-
-# ides's
-**/.idea/
-
 # dependencies
-**/node_modules/
+node_modules/
 
 # logs
 npm-debug.log*
