@@ -1,3 +1,8 @@
+import artworkInfo, {
+    artworkMaterialField,
+    artworkTitleField,
+} from './artworkInfo'
+
 export default {
     name: 'artwork',
     type: 'document',
@@ -9,9 +14,12 @@ export default {
             title: 'Bilde',
         },
         {
-            name: 'norskInfo',
-            type: 'artworkInfo',
-            title: 'Informasjon på norsk',
+            ...artworkTitleField,
+            title: 'Tittel (norsk)',
+        },
+        {
+            ...artworkMaterialField,
+            title: 'Materiale (norsk)',
         },
         {
             name: 'engelskInfo',
@@ -21,7 +29,14 @@ export default {
         {
             name: 'year',
             type: 'string',
-            title: 'År produsert (ferdig)',
+            title: 'År produsert',
         },
+        {
+            name: 'dimmenstions',
+            type: 'string',
+            title: 'Dimmensjoner',
+        },
+        
+        
     ],
 }

@@ -1,17 +1,18 @@
+export const artworkTitleField = {
+    name: 'title',
+    type: 'string',
+    title: 'Tittel',
+}
+
+export const artworkMaterialField = {
+    name: 'material',
+    type: 'string',
+    title: 'Materiale',
+}
+
 export default {
     name: 'artworkInfo',
     type: 'document',
     title: 'Informasjon om verk',
-    fields: [
-        {
-            name: 'title',
-            type: 'string',
-            title: 'Tittel'
-        },
-        {
-            name: 'material',
-            type: 'string',
-            title: 'Materiale'
-        }
-    ]
+    fields: [artworkTitleField, artworkMaterialField],
 }
