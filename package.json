@@ -1,0 +1,24 @@
+{
+  "name": "blegenhoel",
+  "version": "1.0.0",
+  "description": "Website for Øystein Blegen Hoel",
+  "workspaces": [
+    "website",
+    "cms"
+  ],
+  "scripts": {
+    "dev:cms":  "npm run dev --workspace=csm",
+    "dev": "npm run dev --workspace=csm & npm run dev --workspace=frontend",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petterhoel/blegenhoel.git"
+  },
+  "author": "Petter Hoel",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/petterhoel/blegenhoel/issues"
+  },
+  "homepage": "https://github.com/petterhoel/blegenhoel#readme"
+}
