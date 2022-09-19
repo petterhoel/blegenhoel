@@ -7,8 +7,8 @@
     "cms"
   ],
   "scripts": {
-    "dev:cms":  "npm run dev --workspace=csm",
-    "dev": "npm run dev --workspace=csm & npm run dev --workspace=frontend",
+    "dev:cms":  "npm run start --workspace=cms",
+    "dev:web": "npm run dev --workspace=website",
     "test": "test"
   },
   "repository": {
