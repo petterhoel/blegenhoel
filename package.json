@@ -24,6 +24,7 @@
     "prettier": "^2.7.1"
   },
   "dependencies": {
+    "astro-portabletext": "^0.3.0",
     "astro-sanity": "^1.0.0"
   }
 }

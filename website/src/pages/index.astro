@@ -1,11 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import { useSanityClient } from 'astro-sanity'
+
+export async function getHomePageText() {
+    const query = `*[_type == "homepage"]`
+    const homepage = await useSanityClient().fetch(query)
+    return homepage
+}
+
+const homePageText = await getHomePageText()
+console.log(homePageText)
 ---
 
-<Layout title="Øystein Blegen Hoel">
-	
-</Layout>
-
-<style>
-	
-</style>
+<Layout title="Øystein Blegen Hoel">hei</Layout>
