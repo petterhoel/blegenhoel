@@ -8,8 +8,7 @@
   ],
   "scripts": {
     "dev:cms": "npm run start --workspace=cms",
-    "dev:web": "npm run dev --workspace=website",
-    "test": "test"
+    "dev:web": "npm run dev --workspace=website"
   },
   "repository": {
     "type": "git",
