@@ -7,9 +7,8 @@
     "cms"
   ],
   "scripts": {
-    "dev:cms":  "npm run start --workspace=cms",
-    "dev:web": "npm run dev --workspace=website",
-    "test": "test"
+    "dev:cms": "npm run start --workspace=cms",
+    "dev:web": "npm run dev --workspace=website"
   },
   "repository": {
     "type": "git",
@@ -20,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/petterhoel/blegenhoel/issues"
   },
-  "homepage": "https://github.com/petterhoel/blegenhoel#readme"
+  "homepage": "https://github.com/petterhoel/blegenhoel#readme",
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }
