@@ -22,5 +22,8 @@
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "astro-sanity": "^1.0.0"
   }
 }

@@ -1,7 +1,31 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
+import { useSanityClient } from 'astro-sanity'
+import Artwork from '../components/artwork.astro'
+
+export async function getArtworks() {
+    const query = `*[_type == "artwork"]`
+    const artworks = await useSanityClient().fetch(query)
+    return artworks
+}
+
+const artworks = await getArtworks()
+console.log(artworks)
 ---
 
 <Layout title="Works Øystein Blegen Hoel">
-    Her kommer bildegallerioversikt
+    <div class="wrapper">
+        {
+            artworks.map((work) => (
+                <Artwork title={work.title} photo={work.photo} />
+            ))
+        }
+    </div>
 </Layout>
+<style>
+    .wrapper {
+        display: grid;
+        grid-gap: 2rem;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+</style>
