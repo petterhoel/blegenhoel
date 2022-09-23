@@ -1,20 +1,13 @@
 {
-  "name": "blegenhoel",
-  "private": true,
+  "name": "blegenhoel-cms",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "package.json",
-  "author": "Petter Hoel <petter@petterhoel.net>",
-  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "start": "sanity start",
     "build": "sanity build"
   },
-  "keywords": [
-    "sanity"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:petterhoel/blegenhoel.git"
+  "dependencies": {
+    "styled-components": "^5.3.5"
   }
 }
