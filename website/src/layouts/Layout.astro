@@ -31,13 +31,13 @@ const currentPath = pathname.slice(1); // remove the first "/"
 			}
 		</script>
 		<header>
-			<h1 class="logo text-gradient">Øystein Blegen Hoel</h1>
+			<h1 class="logo text-gradient"><a href="/">Øystein Blegen Hoel</a></h1>
 			<input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle">
 			<nav>
 				<ul>
-					<li><a href="/works" class={currentPath === "works" ? "active" : ""}>Works</a></li> 
-					<li><a href="/about" class={currentPath === "about" ? "active" : ""}>About</a></li>
-					<li><a href="/contact" class={currentPath === "contact" ? "active" : ""}>Contact</a></li>
+					<li><a href="/works" class={currentPath.includes("works") ? "active" : ""}>Works</a></li>
+					<li><a href="/about" class={currentPath.includes("about") ? "active" : ""}>About</a></li>
+					<li><a href="/contact" class={currentPath.includes("contact") ? "active" : ""}>Contact</a></li>
 				</ul>
 			</nav>
 			<label 
@@ -118,10 +118,11 @@ const currentPath = pathname.slice(1); // remove the first "/"
 
 	}
 
-	.logo {
+	.logo a {
 		color:#005490;
 		font-size: 2.6rem;
 		margin: 2rem;
+		text-decoration: none;
 	}
 
 	nav {
