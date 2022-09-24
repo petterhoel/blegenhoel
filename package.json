@@ -9,7 +9,8 @@
   "scripts": {
     "dev:cms": "npm run start --workspace=cms",
     "dev:web": "npm run dev --workspace=website",
-    "build": "npm run build --workspace=website"
+    "build": "npm run build --workspace=website",
+    "preview": "npm run preview --workspace=website"
   },
   "repository": {
     "type": "git",

@@ -11,7 +11,5 @@ const sanityConfig = {
 // https://astro.build/config
 export default defineConfig({
     integrations: [sanity(sanityConfig)],
-    output: "static",
-    root: '../',
     adapter: netlify()
 })
