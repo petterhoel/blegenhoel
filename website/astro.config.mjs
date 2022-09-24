@@ -12,5 +12,6 @@ const sanityConfig = {
 export default defineConfig({
     integrations: [sanity(sanityConfig)],
     output: "static",
+    root: '../',
     adapter: netlify()
 })
