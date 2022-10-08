@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Artwork from '../components/artwork.astro'
+import { dataClient } from '../cms-integration/data-client'
+
+export async function getArtworks() {
+  const query = `*[_type == "artwork"]`
+  const artworks = await dataClient.fetch(query)
+  console.log(artworks)
+  return artworks
+}
+
+const artworks = await getArtworks()
+---
+
+<Layout title="Works Øystein Blegen Hoel">
+  her kommer bilder eller gallerier
+  {artworks.map(({ title, photo }) => <Artwork title={title} photo={photo} />)}
+</Layout>
+<style>
+  .wrapper {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+</style>
