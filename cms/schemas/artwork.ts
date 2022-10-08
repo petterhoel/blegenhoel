@@ -1,40 +1,32 @@
-import artworkInfo, {
-  artworkMaterialField,
-  artworkTitleField,
-} from './artworkInfo'
-
-export default {
+export const artwork = {
   name: 'artwork',
   type: 'document',
   title: 'Verk',
   fields: [
     {
-      name: 'photo',
-      type: 'artworkImage',
-      title: 'Bilde',
+      title: 'Tittel',
+      name: 'title',
+      type: 'localeString',
     },
     {
-      ...artworkTitleField,
-      title: 'Tittel (norsk)',
+      title: 'Materiale/teknikk',
+      name: 'material',
+      type: 'localeString',
     },
     {
-      ...artworkMaterialField,
-      title: 'Materiale (norsk)',
-    },
-    {
-      name: 'engelskInfo',
-      type: 'artworkInfo',
-      title: 'Informasjon på engelsk',
-    },
-    {
+      title: 'År produsert',
       name: 'year',
       type: 'string',
-      title: 'År produsert',
     },
     {
+      title: 'Dimmensjoner',
       name: 'dimmenstions',
       type: 'string',
-      title: 'Dimmensjoner',
+    },
+    {
+      title: 'Bilde',
+      name: 'photo',
+      type: 'artworkImage',
     },
   ],
 }

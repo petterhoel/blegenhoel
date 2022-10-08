@@ -1,19 +1,19 @@
-import { english, norsk } from "./locales";
+import { english, norsk } from './locales'
 
-export const localeString = {
+export const localeRichText = {
   title: 'Localized string',
-  name: 'localeString',
+  name: 'localeRichText',
   type: 'object',
   fields: [
     {
       title: 'Norsk',
       name: norsk,
-      type: 'string',
+      type: 'richText',
     },
     {
       title: 'Engelsk',
       name: english,
-      type: 'string',
+      type: 'richText',
     },
   ],
 }
