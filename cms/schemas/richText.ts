@@ -1,4 +1,4 @@
-export default {
+export const richText = {
   name: 'richText',
   type: 'array',
   of: [

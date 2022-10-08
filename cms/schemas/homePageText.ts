@@ -1,17 +1,12 @@
-export default {
-  name: 'homepage',
+export const homepageText = {
+  name: 'homepageText',
   type: 'document',
   title: 'Forsidetekst',
   fields: [
     {
-      name: 'homepageTextNo',
-      type: 'richText',
-      title: 'Forsidetekst norsk',
-    },
-    {
-      name: 'homepageTextEn',
-      type: 'richText',
-      title: 'Forsidetekst engelsk',
+      name: 'homepageText',
+      type: 'localeRichText',
+      title: 'Forsidetekst',
     },
   ],
 }

@@ -3,12 +3,13 @@ import createSchema from 'part:@sanity/base/schema-creator'
 
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
-import artwork from './artwork'
-import artworkInfo from './artworkInfo'
-import artworkImage from './artworkImage'
-import richText from './richText'
-import biography from './biography'
-import homePageText from './homePageText'
+import { artwork } from './artwork'
+import { artworkImage } from './artworkImage'
+import { richText } from './richText'
+import { biography } from './biography'
+import { homepageText } from './homePageText'
+import { localeString } from './localeString'
+import { localeRichText } from './localeRichText'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -17,10 +18,11 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     artwork,
-    artworkInfo,
     artworkImage,
     richText,
     biography,
-    homePageText,
+    homepageText,
+    localeString,
+    localeRichText,
   ]),
 })

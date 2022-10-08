@@ -1,4 +1,4 @@
-export default {
+export const artworkImage = {
   name: 'artworkImage',
   type: 'object',
   title: 'Foto av verk',
@@ -6,17 +6,12 @@ export default {
     {
       name: 'image',
       type: 'image',
-      title: 'Foto',
+      title: 'Avfotografert verk',
     },
     {
-      name: 'altNo',
-      type: 'string',
-      title: 'Beskrivende tekst norsk (for blinde)',
-    },
-    {
-      name: 'altEn',
-      type: 'string',
-      title: 'Beskrivende tekst engelsk (for blinde)',
+      name: 'alt',
+      type: 'localeString',
+      title: 'Beskrivende tekst (for blinde)',
     },
   ],
 }
