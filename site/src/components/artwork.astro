@@ -1,0 +1,28 @@
+---
+import { urlForImage } from '../cms-integration/image-util'
+
+interface Props {
+  title: string
+}
+const { title, photo } = Astro.props
+---
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  .caption {
+    padding: 1rem;
+  }
+</style>
+
+<div class="card">
+  <img src={urlForImage(photo.image)} width="200px" alt="" />
+  <div class="caption">
+    {title}
+  </div>
+</div>
