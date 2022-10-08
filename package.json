@@ -1,6 +1,7 @@
 {
   "name": "blegenhoel",
   "version": "1.0.0",
+  "private": true,
   "description": "Website for Øystein Blegen Hoel",
   "workspaces": [
     "site",
@@ -9,7 +10,7 @@
   "scripts": {
     "init": "sanity install",
     "dev:cms": "npm run start --workspace=cms",
-    "dev:web": "npm run dev --workspace=site",
+    "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
     "preview": "npm run preview --workspace=site",
     "format": "prettier -w ."
