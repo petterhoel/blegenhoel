@@ -7,5 +7,5 @@ const { projectId, dataset } = sanityConfig
 const imageUrlBuilder = sanityImageUrlBuilder({ projectId, dataset })
 
 export function urlForImage(source: SanityImageSource) {
-    return imageUrlBuilder.image(source)
+  return imageUrlBuilder.image(source)
 }
