@@ -3,13 +3,13 @@
 ## Get started
 
 ```
-npm i
+npm run init
 ```
 
 Start website (astro)
 
 ```
-npm run dev:web
+npm run dev:site
 ```
 
 Start cms (sanity)
