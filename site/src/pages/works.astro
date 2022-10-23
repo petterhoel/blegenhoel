@@ -10,13 +10,17 @@ export async function getArtworks() {
   return artworks
 }
 const language = 'no'
-const artworks = await getArtworks()
-
-function spanItems(index: number) {
-  const cols = 3
-
-  return `gridColumn: ${cols}`
-}
+let artworks = await getArtworks()
+artworks = artworks.concat(
+  artworks,
+  artworks,
+  artworks,
+  artworks,
+  artworks,
+  artworks,
+  artworks,
+  artworks,
+)
 ---
 
 <Layout title="Works Øystein Blegen Hoel">
@@ -24,39 +28,7 @@ function spanItems(index: number) {
     {
       artworks.map(({ title, photo }, index) => (
         <div>
-          <span style="position: absolute;"> {index}</span>
-          <Artwork title={title[language]} photo={photo} />
-        </div>
-      ))
-    }
-    {
-      artworks.map(({ title, photo }, index) => (
-        <div>
-          <span style="position: absolute;"> {index}</span>
-          <Artwork title={title[language]} photo={photo} />
-        </div>
-      ))
-    }
-    {
-      artworks.map(({ title, photo }, index) => (
-        <div>
-          <span style="position: absolute;"> {index}</span>
-          <Artwork title={title[language]} photo={photo} />
-        </div>
-      ))
-    }
-    {
-      artworks.map(({ title, photo }, index) => (
-        <div>
-          <span style="position: absolute;"> {index}</span>
-          <Artwork title={title[language]} photo={photo} />
-        </div>
-      ))
-    }
-    {
-      artworks.map(({ title, photo }, index) => (
-        <div>
-          <span style="position: absolute;"> {index}</span>
+          <span style="position: absolute;"> {index.toString()}</span>
           <Artwork title={title[language]} photo={photo} />
         </div>
       ))
@@ -67,18 +39,33 @@ function spanItems(index: number) {
   .wrapper {
     display: grid;
     grid-gap: 2rem;
-    display: grid;
-    grid-gap: 10px 12px;
     grid-template-columns: repeat(6, auto);
+    max-width: 100%;
   }
 
   .wrapper > * {
-    grid-column: span 2;
+    grid-column: span 3;
   }
 
-  .wrapper > *:nth-child(2n + 1),
-  .wrapper > *:nth-child(2n + 2) {
-    grid-column: span 3;
+  .wrapper > *:nth-child(3n + 1) {
+    grid-column: span 6;
     color: hotpink;
+    display: grid;
+    place-items: center;
+  }
+
+  @media screen and (min-width: 800px) {
+    .wrapper {
+      grid-template-columns: repeat(12, auto);
+    }
+
+    .wrapper > * {
+      grid-column: span 3;
+    }
+
+    .wrapper > *:nth-child(6n + 1) {
+      grid-column: span 2;
+      color: hotpink;
+    }
   }
 </style>
