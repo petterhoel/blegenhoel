@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Artwork from '../components/artwork.astro'
+import Artwork from '../works/artwork.astro'
 import { dataClient } from '../cms-integration/data-client'
 
 export async function getArtworks() {
@@ -9,18 +9,76 @@ export async function getArtworks() {
   console.log(artworks)
   return artworks
 }
-
+const language = 'no'
 const artworks = await getArtworks()
+
+function spanItems(index: number) {
+  const cols = 3
+
+  return `gridColumn: ${cols}`
+}
 ---
 
 <Layout title="Works Øystein Blegen Hoel">
-  her kommer bilder eller gallerier
-  {artworks.map(({ title, photo }) => <Artwork title={title} photo={photo} />)}
+  <section class="wrapper">
+    {
+      artworks.map(({ title, photo }, index) => (
+        <div>
+          <span style="position: absolute;"> {index}</span>
+          <Artwork title={title[language]} photo={photo} />
+        </div>
+      ))
+    }
+    {
+      artworks.map(({ title, photo }, index) => (
+        <div>
+          <span style="position: absolute;"> {index}</span>
+          <Artwork title={title[language]} photo={photo} />
+        </div>
+      ))
+    }
+    {
+      artworks.map(({ title, photo }, index) => (
+        <div>
+          <span style="position: absolute;"> {index}</span>
+          <Artwork title={title[language]} photo={photo} />
+        </div>
+      ))
+    }
+    {
+      artworks.map(({ title, photo }, index) => (
+        <div>
+          <span style="position: absolute;"> {index}</span>
+          <Artwork title={title[language]} photo={photo} />
+        </div>
+      ))
+    }
+    {
+      artworks.map(({ title, photo }, index) => (
+        <div>
+          <span style="position: absolute;"> {index}</span>
+          <Artwork title={title[language]} photo={photo} />
+        </div>
+      ))
+    }
+  </section>
 </Layout>
 <style>
   .wrapper {
     display: grid;
     grid-gap: 2rem;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: grid;
+    grid-gap: 10px 12px;
+    grid-template-columns: repeat(6, auto);
+  }
+
+  .wrapper > * {
+    grid-column: span 2;
+  }
+
+  .wrapper > *:nth-child(2n + 1),
+  .wrapper > *:nth-child(2n + 2) {
+    grid-column: span 3;
+    color: hotpink;
   }
 </style>

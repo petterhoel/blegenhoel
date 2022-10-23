@@ -1,15 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { dataClient } from '../cms-integration/data-client'
+import { PortableText } from 'astro-portabletext'
 
 export async function getHomePageText() {
-  const query = `*[_type == "homepage"]`
+  const query = `*[_type == "homepageText"][0]`
   const homepage = await dataClient.fetch(query)
   return homepage
 }
 
-const homePageText = await getHomePageText()
-console.log(homePageText)
+const { homepageText } = await getHomePageText()
+const language = 'no'
 ---
 
-<Layout title="Øystein Blegen Hoel">hei</Layout>
+<Layout title="Øystein Blegen Hoel">
+  <article class="text">
+    <PortableText value={homepageText[language]} />
+  </article>
+
+  <style>
+    .text {
+      font-size: 2rem;
+      font-family: var(--sans-font);
+      font-weight: 300;
+      line-height: 2;
+      letter-spacing: 0.09rem;
+    }
+  </style>
+</Layout>

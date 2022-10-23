@@ -8,7 +8,8 @@
     "cms"
   ],
   "scripts": {
-    "init": "sanity install",
+    "yarn": "sanity install",
+    "start": "npm-run-all --parallel dev:cms dev:site",
     "dev:cms": "npm run start --workspace=cms",
     "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "npm-run-all": "4.1.5"
   }
 }

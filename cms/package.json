@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build"
+    "dev": "sanity start",
+    "build": "sanity build" 
   },
   "dependencies": {
     "@sanity/base": "^2.34.0",
