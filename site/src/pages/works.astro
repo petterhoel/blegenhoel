@@ -7,6 +7,7 @@ export async function getArtworks() {
   const query = `*[_type == "artwork"]`
   const artworks = await dataClient.fetch(query)
   console.log(artworks)
+  console.log(artworks[0].photo.image)
   return artworks
 }
 const language = 'no'
