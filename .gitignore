@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 cms/config
 cms/static
+cms/.sanity

@@ -10,7 +10,7 @@
   "scripts": {
     "yarn": "sanity install",
     "start": "npm-run-all --parallel dev:cms dev:site",
-    "dev:cms": "npm run start --workspace=cms",
+    "dev:cms": "npm run dev --workspace=cms",
     "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
     "preview": "npm run preview --workspace=site",
@@ -32,6 +32,6 @@
     "@types/jest": "^29.2.3",
     "jest": "^29.3.1",
     "npm-run-all": "4.1.5",
-    "prettier": "^2.7.1"
+    "prettier": "^2.8.1"
   }
 }
