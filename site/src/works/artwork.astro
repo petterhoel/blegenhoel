@@ -1,0 +1,16 @@
+---
+import { urlForImage } from '../cms-integration/image-util'
+
+interface Props {
+  title: string
+}
+const { title, photo } = Astro.props
+---
+
+<img src={urlForImage(photo.image).width(600)} alt="" />
+
+<style>
+  img {
+    max-height: calc(100vh - 19rem);
+  }
+</style>
