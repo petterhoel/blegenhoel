@@ -1,4 +1,6 @@
-export const richText = {
+import { defineType } from 'sanity'
+
+export const richText = defineType({
   name: 'richText',
   type: 'array',
   of: [
@@ -6,4 +8,4 @@ export const richText = {
       type: 'block',
     },
   ],
-}
+})
