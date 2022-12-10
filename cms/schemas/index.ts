@@ -6,10 +6,12 @@ import { homepageText } from './homePageText'
 import { localeString } from './localeString'
 import { localeRichText } from './localeRichText'
 
-export const schemaTypes = [    artwork,
-    artworkImage,
-    richText,
-    biography,
-    homepageText,
-    localeString,
-    localeRichText,]
+export const schemaTypes = [
+  artwork,
+  artworkImage,
+  richText,
+  biography,
+  homepageText,
+  localeString,
+  localeRichText,
+]
