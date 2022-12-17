@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Kontakt Øystein Blegen Hoel">
-  <div>
+  <div class="contact">
     <h1 class="shrink">Ta kontakt med Øystein på</h1>
     <a
       class="contact"
@@ -16,14 +16,14 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <style>
-  div {
+  div.contact {
     margin-top: 10rem;
-    font-family: var(--serif-font);
+    font-family: var(--sans-font);
   }
+
   h1.shrink {
     font-size: var(--font-size-normal);
     display: inline;
-    font-family: var(--serif-font);
   }
   a.contact {
     text-decoration-skip-ink: auto;
@@ -32,6 +32,5 @@ import Layout from '../layouts/Layout.astro'
     text-decoration-color: var(--accent);
     text-decoration-thickness: 3px;
     margin: 0;
-    font-family: var(--sans-font);
   }
 </style>
