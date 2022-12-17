@@ -16,6 +16,13 @@ const { photo, alt } = Astro.props
 
 <style>
   img {
-    max-height: calc(100vh - 20rem);
+    width: 100vw - 10rem;
+    max-width: 100vw;
+    max-height: 60rem;
+  }
+  @media screen and (min-width: 800px) {
+    img {
+      max-height: calc(100vh - 20rem);
+    }
   }
 </style>
