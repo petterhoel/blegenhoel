@@ -6,7 +6,6 @@ import { dataClient } from '../cms-integration/data-client'
 export async function getArtworks() {
   const query = `*[_type == "artwork"]`
   const artworks = await dataClient.fetch(query)
-  console.log(artworks)
   return artworks
 }
 const language = 'no'
@@ -17,7 +16,11 @@ let artworks = await getArtworks()
   <section class="wrapper">
     {
       artworks.map(({ title, photo }) => (
-        <Artwork title={title[language]} photo={photo} />
+        <Artwork
+          title={title[language]}
+          photo={photo}
+          alt={photo.alt[language]}
+        />
       ))
     }
   </section>

@@ -37,42 +37,49 @@ const active = (mustInclude: string): string => {
         }
       }
     </script>
-    <header>
-      <h1 class="logo text-gradient">
-        <a href="/">Øystein Blegen Hoel</a>
-      </h1>
-      <input
-        type="checkbox"
-        id="nav-toggle"
-        name="nav-toggle"
-        class="nav-toggle"
-      />
-      <nav>
-        <ul>
-          <li>
-            <a href="/works" class={active('works')}>Arbeider</a>
-          </li>
-          <li>
-            <a href="/about" class={active('about')}>Om</a>
-          </li>
-          <li>
-            <a href="/contact" class={active('contact')}>Kontakt</a>
-          </li>
-        </ul>
-      </nav>
-      <label
-        for="nav-toggle"
-        id="nav-toggle-label"
-        class="nav-toggle-label closed"
-        onclick="toggleIcon()">
-        <span></span>
-      </label>
-    </header>
-
+    <div class="wrapper">
+      <header>
+        <h1 class="logo text-gradient">
+          <a href="/">Øystein Blegen Hoel</a>
+        </h1>
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          name="nav-toggle"
+          class="nav-toggle"
+        />
+        <nav>
+          <ul>
+            <li>
+              <a href="/works" class={active('works')}>Arbeider</a>
+            </li>
+            <li>
+              <a href="/about" class={active('about')}>Om</a>
+            </li>
+            <li>
+              <a href="/contact" class={active('contact')}>Kontakt</a>
+            </li>
+          </ul>
+        </nav>
+        <label
+          for="nav-toggle"
+          id="nav-toggle-label"
+          class="nav-toggle-label closed"
+          onclick="toggleIcon()">
+          <span></span>
+        </label>
+      </header>
+    </div>
     <main class="no-scroll">
       <slot />
     </main>
     <style>
+      .wrapper {
+        position: fixed;
+        top: 0;
+        background-color: var(--nav-background);
+        width: 100vw;
+      }
       header {
         background-color: var(--nav-background);
         font-family: var(--sans-font);
@@ -175,6 +182,12 @@ const active = (mustInclude: string): string => {
           display: none;
         }
 
+        div.wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: 65px;
+        }
         header {
           display: flex;
           width: 90rem;
