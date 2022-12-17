@@ -24,8 +24,8 @@
   --serif-font: 'Source Serif Pro', monospace;
   --sans-font: Montserrat, sans-serif;
   --font-size-normal: 1.9rem;
-  --font-size-lg: 2.2rem;
-  --font-size-xl: 3rem;
+  --font-size-lg: 2rem;
+  --font-size-xl: 2.4rem;
 }
 
 html {
@@ -94,7 +94,7 @@ h6 {
   padding: 0;
   margin: 0;
   font-family: var(--sans-font);
-  font-weight: 400;
+  font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 0.4rem;
 }
