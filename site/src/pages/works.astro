@@ -6,67 +6,40 @@ import { dataClient } from '../cms-integration/data-client'
 export async function getArtworks() {
   const query = `*[_type == "artwork"]`
   const artworks = await dataClient.fetch(query)
-  console.log(artworks)
-  console.log(artworks[0].photo.image)
   return artworks
 }
 const language = 'no'
 let artworks = await getArtworks()
-artworks = artworks.concat(
-  artworks,
-  artworks,
-  artworks,
-  artworks,
-  artworks,
-  artworks,
-  artworks,
-  artworks,
-)
 ---
 
-<Layout title="Works Øystein Blegen Hoel">
+<Layout title="Arbeider - Øystein Blegen Hoel">
   <section class="wrapper">
     {
-      artworks.map(({ title, photo }, index) => (
-        <div>
-          <span style="position: absolute;"> {index.toString()}</span>
-          <Artwork title={title[language]} photo={photo} />
-        </div>
+      artworks.map(({ title, photo }) => (
+        <Artwork
+          title={title[language]}
+          photo={photo}
+          alt={photo.alt[language]}
+        />
       ))
     }
   </section>
 </Layout>
 <style>
   .wrapper {
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(6, auto);
-    max-width: 100%;
-  }
-
-  .wrapper > * {
-    grid-column: span 3;
-  }
-
-  .wrapper > *:nth-child(3n + 1) {
-    grid-column: span 6;
-    color: hotpink;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    max-width: 100vw;
   }
 
   @media screen and (min-width: 800px) {
     .wrapper {
-      grid-template-columns: repeat(12, auto);
-    }
-
-    .wrapper > * {
-      grid-column: span 3;
-    }
-
-    .wrapper > *:nth-child(6n + 1) {
-      grid-column: span 2;
-      color: hotpink;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 120rem;
+      justify-content: center;
     }
   }
 </style>

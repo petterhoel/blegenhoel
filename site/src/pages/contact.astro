@@ -2,4 +2,36 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Contact Øystein Blegen Hoel">Her kommer kontaktskjema</Layout>
+<Layout title="Kontakt Øystein Blegen Hoel">
+  <div>
+    <h1 class="shrink">Ta kontakt med Øystein på</h1>
+    <a
+      class="contact"
+      href="https://www.instagram.com/oysteinblegenhoel"
+      rel="noopener noreferrer nofollow"
+      target="_blank">Instagram</a
+    > eller send
+    <a class="contact" href="mailto:oystein@blegenhoel.no">Øystein en epost</a>
+  </div>
+</Layout>
+
+<style>
+  div {
+    margin-top: 10rem;
+    font-family: var(--serif-font);
+  }
+  h1.shrink {
+    font-size: var(--font-size-normal);
+    display: inline;
+    font-family: var(--serif-font);
+  }
+  a.contact {
+    text-decoration-skip-ink: auto;
+    color: #000;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+    margin: 0;
+    font-family: var(--sans-font);
+  }
+</style>
