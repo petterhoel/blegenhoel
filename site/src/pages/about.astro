@@ -1,5 +1,18 @@
 ---
+import { PortableText } from 'astro-portabletext/.'
+import { dataClient } from '../cms-integration/data-client'
 import Layout from '../layouts/Layout.astro'
+export async function getBiography() {
+  const query = '*[_type == "biography"][0]'
+  const result = await dataClient.fetch(query)
+  return result.biography.no
+}
+
+const bipPortable = await getBiography()
 ---
 
-<Layout title="About Øystein Blegen Hoel">Her kommer bio</Layout>
+<Layout title="About Øystein Blegen Hoel">
+  <article>
+    <PortableText value={bipPortable} />
+  </article>
+</Layout>

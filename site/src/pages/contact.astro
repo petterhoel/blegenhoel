@@ -1,5 +1,19 @@
 ---
+import InstagramIcon from '../contact/instagramIcon.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Contact Øystein Blegen Hoel">Her kommer kontaktskjema</Layout>
+<Layout title="Kontakt Øystein Blegen Hoel">
+  <h1></h1>
+  <InstagramIcon />
+  <a href="javascript:decryptEmail('b3lzdGVpbkBibGVnZW5ob2VsLm5v')">Mail meg</a>
+</Layout>
+
+<script is:inline>
+  function decryptEmail(encoded) {
+    const address = atob(encoded)
+    window.location.href = `mailto:${address}`
+  }
+</script>
+
+<style></style>
