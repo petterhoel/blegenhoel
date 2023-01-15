@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity'
 export const artwork = defineType({
   name: 'artwork',
   type: 'document',
-  title: 'Verk',
+  title: 'Bildebank',
   fields: [
     defineField({
       title: 'Tittel',

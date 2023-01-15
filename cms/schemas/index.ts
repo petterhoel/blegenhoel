@@ -2,7 +2,7 @@ import { artwork } from './artwork'
 import { artworkImage } from './artworkImage'
 import { richText } from './richText'
 import { biography } from './biography'
-import { homepageText } from './homePageText'
+import { aboutWorks } from './aboutWorks'
 import { localeString } from './localeString'
 import { localeRichText } from './localeRichText'
 
@@ -11,7 +11,7 @@ export const schemaTypes = [
   artworkImage,
   richText,
   biography,
-  homepageText,
+  aboutWorks,
   localeString,
   localeRichText,
 ]

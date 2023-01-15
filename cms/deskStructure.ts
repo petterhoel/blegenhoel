@@ -4,11 +4,11 @@ export const deskStructure = (S) => {
     .title('Biografisk tekst')
     .child(S.document().schemaType('biography').documentId('biography'))
 
-  const homepageText = S.listItem()
-    .title('Forsidetekst')
-    .child(S.document().schemaType('homepageText').documentId('homepageText'))
+  const aboutWorks = S.listItem()
+    .title('Om Bildene')
+    .child(S.document().schemaType('aboutWorks').documentId('aboutWorks'))
 
-  const filterList = ['biography', 'homepageText']
+  const filterList = ['biography', 'aboutWorks']
 
   const filteredNonSingles = S.documentTypeListItems().filter(
     // @ts-ignore
@@ -17,5 +17,5 @@ export const deskStructure = (S) => {
 
   return S.list()
     .title('Innhold')
-    .items([...filteredNonSingles, biography, homepageText])
+    .items([biography, aboutWorks, ...filteredNonSingles])
 }
