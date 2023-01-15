@@ -3,6 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "main": "../package.json",
   "scripts": {
     "start": "sanity dev",
     "dev": "sanity dev",

@@ -2,6 +2,7 @@
   "name": "blegenhoel",
   "version": "1.0.0",
   "private": true,
+  "main": "./package.json",
   "description": "Website for Øystein Blegen Hoel",
   "workspaces": [
     "site",
