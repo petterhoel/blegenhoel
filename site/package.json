@@ -1,8 +1,9 @@
 {
   "name": "blegenhoel-website",
-  "type": "module",
   "version": "1.0.0",
   "private": true,
+  "main": "../package.json",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
