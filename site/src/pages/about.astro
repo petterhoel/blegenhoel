@@ -1,18 +1,33 @@
 ---
-import { PortableText } from 'astro-portabletext/.'
-import { dataClient } from '../cms-integration/data-client'
 import Layout from '../layouts/Layout.astro'
-export async function getBiography() {
-  const query = '*[_type == "biography"][0]'
-  const result = await dataClient.fetch(query)
-  return result.biography.no
+import { dataClient } from '../cms-integration/data-client'
+import { PortableText } from 'astro-portabletext'
+
+export async function getAboutWorksText() {
+  const query = `*[_type == "aboutWorks"][0]`
+  const homepage = await dataClient.fetch(query)
+  return homepage
 }
 
-const bipPortable = await getBiography()
+const { aboutWorks } = await getAboutWorksText()
+console.log({
+  aboutWorks,
+})
+const language = 'no'
 ---
 
-<Layout title="Om Øystein Blegen Hoel">
-  <article>
-    <PortableText value={bipPortable} />
+<Layout title="Om bildene | Øystein Blegen Hoel">
+  <article class="text">
+    <PortableText value={aboutWorks[language]} />
   </article>
+
+  <style>
+    .text {
+      font-size: 2rem;
+      font-family: var(--sans-font);
+      font-weight: 300;
+      line-height: 2;
+      letter-spacing: 0.09rem;
+    }
+  </style>
 </Layout>
