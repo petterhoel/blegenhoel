@@ -1,6 +1,7 @@
 ---
 import { PortableText } from 'astro-portabletext/.'
 import { dataClient } from '../cms-integration/data-client'
+import ContactDetails from '../ContactDetails.astro'
 import Layout from '../layouts/Layout.astro'
 export async function getBiography() {
   const query = '*[_type == "biography"][0]'
@@ -11,39 +12,11 @@ export async function getBiography() {
 const bipPortable = await getBiography()
 ---
 
-<Layout title="Biofrafi | Øystein Blegen Hoel">
+<Layout title="Biografi | Øystein Blegen Hoel">
   <article>
     <PortableText value={bipPortable} />
-
-    <p class="contact">
-      Ta kontakt med Øystein på
-      <a
-        class="contact"
-        href="https://www.instagram.com/oysteinblegenhoel"
-        rel="noopener noreferrer nofollow"
-        target="_blank">Instagram</a
-      > eller send
-      <a class="contact" href="mailto:oystein@blegenhoel.no">Øystein en epost</a>
-    </p>
   </article>
+  <aside>
+    <ContactDetails />
+  </aside>
 </Layout>
-
-<style>
-  p.contact {
-    margin-top: 10rem;
-    font-family: var(--sans-font);
-  }
-
-  h1.shrink {
-    font-size: var(--font-size-normal);
-    display: inline;
-  }
-  a.contact {
-    text-decoration-skip-ink: auto;
-    color: #000;
-    text-underline-offset: 2px;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 3px;
-    margin: 0;
-  }
-</style>

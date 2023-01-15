@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro'
 import { dataClient } from '../cms-integration/data-client'
 import { PortableText } from 'astro-portabletext'
+import ContactDetails from '../ContactDetails.astro'
 
 export async function getAboutWorksText() {
   const query = `*[_type == "aboutWorks"][0]`
@@ -17,6 +18,9 @@ const language = 'no'
   <article class="text">
     <PortableText value={aboutWorks[language]} />
   </article>
+  <aside>
+    <ContactDetails />
+  </aside>
 
   <style>
     .text {
