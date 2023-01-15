@@ -8,12 +8,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run"
+
   },
   "dependencies": {
-    "@sanity/client": "^3.4.1",
-    "@sanity/image-url": "^1.0.1",
-    "astro": "^1.7.1",
+    "@sanity/client": "4.0.1",
+    "@sanity/image-url": "1.0.1",
+    "astro": "1.9.2",
     "astro-portabletext": "0.7.0"
   }
 }
