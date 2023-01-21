@@ -13,8 +13,11 @@
     "dev:cms": "npm run dev --workspace=cms",
     "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
+    "build:cms": "npm run build --workspace=cms",
+    "deploy:cms": "npm run deploy --workspace=cms",
     "format": "prettier -w .",
-    "test": "npm run test --workspace=site"
+    "test": "npm run test --workspace=site",
+    "rimraf": "rimraf node_modules cms/node_modules site/node_modules package-lock.json"
   },
   "repository": {
     "type": "git",
