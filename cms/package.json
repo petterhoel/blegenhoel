@@ -18,7 +18,8 @@
     "react-dom": "^18.2.0",
     "sanity": "^3.2.3",
     "slug": "8.2.2",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "react-icons": "4.7.1"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "2.0.1",
