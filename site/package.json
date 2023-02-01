@@ -5,18 +5,17 @@
   "main": "../package.json",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --trace-warnings",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run"
-
   },
   "dependencies": {
     "@sanity/client": "4.0.1",
-    "@sanity/image-url": "1.0.1",
-    "astro": "1.9.2",
+    "@sanity/image-url": "1.0.2",
+    "astro": "2.0.5",
     "astro-portabletext": "0.7.0"
   }
 }
