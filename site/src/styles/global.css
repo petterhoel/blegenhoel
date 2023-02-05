@@ -1,9 +1,16 @@
 @font-face {
-  font-family: Montserrat;
+  font-family: Nunito;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Nunito;
   font-weight: 100 900;
   font-display: swap;
   font-style: italic;
-  src: url('/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/Nunito-Italic-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
@@ -22,7 +29,7 @@
   --color-text: hsl(12, 5%, 4%);
   --astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
   --serif-font: 'Source Serif Pro', monospace;
-  --sans-font: Montserrat, sans-serif;
+  --sans-font: Nunito, sans-serif;
   --font-size-normal: 1.9rem;
   --font-size-lg: 2rem;
   --font-size-xl: 2.4rem;
