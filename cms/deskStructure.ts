@@ -12,14 +12,18 @@ export const deskStructure = (S) => {
     .title('Forsidegalleri')
     .child(S.document().schemaType('gallery').documentId('gallery'))
 
-  const filterList = ['biography', 'aboutWorks', 'gallery']
+  const seo = S.listItem()
+    .title('Søkemotor synlighet (SEO)')
+    .child(S.document().schemaType('seo').documentId('seo'))
+
+  const filterList = ['biography', 'aboutWorks', `seo`, 'gallery']
 
   const filteredNonSingles = S.documentTypeListItems().filter(
     // @ts-ignore
-    (item) => !filterList.includes(item.getId()),
+    (item) => !filterList.includes(item.getId())
   )
 
   return S.list()
     .title('Innhold')
-    .items([homePage, biography, aboutWorks, ...filteredNonSingles])
+    .items([homePage, biography, aboutWorks, ...filteredNonSingles, seo])
 }

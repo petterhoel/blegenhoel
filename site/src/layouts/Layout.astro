@@ -3,11 +3,12 @@ import '../styles/global.css'
 
 export interface Props {
   title: string
+  description: string
+  keywords: string
 }
 
-const { title } = Astro.props
-const pathname = new URL(Astro.request.url).pathname
-const currentPath = pathname.slice(1) // remove the first "/"
+const { title, keywords, description } = Astro.props
+const currentPath = new URL(Astro.request.url).pathname
 
 const active = (mustInclude: string): string => {
   return currentPath.includes(mustInclude) ? 'active' : ''
@@ -20,7 +21,8 @@ const active = (mustInclude: string): string => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <title>{title}</title>
   </head>
   <body>
