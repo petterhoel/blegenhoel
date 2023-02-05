@@ -2,24 +2,49 @@
 import Layout from '../layouts/Layout.astro'
 import Artwork from '../works/artwork.astro'
 import { dataClient } from '../cms-integration/data-client'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { urlForImage } from '../cms-integration/image-util'
 
-export async function getArtworks() {
+
+interface I18nString {
+  no: string
+  en: undefined
+}
+
+interface ArtworkDto {
+  dimmenstions: string
+  material: { no: string }
+  photo: { alt: I18nString; image: SanityImageSource }
+  title: I18nString
+  year: '2022'
+}
+
+function mapArtworkDtoToVm(dto: ArtworkDto) {
+  return {
+     title: dto.title.no,
+     alt: dto.photo.alt.no,
+     url: urlForImage(dto.photo.image)
+  }
+}
+
+export async function getArtworks(): Promise<ArtworkDto[]> {
   const query = `*[_type == "artwork"]`
   const artworks = await dataClient.fetch(query)
   return artworks
 }
 const language = 'no'
-let artworks = await getArtworks()
+const artworkDtos = await getArtworks()
+const artworks = artworkDtos.map(mapArtworkDtoToVm)
 ---
 
 <Layout title="Arbeider - Øystein Blegen Hoel">
   <section class="wrapper">
     {
-      artworks.map(({ title, photo }) => (
+      artworks.map(({ title, url, alt }) => (
         <Artwork
-          title={title[language]}
-          photo={photo}
-          alt={photo.alt[language]}
+          title={title}
+          url={url}
+          alt={alt}
         />
       ))
     }

@@ -1,18 +1,14 @@
 ---
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import { urlForImage } from '../cms-integration/image-util'
 
 interface Props {
-  title: string
-  alt: string
-  photo: {
-    image: SanityImageSource
-  }
+  title: string;
+  alt: string;
+  url: string;
 }
-const { photo, alt } = Astro.props
+const { url, alt, title } = Astro.props
 ---
 
-<img src={urlForImage(photo.image).width(600)} alt={alt} decoding="async" />
+<img src={url} alt={alt} title={title} decoding="async" />
 
 <style>
   img {
