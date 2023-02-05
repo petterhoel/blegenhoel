@@ -28,7 +28,7 @@ const active = (mustInclude: string): string => {
   <body>
     <script is:inline>
       function toggleIcon() {
-        const input = document.getElementById('nav-toggle') as HTMLInputElement
+        const input = document.getElementById('nav-toggle')
         const label = document.getElementById('nav-toggle-label')
         if (input && !input.checked) {
           label.classList.remove('closed')
