@@ -10,6 +10,7 @@ interface Props {
 const { url, alt, title, year, dimmenstions, material } = Astro.props
 ---
 
+<!--TODO: Picture element -->
 <div class="artwork-wrapper">
   <img src={url} alt={alt} title={title} decoding="async" />
   <div>
@@ -44,7 +45,7 @@ const { url, alt, title, year, dimmenstions, material } = Astro.props
 
   .dimmension-material {
     font-weight: 300;
-    opacity: 0.70;
+    opacity: 0.7;
   }
 
   @media screen and (min-width: 800px) {
