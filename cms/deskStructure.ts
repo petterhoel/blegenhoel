@@ -12,10 +12,10 @@ export const deskStructure = (S) => {
     .title('Forsidegalleri')
     .child(S.document().schemaType('gallery').documentId('gallery'))
 
-    const seo = S.listItem()
-    .title('Google synlighet')
+  const seo = S.listItem()
+    .title('Søkemotor synlighet (SEO)')
     .child(S.document().schemaType('seo').documentId('seo'))
-  
+
   const filterList = ['biography', 'aboutWorks', `seo`, 'gallery']
 
   const filteredNonSingles = S.documentTypeListItems().filter(
