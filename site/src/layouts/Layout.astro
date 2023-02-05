@@ -28,7 +28,7 @@ const active = (mustInclude: string): string => {
   <body>
     <script is:inline>
       function toggleIcon() {
-        const input = document.getElementById('nav-toggle')
+        const input = document.getElementById('nav-toggle') as HTMLInputElement
         const label = document.getElementById('nav-toggle-label')
         if (input && !input.checked) {
           label.classList.remove('closed')
@@ -117,7 +117,6 @@ const active = (mustInclude: string): string => {
         left: 0;
         width: 100%;
         min-height: 100vh;
-        background: rgba(255, 255, 255, 0.9);
         transform: scale(1, 0);
         transform-origin: top;
         transition: transform 200ms ease;
@@ -125,11 +124,8 @@ const active = (mustInclude: string): string => {
       }
 
       nav ul {
-        margin: 0;
-        margin-top: 0rem;
-        padding: 0;
-        padding-top: 4rem;
-        padding-bottom: 8rem;
+        margin: 0rem 0 0;
+        padding: 4rem 0 8rem;
         list-style: none;
         background-color: var(--nav-background);
         border-bottom: 2px solid #918dff;
@@ -189,6 +185,7 @@ const active = (mustInclude: string): string => {
       }
 
       @media screen and (min-width: 800px) {
+        .nav-toggle,
         .nav-toggle-label {
           display: none;
         }
