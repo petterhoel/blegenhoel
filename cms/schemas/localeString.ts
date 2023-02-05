@@ -1,4 +1,4 @@
-import { english, norsk } from "./locales";
+import { english, norsk } from './locales'
 import { defineType, defineField } from 'sanity'
 
 export const localeString = defineType({

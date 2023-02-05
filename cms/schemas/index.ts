@@ -17,5 +17,5 @@ export const schemaTypes = [
   aboutWorks,
   localeString,
   localeRichText,
-  seo
+  seo,
 ]

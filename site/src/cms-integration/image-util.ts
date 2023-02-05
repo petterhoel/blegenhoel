@@ -8,12 +8,10 @@ const imageUrlBuilder = sanityImageUrlBuilder({ projectId, dataset })
 
 export function urlForImage(source: SanityImageSource | undefined) {
   if (!source) {
-    return ""
+    return ''
   }
   return imageUrlBuilder.image(source).width(600).url()
 }
-
-
 
 export function extractWithHeughtFromUrl(url: string): ImageDimmentions {
   const splitPoint = url.lastIndexOf('-')
@@ -33,4 +31,3 @@ interface ImageDimmentions {
   width: number
   height: number
 }
-
