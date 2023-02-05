@@ -8,7 +8,11 @@ export const deskStructure = (S) => {
     .title('Om Bildene')
     .child(S.document().schemaType('aboutWorks').documentId('aboutWorks'))
 
-  const filterList = ['biography', 'aboutWorks']
+  const homePage = S.listItem()
+    .title('Forsidegalleri')
+    .child(S.document().schemaType('gallery').documentId('gallery'))
+
+  const filterList = ['biography', 'aboutWorks', 'gallery']
 
   const filteredNonSingles = S.documentTypeListItems().filter(
     // @ts-ignore
@@ -17,5 +21,5 @@ export const deskStructure = (S) => {
 
   return S.list()
     .title('Innhold')
-    .items([biography, aboutWorks, ...filteredNonSingles])
+    .items([homePage, biography, aboutWorks, ...filteredNonSingles])
 }
