@@ -10,7 +10,7 @@
     "cms"
   ],
   "scripts": {
-    "start": "npm-run-all --parallel dev:cms dev:site",
+    "start": "npm run dev:cms & npm run dev:site",
     "dev:cms": "npm run dev --workspace=cms",
     "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
@@ -31,12 +31,19 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "npm-run-all": "4.1.5",
     "prettier": "2.8.3",
     "prettier-plugin-astro": "0.8.0",
     "rimraf": "4.1.2",
     "sass": "1.58.0",
     "typescript": "^4.0.0",
     "vitest": "0.28.4"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 80,
+    "bracketSpacing": true,
+    "bracketSameLine": true
   }
 }

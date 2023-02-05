@@ -4,6 +4,7 @@ import Artwork from '../works/artwork.astro'
 import { dataClient } from '../cms-integration/data-client'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { urlForImage } from '../cms-integration/image-util'
+import { getSeoAsync } from '../cms-integration/seo-client'
 
 interface I18nString {
   no: string
@@ -19,7 +20,6 @@ interface ArtworkDto {
 }
 
 function mapArtworkDtoToVm(dto: ArtworkDto) {
-  console.log({ dto })
   const { title, dimmenstions, year, photo, material } = dto
   return {
     title: title.no,
@@ -41,12 +41,16 @@ export async function getArtworks(): Promise<ArtworkDto[]> {
   }
   return []
 }
-const language = 'no'
+const { keywords, description } = await getSeoAsync()
+
 const artworkDtos = await getArtworks()
 const artworks = artworkDtos.map(mapArtworkDtoToVm)
 ---
 
-<Layout title="Arbeider - Øystein Blegen Hoel">
+<Layout
+  title="Arbeider - Øystein Blegen Hoel"
+  keywords={keywords}
+  description={description}>
   <section class="wrapper">
     {
       artworks.map(({ title, url, alt, material, dimmenstions, year }) => (

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import { dataClient } from '../cms-integration/data-client'
 import { PortableText } from 'astro-portabletext'
 import ContactDetails from '../ContactDetails.astro'
+import { getSeoAsync } from '../cms-integration/seo-client'
 
 export async function getAboutWorksText() {
   const query = `*[_type == "aboutWorks"][0]`
@@ -11,10 +12,14 @@ export async function getAboutWorksText() {
 }
 
 const { aboutWorks } = await getAboutWorksText()
+const { keywords, description } = await getSeoAsync()
 const language = 'no'
 ---
 
-<Layout title="Om bildene | Øystein Blegen Hoel">
+<Layout
+  title="Om bildene | Øystein Blegen Hoel"
+  keywords={keywords}
+  description={description}>
   <article class="text">
     <PortableText value={aboutWorks[language]} />
   </article>
