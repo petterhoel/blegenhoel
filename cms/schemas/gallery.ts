@@ -11,6 +11,7 @@ export const gallery = defineType({
       description: 'Sorter, legg til eller fjern bilder',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'artwork' }] }],
+      validation: (Rule) => Rule.unique(),
     }),
     defineField({
       name: 'galleryName',

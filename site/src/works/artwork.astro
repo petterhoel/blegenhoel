@@ -1,14 +1,28 @@
 ---
-
 interface Props {
-  title: string;
-  alt: string;
-  url: string;
+  title: string
+  alt: string
+  url: string
+  dimmenstions: string
+  material: string
+  year: string
 }
-const { url, alt, title } = Astro.props
+const { url, alt, title, year, dimmenstions, material } = Astro.props
 ---
 
-<img src={url} alt={alt} title={title} decoding="async" />
+<!--TODO: Picture element -->
+<div class="artwork-wrapper">
+  <img src={url} alt={alt} title={title} decoding="async" />
+  <div>
+    <div class="title-year">
+      {title.trim()}{year ? `, ${year}` : ''}
+    </div>
+    <div class="dimmension-material">
+      {material}
+      {dimmenstions}
+    </div>
+  </div>
+</div>
 
 <style>
   img {
@@ -16,6 +30,24 @@ const { url, alt, title } = Astro.props
     max-width: 100vw;
     max-height: 60rem;
   }
+
+  .title-year,
+  .dimmension-material {
+    font-family: var(--sans-font);
+    font-size: 1.4rem;
+    padding-inline-start: 0.2rem;
+  }
+
+  .title-year {
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  .dimmension-material {
+    font-weight: 300;
+    opacity: 0.7;
+  }
+
   @media screen and (min-width: 800px) {
     img {
       max-height: calc(100vh - 20rem);
