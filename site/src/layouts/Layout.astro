@@ -56,6 +56,7 @@ const active = (mustInclude: string): string => {
           class="nav-toggle-label closed"
           onclick="toggleIcon()">
           <span></span>
+          <div class="screen-reader-only">Meny</div>
         </label>
         <nav>
           <ul>
@@ -95,6 +96,17 @@ const active = (mustInclude: string): string => {
         margin: 2rem;
         font-weight: 500;
         text-decoration: none;
+      }
+      .screen-reader-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
       }
 
       nav {
