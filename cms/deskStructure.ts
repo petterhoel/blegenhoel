@@ -1,3 +1,5 @@
+export const singletonTypes = ['biography', 'aboutWorks', `seo`, 'gallery']
+
 // @ts-ignore
 export const deskStructure = (S) => {
   const biography = S.listItem()
@@ -16,11 +18,9 @@ export const deskStructure = (S) => {
     .title('Søkemotor synlighet (SEO)')
     .child(S.document().schemaType('seo').documentId('seo'))
 
-  const filterList = ['biography', 'aboutWorks', `seo`, 'gallery']
-
   const filteredNonSingles = S.documentTypeListItems().filter(
     // @ts-ignore
-    (item) => !filterList.includes(item.getId())
+    (item) => !singletonTypes.includes(item.getId())
   )
 
   return S.list()
