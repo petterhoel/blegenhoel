@@ -1,7 +1,9 @@
+import { StructureBuilder } from 'sanity/desk'
+
 export const singletonTypes = ['biography', 'aboutWorks', `seo`, 'gallery']
 
 // @ts-ignore
-export const deskStructure = (S) => {
+export const deskStructure = (S: StructureBuilder) => {
   const biography = S.listItem()
     .title('Biografisk tekst')
     .child(S.document().schemaType('biography').documentId('biography'))
@@ -19,8 +21,7 @@ export const deskStructure = (S) => {
     .child(S.document().schemaType('seo').documentId('seo'))
 
   const filteredNonSingles = S.documentTypeListItems().filter(
-    // @ts-ignore
-    (item) => !singletonTypes.includes(item.getId())
+    (item) => !singletonTypes.includes(item.getId() ?? '')
   )
 
   return S.list()
