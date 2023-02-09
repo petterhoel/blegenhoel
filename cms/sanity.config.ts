@@ -29,7 +29,8 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
-    templates: () => [],
+    templates: (templates) =>
+      templates.filter(({ schemaType }) => !singletonSet.has(schemaType)),
   },
 
   document: {

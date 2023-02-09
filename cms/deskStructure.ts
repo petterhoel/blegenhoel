@@ -1,4 +1,4 @@
-import { StructureBuilder } from "sanity/desk"
+import { StructureBuilder } from 'sanity/desk'
 
 export const singletonTypes = ['biography', 'aboutWorks', `seo`, 'gallery']
 
