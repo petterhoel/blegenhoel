@@ -35,12 +35,15 @@ export const artwork = defineType({
     select: {
       title: 'title',
       subtitle: 'year',
+      image: 'photo.image',
     },
     prepare(selection) {
-      const { title, subtitle } = selection
+      const { title, subtitle, image } = selection
+
       return {
         title: title.no,
         subtitle,
+        media: image,
       }
     },
   },
