@@ -39,7 +39,6 @@ export const artwork = defineType({
     },
     prepare(selection) {
       const { title, subtitle, image } = selection
-
       return {
         title: title.no,
         subtitle,
