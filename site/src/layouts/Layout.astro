@@ -7,6 +7,18 @@ export interface Props {
   keywords: string
 }
 
+const  toggleIcon = () => {
+  const input = document.getElementById('nav-toggle') as HTMLInputElement
+  const label = document.getElementById('nav-toggle-label')
+  if (input && !input.checked) {
+    label.classList.remove('closed')
+    document.body.classList.add('no-scroll')
+  } else {
+    label.classList.add('closed')
+    document.body.classList.remove('no-scroll')
+  }
+}
+
 const { title, keywords, description } = Astro.props
 const currentPath = new URL(Astro.request.url).pathname
 
@@ -26,19 +38,6 @@ const active = (mustInclude: string): string => {
     <title>{title}</title>
   </head>
   <body>
-    <script is:inline>
-      function toggleIcon() {
-        const input = document.getElementById('nav-toggle')
-        const label = document.getElementById('nav-toggle-label')
-        if (input && !input.checked) {
-          label.classList.remove('closed')
-          document.body.classList.add('no-scroll')
-        } else {
-          label.classList.add('closed')
-          document.body.classList.remove('no-scroll')
-        }
-      }
-    </script>
     <div class="wrapper">
       <header>
         <h1 class="logo text-gradient">

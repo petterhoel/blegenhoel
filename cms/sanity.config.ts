@@ -13,12 +13,17 @@ export const singletonActions = new Set([
   'unpublish',
 ])
 
-export default defineConfig({
-  name: 'default',
-  title: 'Blegenhoel',
+// @ts-ignore
+export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? ''
+export const projectId = '2uvu00qu'
 
-  projectId: '2uvu00qu',
-  dataset: 'staging',
+const name = 'default'
+const title = 'Belgenhoel'
+export default defineConfig({
+  name,
+  title,
+  projectId,
+  dataset,
 
   plugins: [
     deskTool({
