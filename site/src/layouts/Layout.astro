@@ -89,7 +89,14 @@ const active = (mustInclude: string): string => {
         width: 100%;
         z-index: 999;
         letter-spacing: 0.1rem;
-        padding: 1rem 0;
+        padding: 1rem 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      header h1 {
+        margin: 0;
       }
 
       .logo a {
@@ -149,9 +156,6 @@ const active = (mustInclude: string): string => {
       }
 
       .nav-toggle-label {
-        position: absolute;
-        top: 0;
-        right: 0;
         margin-right: 1em;
         height: 100%;
         display: flex;
