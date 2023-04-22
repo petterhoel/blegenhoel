@@ -97,14 +97,18 @@ const active = (mustInclude: string): string => {
 
       header h1 {
         margin: 0;
+        flex-shrink: 1;
+        overflow: hidden;
+
       }
 
       .logo a {
         color: #3d37e4;
-        font-size: 3rem;
+        font-size: 2.4rem;
         margin: 2rem;
         font-weight: 500;
         text-decoration: none;
+        white-space: nowrap;
       }
       .screen-reader-only {
         position: absolute;
@@ -133,7 +137,7 @@ const active = (mustInclude: string): string => {
       }
 
       nav ul {
-        margin: 0rem 0 0;
+        margin: 0 0 0;
         padding: 4rem 0 8rem;
         list-style: none;
         background-color: var(--nav-background);
