@@ -81,6 +81,7 @@ const active = (mustInclude: string): string => {
         top: 0;
         background-color: var(--nav-background);
         width: 100vw;
+        line-height: 1;
       }
       header {
         background-color: var(--nav-background);
@@ -89,7 +90,7 @@ const active = (mustInclude: string): string => {
         width: 100%;
         z-index: 999;
         letter-spacing: 0.1rem;
-        padding: 1rem 0 0;
+        padding: 1.4rem 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -204,7 +205,6 @@ const active = (mustInclude: string): string => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          height: 65px;
         }
         header {
           display: flex;
@@ -239,6 +239,7 @@ const active = (mustInclude: string): string => {
 
         nav a {
           opacity: 1;
+          padding: 0 2rem;
           position: relative;
         }
 
@@ -257,7 +258,7 @@ const active = (mustInclude: string): string => {
           height: 5px;
           background: var(--accent);
           position: absolute;
-          top: 0rem;
+          top: -.8rem;
           left: 1rem;
           right: 1rem;
           border-radius: 5px;
