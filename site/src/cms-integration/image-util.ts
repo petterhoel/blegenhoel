@@ -10,7 +10,7 @@ export function urlForImage(source: SanityImageSource | undefined) {
   if (!source) {
     return ''
   }
-  return imageUrlBuilder.image(source).width(600).url()
+  return imageUrlBuilder.image(source).width(600).format("webp").quality(70).url()
 }
 
 export function extractWithHeughtFromUrl(url: string): ImageDimmentions {
