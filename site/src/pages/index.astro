@@ -71,8 +71,9 @@ const artworks = artworkDtos.map(mapArtworkDtoToVm)
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4rem;
+    gap: 8rem;
     max-width: 100vw;
+    margin-bottom: 4rem;
   }
 
   @media screen and (min-width: 800px) {
@@ -80,6 +81,7 @@ const artworks = artworkDtos.map(mapArtworkDtoToVm)
       flex-direction: row;
       flex-wrap: wrap;
       width: 120rem;
+      gap: 4rem;
       justify-content: center;
     }
   }
