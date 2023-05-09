@@ -20,24 +20,10 @@ const language = 'no'
   title="Om bildene | Øystein Blegen Hoel"
   keywords={keywords}
   description={description}>
-  <article class="text">
+  <article>
     <PortableText value={aboutWorks[language]} />
   </article>
   <aside>
     <ContactDetails />
   </aside>
-
-  <style>
-    .text {
-      font-size: 2rem;
-      font-family: var(--sans-font);
-      font-weight: 330;
-      line-height: 2;
-      letter-spacing: 0.09rem;
-    }
-
-    em {
-      font-weight: 550;
-    }
-  </style>
 </Layout>

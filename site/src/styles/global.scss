@@ -94,3 +94,12 @@ h2 {
 *::after {
   box-sizing: border-box;
 }
+
+main article {
+  line-height: 2;
+  letter-spacing: 0.09rem;
+  font-weight: 330;
+  em {
+    font-weight: 550;
+  }
+}
