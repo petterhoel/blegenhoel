@@ -4,7 +4,6 @@
   --font-size-base: 10px;
   --color-text: hsl(12, 5%, 4%);
   --astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
-  --serif-font: 'Source Serif Pro', monospace;
   --sans-font: Nunito, sans-serif;
   --font-size-normal: 1.9rem;
   --font-size-lg: 2rem;
@@ -12,7 +11,7 @@
 }
 
 html {
-  font-family: var(--serif-font);
+  font-family: var(--sans-font);
   font-size: var(--font-size-base);
   color: var(--color-text);
   letter-spacing: 0.1rem;
