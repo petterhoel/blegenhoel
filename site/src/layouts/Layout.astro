@@ -7,17 +7,7 @@ export interface Props {
   keywords: string
 }
 
-const  toggleIcon = () => {
-  const input = document.getElementById('nav-toggle') as HTMLInputElement
-  const label = document.getElementById('nav-toggle-label')
-  if (input && !input.checked) {
-    label.classList.remove('closed')
-    document.body.classList.add('no-scroll')
-  } else {
-    label.classList.add('closed')
-    document.body.classList.remove('no-scroll')
-  }
-}
+
 
 const { title, keywords, description } = Astro.props
 const currentPath = new URL(Astro.request.url).pathname
@@ -51,15 +41,15 @@ const active = (mustInclude: string): string => {
           type="checkbox"
           id="nav-toggle"
           name="nav-toggle"
-          class="nav-toggle"
-        />
+          class="nav-toggle"/>
         <label
           for="nav-toggle"
           id="nav-toggle-label"
-          class="nav-toggle-label closed"
-          onclick="toggleIcon()">
+          class="nav-toggle-label closed">
           <span></span>
-          <div class="screen-reader-only">Meny</div>
+          <span></span>
+          <span></span>
+          <div class="screen-reader-only"></div>
         </label>
         <nav>
           <ul>
@@ -76,6 +66,27 @@ const active = (mustInclude: string): string => {
     <main class="no-scroll">
       <slot />
     </main>
+
+    <script>
+      const toggleIcon = () => {
+        const input = document.getElementById<HTMLInputElement>('nav-toggle');
+        const label = document.getElementById('nav-toggle-label')
+        const main = document.querySelector('main')
+        if (input && !input.checked) {
+          label.classList.add('closed')
+          main.removeAttribute('inert')
+          document.body.classList.remove('no-scroll')
+        } else {
+
+
+          label.classList.remove('closed')
+          main.setAttribute('inert', true)
+          document.body.classList.add('no-scroll')
+        }
+      }
+      const navToggle = document.getElementById('nav-toggle');
+      navToggle.addEventListener('click', toggleIcon);
+    </script>
     <style>
       .wrapper {
         position: fixed;
@@ -88,10 +99,10 @@ const active = (mustInclude: string): string => {
       header {
         background-color: var(--nav-background);
         position: fixed;
-        width: 100%;
         z-index: 999;
         letter-spacing: 0.1rem;
-        padding: 1.4rem 0;
+        width: 100vw;
+        padding: 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -106,7 +117,6 @@ const active = (mustInclude: string): string => {
       .logo a {
         color: #3d37e4;
         font-size: 2.4rem;
-        margin: 2rem;
         font-weight: 500;
         text-decoration: none;
         white-space: nowrap;
@@ -135,7 +145,6 @@ const active = (mustInclude: string): string => {
         transform: scale(1, 0);
         transform-origin: top;
         transition: transform 200ms ease;
-        box-shadow: 0 2px 0 0 rgba(6, 22, 41, 0.04);
       }
 
       nav ul {
@@ -161,44 +170,67 @@ const active = (mustInclude: string): string => {
         transition: opacity 10ms ease-in-out;
       }
 
-      .nav-toggle-label {
-        margin-right: 1em;
-        height: 100%;
-        display: flex;
-        align-items: center;
+      #nav-toggle:checked ~ nav {
+        transform: scale(1);
       }
-
-      .nav-toggle {
-        position: absolute !important;
-        top: -9999px !important;
-        left: -9999px !important;
-      }
-
-      .nav-toggle-label span {
-        cursor: pointer;
-        --size: 2.2rem;
-        background-image: url('/icons/xmark-solid.svg');
-        background-size: var(--size) var(--size);
-        height: var(--size);
-        width: var(--size);
-      }
-
-      .nav-toggle-label.closed span {
-        background-image: url('/icons/bars-solid.svg');
-      }
-
-      .nav-toggle:checked ~ nav {
-        transform: scale(1, 1);
-      }
-
-      .nav-toggle:checked ~ nav a {
+      #nav-toggle:checked ~ nav a {
         opacity: 1;
-        transition: opacity 200ms ease-in-out 200ms;
+      }
+
+      label#nav-toggle-label {
+        display:flex;
+        flex-direction:column;
+        width: 26px;
+        cursor:pointer;
+      }
+
+      label#nav-toggle-label span{
+        background-color: #3d37e4;
+        border-radius: 5px;
+        height:2px;
+        margin: 3px 0;
+        transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+      }
+
+      #nav-toggle-label span:nth-of-type(1){
+        width:50%;
+      }
+
+      #nav-toggle-label span:nth-of-type(2){
+        width:100%;
+      }
+
+      #nav-toggle-label span:nth-of-type(3){
+        width:75%;
+      }
+
+      input[type="checkbox"]#nav-toggle{
+        display:none;
+      }
+
+      input[type="checkbox"]#nav-toggle:checked ~ label span {
+        background-color: var(--accent);
+      }
+
+      input[type="checkbox"]#nav-toggle:checked ~ label >  span:nth-of-type(1){
+        transform-origin:bottom;
+        transform:rotatez(45deg) translate(4px,0px)
+      }
+
+      input[type="checkbox"]#nav-toggle:checked ~ label > span:nth-of-type(2){
+        transform-origin:top;
+        transform:rotatez(-45deg)
+      }
+
+      input[type="checkbox"]#nav-toggle:checked ~ label > span:nth-of-type(3){
+        transform-origin:bottom;
+        width:52%;
+        transform: translate(12px,-4px) rotatez(45deg);
       }
 
       @media screen and (min-width: 800px) {
-        .nav-toggle,
-        .nav-toggle-label {
+        label#nav-toggle-label,
+        input[type="checkbox"]#nav-toggle-label {
           display: none;
         }
 
@@ -228,7 +260,7 @@ const active = (mustInclude: string): string => {
 
         nav ul {
           display: flex;
-          margin-top: 0rem;
+          margin-top: 0;
           padding-top: 0;
           padding-bottom: 0;
           border-bottom: none;
