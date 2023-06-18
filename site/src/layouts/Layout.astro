@@ -45,7 +45,7 @@ const active = (mustInclude: string): string => {
         <label
           for="nav-toggle"
           id="nav-toggle-label"
-          class="nav-toggle-label closed">
+          class="nav-toggle-label">
           <span></span>
           <span></span>
           <span></span>
@@ -63,7 +63,7 @@ const active = (mustInclude: string): string => {
         </nav>
       </header>
     </div>
-    <main class="no-scroll">
+    <main>
       <slot />
     </main>
 
@@ -73,13 +73,9 @@ const active = (mustInclude: string): string => {
         const label = document.getElementById('nav-toggle-label')
         const main = document.querySelector('main')
         if (input && !input.checked) {
-          label.classList.add('closed')
           main.removeAttribute('inert')
           document.body.classList.remove('no-scroll')
         } else {
-
-
-          label.classList.remove('closed')
           main.setAttribute('inert', true)
           document.body.classList.add('no-scroll')
         }
@@ -94,8 +90,9 @@ const active = (mustInclude: string): string => {
         background-color: var(--nav-background);
         width: 100vw;
         line-height: 1;
-        height: 5.2rem  ;
+        height: 6.4rem  ;
       }
+
       header {
         background-color: var(--nav-background);
         position: fixed;
@@ -177,14 +174,14 @@ const active = (mustInclude: string): string => {
         opacity: 1;
       }
 
-      label#nav-toggle-label {
+      #nav-toggle-label {
         display:flex;
         flex-direction:column;
         width: 26px;
         cursor:pointer;
       }
 
-      label#nav-toggle-label span{
+      #nav-toggle-label span{
         background-color: #3d37e4;
         border-radius: 5px;
         height:2px;
@@ -204,33 +201,33 @@ const active = (mustInclude: string): string => {
         width:75%;
       }
 
-      input[type="checkbox"]#nav-toggle{
+      #nav-toggle{
         display:none;
       }
 
-      input[type="checkbox"]#nav-toggle:checked ~ label span {
+      #nav-toggle:checked ~ label span {
         background-color: var(--accent);
       }
 
-      input[type="checkbox"]#nav-toggle:checked ~ label >  span:nth-of-type(1){
+      #nav-toggle:checked ~ label > span:nth-of-type(1){
         transform-origin:bottom;
         transform:rotatez(45deg) translate(4px,0px)
       }
 
-      input[type="checkbox"]#nav-toggle:checked ~ label > span:nth-of-type(2){
+      #nav-toggle:checked ~ label > span:nth-of-type(2){
         transform-origin:top;
         transform:rotatez(-45deg)
       }
 
-      input[type="checkbox"]#nav-toggle:checked ~ label > span:nth-of-type(3){
+      #nav-toggle:checked ~ label > span:nth-of-type(3){
         transform-origin:bottom;
-        width:52%;
+        width:50%;
         transform: translate(12px,-4px) rotatez(45deg);
       }
 
       @media screen and (min-width: 800px) {
-        label#nav-toggle-label,
-        input[type="checkbox"]#nav-toggle-label {
+        #nav-toggle-label,
+        #nav-toggle-label {
           display: none;
         }
 
