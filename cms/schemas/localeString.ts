@@ -1,5 +1,5 @@
-import { english, norsk } from './locales'
-import { defineType, defineField } from 'sanity'
+import {english, norsk} from './locales'
+import {defineField, defineType} from 'sanity'
 
 export const localeString = defineType({
   title: 'Localized string',
@@ -18,3 +18,4 @@ export const localeString = defineType({
     }),
   ],
 })
+

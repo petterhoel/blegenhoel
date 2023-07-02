@@ -12,7 +12,7 @@ export const artworkImage = defineType({
     }),
     defineField({
       name: 'alt',
-      type: 'localeString',
+      type: 'localeText',
       title: 'Beskrivende tekst (for blinde)',
     }),
   ],

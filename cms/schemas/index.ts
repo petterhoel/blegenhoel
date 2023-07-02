@@ -7,6 +7,7 @@ import { localeString } from './localeString'
 import { localeRichText } from './localeRichText'
 import { seo } from './seo'
 import { gallery } from './gallery'
+import {localeText} from "./localeText";
 
 export const schemaTypes = [
   artwork,
@@ -17,5 +18,6 @@ export const schemaTypes = [
   aboutWorks,
   localeString,
   localeRichText,
+  localeText,
   seo,
 ]
