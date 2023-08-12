@@ -21,7 +21,7 @@ export const deskStructure = (S: StructureBuilder) => {
     .child(S.document().schemaType('seo').documentId('seo'))
 
   const filteredNonSingles = S.documentTypeListItems().filter(
-    (item) => !singletonTypes.includes(item.getId() ?? '')
+    (item) => !singletonTypes.includes(item.getId() ?? ''),
   )
 
   return S.list()
