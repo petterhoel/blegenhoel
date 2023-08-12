@@ -1,4 +1,4 @@
-import {createClient} from '@sanity/client'
+import { createClient } from '@sanity/client'
 import { sanityConfig } from './sanity-config'
 
 const { projectId, dataset, apiVersion, useCdn, token } = sanityConfig
