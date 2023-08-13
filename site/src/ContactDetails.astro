@@ -1,14 +1,19 @@
 ---
+import { getLangFromUrl,useTranslation } from './i18n/utils'
+const language = getLangFromUrl(Astro.url);
+const t = useTranslation(language);
+const email = t('contact.email');
+const instagram = t('contact.instagram');
 
 ---
 
 <p class="contact">
-  E-post
+  { email }
   <a class="contact" href="mailto:oystein@blegenhoel.no">
     oystein@blegenhoel.no</a
   >
   <br />
-  Instagram
+  { instagram }
   <a
     class="contact"
     href="https://www.instagram.com/oysteinblegenhoel"

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.scss'
-import { getLangFromUrl, useTranslation } from '../i18n/utils'
+import { getLangFromUrl, getUrlWithLang, useTranslation } from '../i18n/utils'
+import { defaultLanguage } from '../i18n/ui'
 
 export interface Props {
   title: string
@@ -8,8 +9,10 @@ export interface Props {
   keywords: string
 }
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslation(lang);
+const language = getLangFromUrl(Astro.url);
+const t = useTranslation(language);
+
+const langSwithUrl = getUrlWithLang(Astro.url);
 
 const { title, keywords, description } = Astro.props
 const currentPath = new URL(Astro.request.url).pathname
@@ -37,7 +40,7 @@ const active = (mustInclude: string): string => {
     <div class="wrapper">
       <header>
         <h1 class="logo text-gradient">
-          <a href={`/${lang}`}>Øystein Blegen Hoel</a>
+          <a href={`/${language}`}>Øystein Blegen Hoel</a>
         </h1>
         <input
           type="checkbox"
@@ -56,13 +59,13 @@ const active = (mustInclude: string): string => {
         <nav>
           <ul>
             <li>
-              <a href={`/${lang}/biography`} class={active('biography')}>{t('nav.bio')}</a>
+              <a href={`/${language}/biography`} class={active('biography')}>{t('nav.bio')}</a>
             </li>
             <li>
-              <a href={`/${lang}/about-works`} class={active('about')}>{t('nav.about')}</a>
+              <a href={`/${language}/about-works`} class={active('about')}>{t('nav.about')}</a>
             </li>
             <li>
-              <a href={`/${t('nav.languageSwitcherPath')}`}>{t('nav.languageSwitcher')}</a>
+              <a href={langSwithUrl}>{t('nav.languageSwitcher')}</a>
             </li>
           </ul>
         </nav>
