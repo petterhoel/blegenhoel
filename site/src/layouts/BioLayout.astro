@@ -1,25 +1,32 @@
 ---
+import { useTranslation } from '../i18n/utils'
+import { getLangFromUrl } from '../i18n/utils'
 import { PortableText } from 'astro-portabletext'
 import { dataClient } from '../cms-integration/data-client'
 import ContactDetails from '../ContactDetails.astro'
-import Layout from '../layouts/Layout.astro'
+import Layout from './BaseLayout.astro'
 import { getSeoAsync } from '../cms-integration/seo-client'
 
 export async function getBiography() {
   const query = '*[_type == "biography"][0]'
   const result = await dataClient.fetch(query)
-  return result.biography.no
+  return result.biography
 }
 const { keywords, description } = await getSeoAsync()
-const bipPortable = await getBiography()
+const language = getLangFromUrl(Astro.url)
+
+const bio = await getBiography()
+const content = bio[language];
+const t = useTranslation(language);
+const title = t('title.bio')
 ---
 
 <Layout
-  title="Biografi | Øystein Blegen Hoel"
+  title={title}
   keywords={keywords}
   description={description}>
   <article>
-    <PortableText value={bipPortable} />
+    <PortableText value={content} />
   </article>
   <aside>
     <ContactDetails />
