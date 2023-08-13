@@ -1,4 +1,5 @@
 ---
+import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
 import { PortableText } from 'astro-portabletext'
 import { dataClient } from '../cms-integration/data-client'
@@ -16,10 +17,12 @@ const language = getLangFromUrl(Astro.url)
 
 const bio = await getBiography()
 const content = bio[language];
+const t = useTranslation(language);
+const title = t('title.bio')
 ---
 
 <Layout
-  title="Biografi | Øystein Blegen Hoel"
+  title={title}
   keywords={keywords}
   description={description}>
   <article>

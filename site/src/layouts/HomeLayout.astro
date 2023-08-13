@@ -1,14 +1,17 @@
 ---
+import { useTranslation } from '../i18n/utils'
 import { dataClient } from '../cms-integration/data-client'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { urlForImage } from '../cms-integration/image-util'
 import { getSeoAsync } from '../cms-integration/seo-client'
 import BaseLayout from './BaseLayout.astro'
 import Artwork from '../works/artwork.astro'
+import { languages } from '../i18n/ui'
+import { getLangFromUrl } from '../i18n/utils'
 
 interface I18nString {
   no: string
-  en: undefined
+  en: string
 }
 
 interface ArtworkDto {
@@ -19,14 +22,14 @@ interface ArtworkDto {
   year: string
 }
 
-function mapArtworkDtoToVm(dto: ArtworkDto) {
+function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages ) {
   const { title, dimmenstions, year, photo, material } = dto
   return {
-    title: title.no,
+    title: title[lang],
     dimmenstions: dimmenstions,
-    material: material.no,
+    material: material[lang],
     year: year,
-    alt: photo.alt.no,
+    alt: photo.alt[lang],
     url: urlForImage(photo.image),
   }
 }
@@ -42,13 +45,15 @@ export async function getArtworks(): Promise<ArtworkDto[]> {
   return []
 }
 const { keywords, description } = await getSeoAsync()
-
+const language = getLangFromUrl(Astro.url);
 const artworkDtos = await getArtworks()
-const artworks = artworkDtos.map(mapArtworkDtoToVm)
+const artworks = artworkDtos.map(artwork => mapArtworkDtoToVm(artwork, language));
+const t = useTranslation(language);
+const title = t('title.home')
 ---
 
 <BaseLayout
-  title="Øystein Blegen Hoel — Studio il Bosco del Merlo"
+  title={title}
   keywords={keywords}
   description={description}>
   <section class="wrapper">
