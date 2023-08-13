@@ -1,9 +1,9 @@
 ---
 import { PortableText } from 'astro-portabletext'
-import { dataClient } from '../cms-integration/data-client'
-import ContactDetails from '../ContactDetails.astro'
-import Layout from '../layouts/Layout.astro'
-import { getSeoAsync } from '../cms-integration/seo-client'
+import { dataClient } from '../../cms-integration/data-client'
+import ContactDetails from '../../ContactDetails.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getSeoAsync } from '../../cms-integration/seo-client'
 
 export async function getBiography() {
   const query = '*[_type == "biography"][0]'

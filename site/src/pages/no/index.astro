@@ -1,10 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Artwork from '../works/artwork.astro'
-import { dataClient } from '../cms-integration/data-client'
+import Layout from '../../layouts/Layout.astro'
+import Artwork from '../../works/artwork.astro'
+import { dataClient } from '../../cms-integration/data-client'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import { urlForImage } from '../cms-integration/image-util'
-import { getSeoAsync } from '../cms-integration/seo-client'
+import { urlForImage } from '../../cms-integration/image-util'
+import { getSeoAsync } from '../../cms-integration/seo-client'
 
 interface I18nString {
   no: string

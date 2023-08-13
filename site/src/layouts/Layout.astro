@@ -1,5 +1,6 @@
 ---
 import '../styles/global.scss'
+import { getLangFromUrl, useTranslation } from '../i18n/utils'
 
 export interface Props {
   title: string
@@ -7,7 +8,8 @@ export interface Props {
   keywords: string
 }
 
-
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
 
 const { title, keywords, description } = Astro.props
 const currentPath = new URL(Astro.request.url).pathname
@@ -35,7 +37,7 @@ const active = (mustInclude: string): string => {
     <div class="wrapper">
       <header>
         <h1 class="logo text-gradient">
-          <a href="/">Øystein Blegen Hoel</a>
+          <a href={`/${lang}`}>Øystein Blegen Hoel</a>
         </h1>
         <input
           type="checkbox"
@@ -54,11 +56,12 @@ const active = (mustInclude: string): string => {
         <nav>
           <ul>
             <li>
-              <a href="/biography" class={active('biography')}>Bio</a>
+              <a href={`/${lang}/biography`} class={active('biography')}>{t('nav.bio')}</a>
             </li>
             <li>
-              <a href="/about" class={active('about')}>Om</a>
+              <a href={`/${lang}/about`} class={active('about')}>{t('nav.about')}</a>
             </li>
+            <li> href=</li>
           </ul>
         </nav>
       </header>
