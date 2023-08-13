@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl } from '../i18n/utils'
 import { PortableText } from 'astro-portabletext'
 import { dataClient } from '../cms-integration/data-client'
 import ContactDetails from '../ContactDetails.astro'
@@ -8,10 +9,13 @@ import { getSeoAsync } from '../cms-integration/seo-client'
 export async function getBiography() {
   const query = '*[_type == "biography"][0]'
   const result = await dataClient.fetch(query)
-  return result.biography.no
+  return result.biography
 }
 const { keywords, description } = await getSeoAsync()
-const bipPortable = await getBiography()
+const language = getLangFromUrl(Astro.url)
+
+const bio = await getBiography()
+const content = bio[language];
 ---
 
 <Layout
@@ -19,7 +23,7 @@ const bipPortable = await getBiography()
   keywords={keywords}
   description={description}>
   <article>
-    <PortableText value={bipPortable} />
+    <PortableText value={content} />
   </article>
   <aside>
     <ContactDetails />
