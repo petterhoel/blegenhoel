@@ -1,0 +1,27 @@
+---
+import { PortableText } from 'astro-portabletext'
+import { dataClient } from '../cms-integration/data-client'
+import ContactDetails from '../ContactDetails.astro'
+import Layout from './BaseLayout.astro'
+import { getSeoAsync } from '../cms-integration/seo-client'
+
+export async function getBiography() {
+  const query = '*[_type == "biography"][0]'
+  const result = await dataClient.fetch(query)
+  return result.biography.no
+}
+const { keywords, description } = await getSeoAsync()
+const bipPortable = await getBiography()
+---
+
+<Layout
+  title="Biografi | Øystein Blegen Hoel"
+  keywords={keywords}
+  description={description}>
+  <article>
+    <PortableText value={bipPortable} />
+  </article>
+  <aside>
+    <ContactDetails />
+  </aside>
+</Layout>

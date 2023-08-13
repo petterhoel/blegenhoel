@@ -1,0 +1,88 @@
+---
+import { dataClient } from '../cms-integration/data-client'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { urlForImage } from '../cms-integration/image-util'
+import { getSeoAsync } from '../cms-integration/seo-client'
+import BaseLayout from './BaseLayout.astro'
+import Artwork from '../works/artwork.astro'
+
+interface I18nString {
+  no: string
+  en: undefined
+}
+
+interface ArtworkDto {
+  dimmenstions: string
+  material: I18nString
+  photo: { alt: I18nString; image: SanityImageSource }
+  title: I18nString
+  year: string
+}
+
+function mapArtworkDtoToVm(dto: ArtworkDto) {
+  const { title, dimmenstions, year, photo, material } = dto
+  return {
+    title: title.no,
+    dimmenstions: dimmenstions,
+    material: material.no,
+    year: year,
+    alt: photo.alt.no,
+    url: urlForImage(photo.image),
+  }
+}
+
+export async function getArtworks(): Promise<ArtworkDto[]> {
+  const query = `*[_type == "gallery"][0]{galleryImages[]->}`
+  const artworks = await dataClient.fetch<{
+    galleryImages: ArtworkDto[] | undefined
+  }>(query)
+  if (artworks?.galleryImages) {
+    return artworks.galleryImages
+  }
+  return []
+}
+const { keywords, description } = await getSeoAsync()
+
+const artworkDtos = await getArtworks()
+const artworks = artworkDtos.map(mapArtworkDtoToVm)
+---
+
+<BaseLayout
+  title="Øystein Blegen Hoel — Studio il Bosco del Merlo"
+  keywords={keywords}
+  description={description}>
+  <section class="wrapper">
+    {
+      artworks.map(({ title, url, alt, material, dimmenstions, year }) => (
+        <Artwork
+          title={title}
+          url={url}
+          alt={alt}
+          material={material}
+          dimmenstions={dimmenstions}
+          year={year}
+        />
+      ))
+    }
+  </section>
+</BaseLayout>
+<style>
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6rem;
+        max-width: 100vw;
+        margin-bottom: 4rem;
+    }
+
+    @media screen and (min-width: 800px) {
+        .wrapper {
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 120rem;
+            gap: 4rem;
+            justify-content: center;
+        }
+    }
+</style>

@@ -1,32 +1,32 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import { dataClient } from '../../cms-integration/data-client'
+import { dataClient } from '../cms-integration/data-client'
 import { PortableText } from 'astro-portabletext'
-import ContactDetails from '../../ContactDetails.astro'
-import { getSeoAsync } from '../../cms-integration/seo-client'
-import { getLangFromUrl, useTranslation } from '../../i18n/utils'
+import ContactDetails from '../ContactDetails.astro'
+import { getSeoAsync } from '../cms-integration/seo-client'
+import { getLangFromUrl, useTranslation } from '../i18n/utils'
+import BaseLayout from './BaseLayout.astro'
 
 export async function getAboutWorksText() {
   const query = `*[_type == "aboutWorks"][0]`
-  const homepage = await dataClient.fetch(query)
-  return homepage
+  return await dataClient.fetch(query)
 }
 
 const { aboutWorks } = await getAboutWorksText()
 const { keywords, description } = await getSeoAsync()
 const language = getLangFromUrl(Astro.url)
+const content = aboutWorks[language];
 const t = useTranslation(language);
 const title = t('title.about-works')
 ---
 
-<Layout
+<BaseLayout
   title={title}k
   keywords={keywords}
   description={description}>
   <article>
-    <PortableText value={aboutWorks[language]} />
+    <PortableText value={content} />
   </article>
   <aside>
     <ContactDetails />
   </aside>
-</Layout>
+</BaseLayout>

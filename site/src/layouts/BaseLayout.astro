@@ -59,9 +59,11 @@ const active = (mustInclude: string): string => {
               <a href={`/${lang}/biography`} class={active('biography')}>{t('nav.bio')}</a>
             </li>
             <li>
-              <a href={`/${lang}/about`} class={active('about')}>{t('nav.about')}</a>
+              <a href={`/${lang}/about-works`} class={active('about')}>{t('nav.about')}</a>
             </li>
-            <li> href=</li>
+            <li>
+              <a href={`/${t('nav.languageSwitcherPath')}`}>{t('nav.languageSwitcher')}</a>
+            </li>
           </ul>
         </nav>
       </header>
