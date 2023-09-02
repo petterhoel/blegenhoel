@@ -14,10 +14,12 @@
     "dev:cms": "npm run dev --workspace=cms",
     "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
+    "deploy": "npm run deploy --workspace=site",
     "build:cms": "npm run build --workspace=cms",
     "deploy:cms": "npm run deploy --workspace=cms",
     "format": "prettier -w .",
     "test": "npm run test --workspace=site",
+    "test:cms": "npm run test --workspace=cms",
     "rimraf": "rimraf node_modules site/node_modules cms/node_modules package-lock.json"
   },
   "repository": {
@@ -34,9 +36,9 @@
     "prettier": "3.0.3",
     "prettier-plugin-astro": "0.12.0",
     "rimraf": "5.0.1",
-    "sass": "1.66.1",
     "typescript": "5.1.6",
-    "vitest": "0.34.3"
+    "vitest": "0.34.3",
+    "wrangler": "^3.6.0"
   },
   "prettier": {
     "tabWidth": 2,
