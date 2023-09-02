@@ -13,9 +13,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@sanity/client": "6.4.5",
+    "@sanity/client": "6.4.9",
     "@sanity/image-url": "1.0.2",
-    "astro": "2.10.7",
-    "astro-portabletext": "0.9.1"
+    "astro": "3.0.7",
+    "astro-portabletext": "0.9.4"
   }
 }
