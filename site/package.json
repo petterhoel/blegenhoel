@@ -13,12 +13,12 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@sanity/client": "6.4.9",
+    "@sanity/client": "6.4.12",
     "@sanity/image-url": "1.0.2",
-    "astro": "3.0.7",
+    "astro": "3.2.3",
     "astro-portabletext": "0.9.4"
   },
   "devDependencies": {
-    "sass": "^1.66.1"
+    "sass": "^1.69.0"
   }
 }
