@@ -12,18 +12,18 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@sanity/cli": "3.16.2",
-    "@sanity/vision": "3.16.2",
+    "@sanity/cli": "3.17.0",
+    "@sanity/vision": "3.17.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity": "3.16.2",
+    "sanity": "3.17.0",
     "slug": "8.2.3",
     "styled-components": "5.3.11",
     "react-icons": "4.10.1"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "3.0.1",
-    "eslint": "8.48.0"
+    "eslint": "8.51.0"
   }
 }
