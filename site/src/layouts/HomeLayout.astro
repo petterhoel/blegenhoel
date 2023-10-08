@@ -2,7 +2,7 @@
 import { useTranslation } from '../i18n/utils'
 import { dataClient } from '../cms-integration/data-client'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import { urlForImage } from '../cms-integration/image-util'
+import { urlsForImage } from '../cms-integration/image-util'
 import { getSeoAsync } from '../cms-integration/seo-client'
 import BaseLayout from './BaseLayout.astro'
 import Artwork from '../works/artwork.astro'
@@ -30,7 +30,7 @@ function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages ) {
     material: material[lang],
     year: year,
     alt: photo.alt[lang],
-    url: urlForImage(photo.image),
+    urls: urlsForImage(photo.image),
   }
 }
 
@@ -58,10 +58,10 @@ const title = t('title.home')
   description={description}>
   <section class="wrapper">
     {
-      artworks.map(({ title, url, alt, material, dimmenstions, year }) => (
+      artworks.map(({ title, urls, alt, material, dimmenstions, year }) => (
         <Artwork
           title={title}
-          url={url}
+          urls={urls}
           alt={alt}
           material={material}
           dimmenstions={dimmenstions}
