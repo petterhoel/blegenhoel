@@ -2,26 +2,32 @@
 interface Props {
   title: string
   alt: string
-  url: string
+  urls: string[]
   dimmenstions: string
   material: string
   year: string
 }
-const { url, alt, title, year, dimmenstions, material } = Astro.props
+const { urls, alt, title, year, dimmenstions, material } = Astro.props
 ---
 
-<!--TODO: Picture element || is it cloudflare 2 ?-->
 <div class="artwork-wrapper">
-  <img src={url} alt={alt} title={title} decoding="async" />
-  <div>
-    <div class="title-year">
-      {title.trim()}{year ? ` ${year}` : ''}
-    </div>
-    <div class="dimmension-material">
-      {material}
-      {dimmenstions}
-    </div>
-  </div>
+  <figure>
+    <picture>
+      {urls.map(url => (
+        <source srcset={url}></source>
+      ))}
+      <img src={urls[urls.length - 1]} alt={alt} title={title} decoding="async" />
+    </picture>
+    <figcaption>
+      <div class="title-year">
+        {title.trim()}{year ? ` ${year}` : ''}
+      </div>
+      <div class="dimmension-material">
+        {material}
+        {dimmenstions}
+      </div>
+    </figcaption>
+  </figure>
 </div>
 
 <style>
@@ -34,6 +40,8 @@ const { url, alt, title, year, dimmenstions, material } = Astro.props
   img {
     max-width: 100%;
     max-height: 60rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px 0,rgba(150, 150, 150, 0.05) 0 8px 24px;
+    border-radius: 2px;
   }
 
   .title-year,

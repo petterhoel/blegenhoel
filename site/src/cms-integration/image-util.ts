@@ -6,11 +6,14 @@ const { projectId, dataset } = sanityConfig
 
 const imageUrlBuilder = sanityImageUrlBuilder({ projectId, dataset })
 
-export function urlForImage(source: SanityImageSource | undefined) {
+export function urlsForImage(source: SanityImageSource | undefined) {
   if (!source) {
-    return ''
+    return []
   }
-  return imageUrlBuilder.image(source).width(600).format('webp').url()
+  return [
+    imageUrlBuilder.image(source).width(600).quality(100).sharpen(10).format('webp').url(),
+    imageUrlBuilder.image(source).width(600).quality(70).sharpen(10).format('jpg').url()
+  ]
 }
 
 export function extractWithHeughtFromUrl(url: string): ImageDimmentions {
