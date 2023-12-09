@@ -72,14 +72,14 @@ describe('exhibition util', () => {
   test('map riktig til norsk', () => {
     const { type, name, year, space } = toVm(data[0], 'no')
 
-    expect(type).toBe('separatutstilling')
+    expect(type).toBe('Separatutstilling')
     expect(name).toBe('vindmotvind')
     expect(year).toBe('2017')
     expect(space).toBe('S9 Galleri, Oslo')
   })
   test('map riktig til engelsk', () => {
     const { type, name, year, space } = toVm(data[0], 'en')
-    expect(type).toBe('solo show')
+    expect(type).toBe('Solo show')
     expect(name).toBe('Wind and Headwind')
     expect(year).toBe('2017')
     expect(space).toBe('S9 Galleri, Oslo')
