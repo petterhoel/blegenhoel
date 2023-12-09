@@ -1,0 +1,13 @@
+---
+import { ExhibitionVm } from './exhibition.vm'
+interface Props {
+  heading: string;
+  exhibitions: ExhibitionVm[]
+}
+const { heading, exhibitions } = Astro.props
+---
+<h2>{heading}</h2>
+
+<ul>
+  {exhibitions.map(({name}) => <li>{name}</li>)}
+</ul>
