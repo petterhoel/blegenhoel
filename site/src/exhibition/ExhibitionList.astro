@@ -8,8 +8,8 @@ const { heading, exhibitions } = Astro.props.vm
 <ul>
   {exhibitions.map(({name, type, year, space}) => <li>
     <span>{name} </span> <br/>
-    <span class='meta'>{space}, </span>
     <span class='meta'>{type}, </span>
+    <span class='meta'>{space}, </span>
     <time class='meta'>{year} </time>
   </li>)}
 </ul>
