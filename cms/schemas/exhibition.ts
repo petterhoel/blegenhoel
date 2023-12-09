@@ -16,7 +16,7 @@ export const exhibition = defineType({
       name: 'exhibitionName',
       title: 'Navn',
       description: 'Hva het utstillingen?',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     }),
     defineField({
@@ -31,7 +31,7 @@ export const exhibition = defineType({
       name: 'spaceName',
       title: 'Utstillingssted',
       description: 'Hvor fant utstillingen sted? (feks: MoMA, New York)',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     }),
     defineField({
@@ -81,9 +81,9 @@ export const exhibition = defineType({
     },
     prepare(selection) {
       const { title, startDate, spaceName } = selection
-      const subtitle =  `${startDate?.substring(0,4) ?? ''}: ${spaceName ?? ''}`
+      const subtitle =  `${startDate?.substring(0,4) ?? ''}: ${spaceName?.no ?? ''}`
       return {
-        title,
+        title: title.no,
         subtitle,
       }
     },
