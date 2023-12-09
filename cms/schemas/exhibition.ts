@@ -1,20 +1,5 @@
 import { defineField, defineType } from 'sanity'
 
-const exhibitionYearOptions = () => {
-  const startyear = new Date('2012-01-01T00:00:00').getFullYear();
-
-  const currentYear = new Date().getFullYear()
-  const futureOffsett = 3;
-  const stopYear = currentYear + futureOffsett
-
-
-  let years = []
-  for (let i = startyear; i <= stopYear; i++) {
-    years.push(i.toString())
-  }
-  return years.reverse()
-}
-
 const exhibitionTypes = [
   'separatutstilling',
   'duo-utstilling',
@@ -31,7 +16,7 @@ export const exhibition = defineType({
       name: 'exhibitionName',
       title: 'Navn',
       description: 'Hva het utstillingen?',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     }),
     defineField({
@@ -46,18 +31,7 @@ export const exhibition = defineType({
       name: 'spaceName',
       title: 'Utstillingssted',
       description: 'Hvor fant utstillingen sted? (feks: MoMA, New York)',
-      type: 'string',
-      validation: Rule => Rule.required()
-    }),
-    defineField({
-      type: "string",
-      name: "exhibitionYear",
-      title: "År",
-      initialValue: new Date().getFullYear().toString(),
-      description: 'Hvilket år var utstillingen?',
-      options: {
-        list: exhibitionYearOptions(),
-      },
+      type: 'localeString',
       validation: Rule => Rule.required()
     }),
     defineField({
@@ -68,29 +42,49 @@ export const exhibition = defineType({
       description: 'Hva slags utstilling var det?',
       options: {
         list: exhibitionTypes,
-      }
-    })
+      },
+    }),
+    defineField({
+      type: "date",
+      name: "exhibitionFirstDay",
+      title: "Dagen utstillingen startet",
+      options: {
+        dateFormat: 'DD.MM.YYYY'
+      },
+      description: 'Brukes til å sortere utstillingene i omvendt kronologisk rekkefølge på nettsiden',
+      validation: Rule => Rule.required()
+    }),
+    defineField({
+      type: "date",
+      name: "exhibitionLastDay",
+      title: "Dagen utstillingen sluttet",
+      options: {
+        dateFormat: 'DD.MM.YYYY'
+      },
+      description: 'Valgfri. Kun for å huske når utstillingen sluttet',
+    }),
   ],
   orderings: [
     {
       title: 'Utstillingsår',
       name: 'exhibitionYearDesc',
       by: [
-        {field: 'exhibitionYear', direction: 'desc'}
+        {field: 'exhibitionFirstDay', direction: 'desc'}
       ]
     },
   ],
   preview: {
     select: {
       title: 'exhibitionName',
-      year: 'exhibitionYear',
-      space: 'spaceName'
+      startDate: 'exhibitionFirstDay',
+      spaceName: 'spaceName'
     },
     prepare(selection) {
-      const { title, year, space } = selection
+      const { title, startDate, spaceName } = selection
+      const subtitle =  `${startDate?.substring(0,4) ?? ''}: ${spaceName?.no ?? ''}`
       return {
-        title: title,
-        subtitle: `${year}: ${space}`,
+        title: title.no,
+        subtitle,
       }
     },
   },
