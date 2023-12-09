@@ -1,6 +1,13 @@
 export interface ExhibitionVm {
   name: string
   year: string
-  place: string
+  space: string
   type: string
+}
+
+export interface ExhibitionListVm {
+  vm: {
+      heading: string,
+      exhibitions:ExhibitionVm[]
+    }
 }

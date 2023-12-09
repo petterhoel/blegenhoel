@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { extractWithHeughtFromUrl } from 'src/image/image.util.ts'
+import { extractWithHeughtFromUrl } from './image.util.ts'
 
 describe('image-util', () => {
   test('extract 300x400', () => {
