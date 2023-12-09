@@ -1,11 +1,11 @@
 ---
-import { getForsideArtworks } from '../cms-integration/forside-client'
-import { ArtworkDto } from '../cms-integration/forside-client'
+import { getForsideArtworks } from '../artwork/forside-client'
+import { ArtworkDto } from '../artwork/artwork-dto'
 import { useTranslation } from '../i18n/utils'
-import { urlsForImage } from '../cms-integration/image-util'
-import { getSeoAsync } from '../cms-integration/seo-client'
+import { urlsForImage } from '../image/image.util'
+import { getSeoAsync } from '../seo/seo.client'
 import BaseLayout from './BaseLayout.astro'
-import Artwork from '../works/artwork.astro'
+import Artwork from '../artwork/Artwork.astro'
 import { languages } from '../i18n/ui'
 import { getLangFromUrl } from '../i18n/utils'
 
@@ -37,15 +37,8 @@ const title = t('title.home')
   description={description}>
   <section class="wrapper">
     {
-      artworks.map(({ title, urls, alt, material, dimmenstions, year }) => (
-        <Artwork
-          title={title}
-          urls={urls}
-          alt={alt}
-          material={material}
-          dimmenstions={dimmenstions}
-          year={year}
-        />
+      artworks.map((artwork) => (
+        <Artwork artwork={artwork} />
       ))
     }
   </section>

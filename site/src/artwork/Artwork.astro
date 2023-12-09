@@ -1,13 +1,9 @@
 ---
+import { ArtworkVm } from 'site/src/artwork/artwork.vm'
 interface Props {
-  title: string
-  alt: string
-  urls: string[]
-  dimmenstions: string
-  material: string
-  year: string
+  artwork: ArtworkVm
 }
-const { urls, alt, title, year, dimmenstions, material } = Astro.props
+const { urls, alt, title, year, dimmenstions, material } = Astro.props.artwork
 ---
 
 <div class="artwork-wrapper">
