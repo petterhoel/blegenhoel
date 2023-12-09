@@ -1,5 +1,5 @@
-import type { ArtworkDto } from 'src/artwork/artwork-dto.ts'
-import { dataClient } from '../cms-integration/data-client'
+import type { ArtworkDto } from './artwork.dto'
+import { dataClient } from '../cms-integration/data.client'
 
 export async function getForsideArtworks(): Promise<ArtworkDto[]> {
   const query = `*[_type == "gallery" && _id == 'gallery'][0]{galleryImages[]->}`

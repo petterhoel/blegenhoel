@@ -2,10 +2,10 @@
 import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
 import { PortableText } from 'astro-portabletext'
-import { dataClient } from '../cms-integration/data-client'
+import { dataClient } from '../cms-integration/data.client'
 import ContactDetails from '../ContactDetails.astro'
 import Layout from './BaseLayout.astro'
-import { getSeoAsync } from 'site/src/seo/seo-client'
+import { getSeoAsync } from '../seo/seo.client'
 
 export async function getBiography() {
   const query = '*[_type == "biography"][0]'

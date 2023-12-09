@@ -1,13 +1,8 @@
 ---
+import { ExhibitionVm } from './exhibition.vm'
 interface Props {
   heading: string;
   exhibitions: ExhibitionVm[]
-}
-interface ExhibitionVm {
-  name: string
-  year: string
-  place: string
-  type: string
 }
 const { heading, exhibitions } = Astro.props
 ---

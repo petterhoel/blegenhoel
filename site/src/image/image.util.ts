@@ -1,4 +1,4 @@
-import { sanityConfig } from '../cms-integration/sanity-config'
+import { sanityConfig } from '../cms-integration/sanity.config'
 import sanityImageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
