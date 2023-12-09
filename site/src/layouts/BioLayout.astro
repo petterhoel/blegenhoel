@@ -1,4 +1,7 @@
 ---
+import { getVisibleExhibitions } from '../exhibition/exhibition.client'
+import { toVm } from '../exhibition/exhibition.util'
+import ExhibitionList from '../exhibition/ExhibitionList.astro'
 import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
 import { PortableText } from 'astro-portabletext'
@@ -13,9 +16,15 @@ export async function getBiography() {
   return result.biography
 }
 const { keywords, description } = await getSeoAsync()
-const language = getLangFromUrl(Astro.url)
-
+const exhibitions = await getVisibleExhibitions()
 const bio = await getBiography()
+
+const language = getLangFromUrl(Astro.url)
+const exhibitionListVm = {
+  heading: language === 'no' ? 'Utvalgte utstillinger' : 'Selected exhibitions',
+  exhibitions: exhibitions.map(ex => toVm(ex, language))
+}
+
 const content = bio[language];
 const t = useTranslation(language);
 const title = t('title.bio')
@@ -27,6 +36,7 @@ const title = t('title.bio')
   description={description}>
   <article>
     <PortableText value={content} />
+    <ExhibitionList vm={exhibitionListVm}/>
   </article>
   <aside>
     <ContactDetails />
