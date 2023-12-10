@@ -1,8 +1,8 @@
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
+import { singletonTypes, structure } from './structure'
 import { schemaTypes } from './schemas/index'
-import { deskStructure as structure, singletonTypes } from './deskStructure'
 
 export const singletonSet = new Set(singletonTypes)
 

@@ -33,11 +33,11 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "prettier": "3.1.0",
+    "prettier": "3.1.1",
     "prettier-plugin-astro": "0.12.2",
     "rimraf": "5.0.5",
     "typescript": "5.3.3",
-    "vitest": "1.0.2",
+    "vitest": "1.0.4",
     "wrangler": "3.19.0"
   },
   "prettier": {

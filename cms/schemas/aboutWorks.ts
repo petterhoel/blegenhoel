@@ -11,4 +11,12 @@ export const aboutWorks = defineType({
       title: 'Om bildene',
     }),
   ],
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: 'Om bildene',
+      }
+    }
+  }
 })

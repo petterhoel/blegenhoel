@@ -11,4 +11,12 @@ export const biography = defineType({
       title: 'Biografisk tekst',
     }),
   ],
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: 'Biografisk tekst',
+      }
+    }
+  }
 })
