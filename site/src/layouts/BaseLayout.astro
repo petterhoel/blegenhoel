@@ -58,7 +58,7 @@ const active = (mustInclude: string): string => {
           <div class="screen-reader-only"></div>
         </label>
         <nav>
-          <ul>
+          <menu>
             <li>
               <a href={`/${language}/biography`} class={active('biography')}>{t('nav.bio')}</a>
             </li>
@@ -68,7 +68,7 @@ const active = (mustInclude: string): string => {
             <li>
               <a href={langSwithUrl}>{t('nav.languageSwitcher')}</a>
             </li>
-          </ul>
+          </menu>
         </nav>
       </header>
     </div>
@@ -153,7 +153,7 @@ const active = (mustInclude: string): string => {
         transition: transform 200ms ease;
       }
 
-      nav ul {
+      nav menu {
         margin: 0 0 0;
         padding: 4rem 0 8rem;
         list-style: none;
@@ -264,7 +264,7 @@ const active = (mustInclude: string): string => {
           align-items: center;
         }
 
-        nav ul {
+        nav menu {
           display: flex;
           margin-top: 0;
           padding-top: 0;

@@ -1,13 +1,16 @@
 import type { ExhibitionDto } from './exhibition.dto'
 import { toVm } from './exhibition.util'
 import { describe, expect, test } from 'vitest'
-const data : ExhibitionDto[] = [
-  {
+
+const exhibition1: ExhibitionDto = {
   exhibitionName: { no: 'vindmotvind', en: 'Wind and Headwind' },
   spaceName: { no: 'S9 Galleri, Oslo', en: 'S9 Galleri, Oslo' },
   exhibitionFirstDay: '2017-01-01',
   type: 'separatutstilling'
-},
+};
+
+const data : ExhibitionDto[] = [
+
   {
   exhibitionName: { no: 'CC Vest høstutstilling. Premiert utstiller', en: 'CC Vest fall show. Awarded artist' },
   spaceName: { no: 'Oslo', en: 'Oslo' },
@@ -68,17 +71,17 @@ const data : ExhibitionDto[] = [
   type: 'trio-utstilling'
 }];
 
-describe('exhibition util', () => {
+describe('Exhibition mappings', () => {
   test('map riktig til norsk', () => {
-    const { type, name, year, space } = toVm(data[0], 'no')
+    const { type, name, year, space } = toVm(exhibition1, 'no')
 
-    expect(type).toBe('Separatutstilling')
-    expect(name).toBe('vindmotvind')
-    expect(year).toBe('2017')
-    expect(space).toBe('S9 Galleri, Oslo')
+    expect(type).toEqual('Separatutstilling')
+    expect(name).toEqual('vindmotvind')
+    expect(year).toEqual('2017')
+    expect(space).toEqual('S9 Galleri, Oslo')
   })
   test('map riktig til engelsk', () => {
-    const { type, name, year, space } = toVm(data[0], 'en')
+    const { type, name, year, space } = toVm(exhibition1, 'en')
     expect(type).toBe('Solo show')
     expect(name).toBe('Wind and Headwind')
     expect(year).toBe('2017')
