@@ -25,16 +25,19 @@ Det finnes flere måter å gjøre dette på, men om man ønsker å kopiere alle 
 Typisk use case er å erstatte eksisternede test-datasett med prod-datasettet. Eksempel som kopierer production til test:
 
 ### kopier ønsket datasett til lokal fil
+
 ```shell
 sanity dataset export production /Users/petter/production.tar.gz
 ```
 
-
 ### slett datasett som skal erstattes
+
 ```shell
 sanity dataset delete test
 ```
+
 ### importer lokal kopi til ønsket datasett
+
 ```shell
 sanity dataset import /Users/petter/production.tar.gz test
 ```

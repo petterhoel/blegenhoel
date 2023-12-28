@@ -6,35 +6,30 @@ interface Props {
 const { urls, alt, title, year, dimmenstions, material } = Astro.props.artwork
 ---
 
-<div class="artwork-wrapper">
-  <figure>
-    <picture>
-      {urls.map(url => (
-        <source srcset={url}></source>
-      ))}
-      <img src={urls[urls.length - 1]} alt={alt} title={title} decoding="async" />
-    </picture>
-    <figcaption>
-      <div class="title-year">
-        {title.trim()}{year ? ` ${year}` : ''}
-      </div>
-      <div class="dimmension-material">
-        {material}
-        {dimmenstions}
-      </div>
-    </figcaption>
-  </figure>
-</div>
+<figure>
+  <picture>
+    {urls.map(url => (
+      <source srcset={url}></source>
+    ))}
+    <img src={urls[urls.length - 1]} alt={alt} title={title} decoding="async" />
+  </picture>
+  <figcaption>
+    <div class="title-year">
+      {title.trim()}{year ? ` ${year}` : ''}
+    </div>
+    <div class="dimmension-material">
+      {material}
+      {dimmenstions}
+    </div>
+  </figcaption>
+</figure>
 
 <style>
-  .artwork-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap:1.3rem
-  }
-
   figure {
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      row-gap: .4rem;
   }
 
   img {
@@ -61,7 +56,7 @@ const { urls, alt, title, year, dimmenstions, material } = Astro.props.artwork
 
   @media screen and (min-width: 800px) {
     img {
-      max-height: calc(100vh - 20rem);
+      max-height: calc(100vh - 30rem);
       min-height: 33rem;
     }
   }
