@@ -18,8 +18,24 @@ const langSwithUrl = getUrlWithLang(Astro.url);
 const { title, keywords, description } = Astro.props
 const currentPath = Astro.request.url ? new URL(Astro.request.url)?.pathname : '';
 
+const normalize = (value: string): string => {
+
+  if (!value) {
+    return ''
+  }
+  if (value.startsWith('/')) {
+    value = value.substring(1, value.length)
+  }
+
+  if (value.endsWith('/')) {
+    value = value.substring(0, value.length - 1)
+  }
+
+  return value.toLowerCase();
+}
+
 const active = (linkHref: string): string => {
-  return currentPath.toLowerCase() === linkHref.toLowerCase() ? 'active' : ''
+  return normalize(currentPath) === normalize(linkHref) ? 'active' : ''
 }
 ---
 
