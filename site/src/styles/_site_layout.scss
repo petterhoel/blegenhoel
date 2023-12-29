@@ -40,18 +40,6 @@
   background: #4f39fa;
   height: calc(100vh - 6rem);
   transition: all var(--duration) var(--easeOutExpo);
-  a {
-    display: inline-block;
-    text-decoration: none;
-    color: aliceblue;
-  }
-  a.active {
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 0.4rem;
-    text-decoration-skip-ink: all;
-    text-underline-offset: 0.2rem;
-  }
 }
 
 #sidenav #close-button {

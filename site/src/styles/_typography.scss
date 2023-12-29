@@ -51,9 +51,17 @@ main article {
   }
 }
 
-aside nav menu li {
-  a,
-  a:visited {
+#sidenav nav {
+  a {
+    display: inline-block;
+    text-decoration: none;
     color: aliceblue;
+  }
+  a.active {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 0.4rem;
+    text-decoration-skip-ink: all;
+    text-underline-offset: 0.2rem;
   }
 }
