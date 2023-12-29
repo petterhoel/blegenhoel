@@ -89,6 +89,7 @@ const active = (linkHref: string): string => {
     <script define:vars={{ labelOpen, labelClosed }}>
       const toggleIcon = () => {
         const input = document.querySelector('#nav-toggle');
+        const body = document.querySelector('body');
         const labelTextSpan = document.querySelector('#label-text')
         const iconWrapper = document.querySelector('#nav-toggle-icon')
         const main = document.querySelector('main')
@@ -98,11 +99,13 @@ const active = (linkHref: string): string => {
           iconWrapper.classList.remove('checked')
           main.removeAttribute('inert')
           sideNav.classList.remove('open')
+          body.classList.remove('no-scroll')
         } else {
           labelTextSpan.innerText = labelOpen
           iconWrapper.classList.add('checked')
           main.setAttribute('inert', true)
           sideNav.classList.add('open')
+          body.classList.add('no-scroll')
         }
       }
 
