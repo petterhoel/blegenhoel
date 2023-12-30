@@ -62,6 +62,7 @@ const active = (linkHref: string): string => {
       <label
         id="nav-toggle-label"
         class="nav-toggle-label">
+        <span id='label-text' class='screen-reader-only'>{labelClosed}</span>
         <input
           type="checkbox"
           id="nav-toggle"
@@ -72,12 +73,10 @@ const active = (linkHref: string): string => {
           <span class='icon-part'></span>
           <span class='icon-part'></span>
         </span>
-        <span aria-label={labelClosed} id='label-text'>{labelClosed}</span>
       </label>
       <h1 class="logo text-gradient">
         <a href={`/${language}`}>Øystein Blegen Hoel</a>
       </h1>
-
     </header>
     <aside id="sidenav">
       <nav>

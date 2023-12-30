@@ -33,22 +33,8 @@ main article {
 #site-header h1 a:visited {
   color: var(--primary);
   text-decoration: none;
-  font-size: 1.7rem;
+  font-size: 2.4rem;
   font-weight: 400;
-}
-#site-header #label-text {
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-@media screen and (min-width: 600px) {
-  #site-header h1 a,
-  #site-header h1 a:visited {
-    font-size: 2.4rem;
-  }
-  #site-header #label-text {
-    font-size: 1.4rem;
-  }
 }
 
 #sidenav nav {
