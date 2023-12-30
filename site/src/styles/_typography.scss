@@ -1,0 +1,53 @@
+:root {
+  --font-size-base: 10px;
+  --color-text: hsl(12, 5%, 4%);
+  --sans-font: Nunito, sans-serif;
+  --font-size-normal: 1.9rem;
+  --font-size-lg: 2rem;
+  --font-size-xl: 2.4rem;
+}
+
+html {
+  font-family: var(--sans-font);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  letter-spacing: 0.1rem;
+}
+
+body,
+body * {
+  font-size: var(--font-size-normal);
+}
+
+em {
+  font-style: italic;
+}
+
+main article {
+  line-height: 2;
+  letter-spacing: 0.09rem;
+  font-weight: 300;
+}
+
+#site-header h1 a,
+#site-header h1 a:visited {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 2.4rem;
+  font-weight: 400;
+}
+
+#sidenav nav {
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: aliceblue;
+  }
+  a.active {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 0.4rem;
+    text-decoration-skip-ink: all;
+    text-underline-offset: 0.2rem;
+  }
+}

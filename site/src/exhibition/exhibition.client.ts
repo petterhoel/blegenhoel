@@ -1,5 +1,5 @@
-import type { ExhibitionDto } from './exhibition.dto'
-import { dataClient } from '../cms-integration/data.client'
+import type { ExhibitionDto } from "./exhibition.dto";
+import { dataClient } from "../cms-integration/data.client";
 
 export async function getVisibleExhibitions(): Promise<ExhibitionDto[]> {
   const query = `*[_type == "exhibition" && visibility]{
@@ -14,8 +14,7 @@ export async function getVisibleExhibitions(): Promise<ExhibitionDto[]> {
   exhibitionFirstDay,
   type,
 }
-| order(exhibitionFirstDay desc)`
-  const exhibitions = await dataClient.fetch<ExhibitionDto[]>(query)
+| order(exhibitionFirstDay desc)`;
+  const exhibitions = await dataClient.fetch<ExhibitionDto[]>(query);
   return exhibitions ?? [];
 }
-

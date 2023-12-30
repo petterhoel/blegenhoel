@@ -20,7 +20,8 @@
     "format": "prettier -w .",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
-    "rimraf": "rimraf node_modules site/node_modules cms/node_modules package-lock.json"
+    "rimraf": "rimraf node_modules site/node_modules cms/node_modules package-lock.json",
+    "copy:data:to:test": "npm run copy:data:to:test --workspace=cms"
   },
   "repository": {
     "type": "git",
@@ -33,19 +34,11 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "prettier": "3.1.1",
-    "prettier-plugin-astro": "0.12.2",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.2",
     "rimraf": "5.0.5",
     "typescript": "5.3.3",
     "vitest": "1.0.4",
     "wrangler": "3.19.0"
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 80,
-    "bracketSpacing": true,
-    "bracketSameLine": true
   }
 }

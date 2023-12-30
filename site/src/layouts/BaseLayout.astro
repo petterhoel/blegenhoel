@@ -1,8 +1,7 @@
 ---
 import '../styles/global.scss'
+import { fade, ViewTransitions } from 'astro:transitions';
 import { getLangFromUrl, getUrlWithLang, useTranslation } from '../i18n/utils'
-import { defaultLanguage } from '../i18n/ui'
-import { ViewTransitions } from 'astro:transitions';
 export interface Props {
   title: string
   description: string
@@ -11,14 +10,32 @@ export interface Props {
 
 const language = getLangFromUrl(Astro.url);
 const t = useTranslation(language);
+const labelOpen = t('nav.labelOpen')
+const labelClosed = t('nav.labelClosed')
 
 const langSwithUrl = getUrlWithLang(Astro.url);
 
 const { title, keywords, description } = Astro.props
-const currentPath = new URL(Astro.request.url).pathname
+const currentPath = Astro.request.url ? new URL(Astro.request.url)?.pathname : '';
 
-const active = (mustInclude: string): string => {
-  return currentPath.includes(mustInclude) ? 'active' : ''
+const normalize = (value: string): string => {
+
+  if (!value) {
+    return ''
+  }
+  if (value.startsWith('/')) {
+    value = value.substring(1, value.length)
+  }
+
+  if (value.endsWith('/')) {
+    value = value.substring(0, value.length - 1)
+  }
+
+  return value.toLowerCase();
+}
+
+const active = (linkHref: string): string => {
+  return normalize(currentPath) === normalize(linkHref) ? 'active' : ''
 }
 ---
 
@@ -32,283 +49,94 @@ const active = (mustInclude: string): string => {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,500;1,300;1,500&display=swap" rel="stylesheet">     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,500;1,300;1,500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <title>{title}</title>
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="logo text-gradient">
-          <a href={`/${language}`}>Øystein Blegen Hoel</a>
-        </h1>
+
+
+    <header id="site-header">
+      <label
+        id="nav-toggle-label"
+        class="nav-toggle-label">
+        <span id='label-text' class='screen-reader-only'>{labelClosed}</span>
         <input
           type="checkbox"
           id="nav-toggle"
           name="nav-toggle"
           class="nav-toggle"/>
-        <label
-          for="nav-toggle"
-          id="nav-toggle-label"
-          class="nav-toggle-label">
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="screen-reader-only"></div>
-        </label>
-        <nav>
-          <menu>
-            <li>
-              <a href={`/${language}/biography`} class={active('biography')}>{t('nav.bio')}</a>
-            </li>
-            <li>
-              <a href={`/${language}/about-works`} class={active('about')}>{t('nav.about')}</a>
-            </li>
-            <li>
-              <a href={langSwithUrl}>{t('nav.languageSwitcher')}</a>
-            </li>
-          </menu>
-        </nav>
-      </header>
-    </div>
-    <main transition:animate='initial'>
+        <span class='icon' id='nav-toggle-icon'>
+          <span class='icon-part'></span>
+          <span class='icon-part'></span>
+          <span class='icon-part'></span>
+        </span>
+      </label>
+      <h1 class="logo text-gradient">
+        <a href={`/${language}`}>Øystein Blegen Hoel</a>
+      </h1>
+    </header>
+    <aside id="sidenav">
+      <nav>
+        <menu>
+          <li>
+            <a href={`/${language}`} class={active(`/${language}`)}>{t('nav.home')}</a>
+          </li>
+          <li>
+            <a href={`/${language}/biography`} class={active(`/${language}/biography`)}>{t('nav.bio')}</a>
+          </li>
+          <li>
+            <a href={`/${language}/about-works`} class={active(`/${language}/about-works`)}>{t('nav.about')}</a>
+          </li>
+          <li>
+            <a href={langSwithUrl}>{t('nav.languageSwitcher')}</a>
+          </li>
+        </menu>
+      </nav>
+      <button id='close-button' type='button'><span class='screen-reader-only'>{ labelOpen} { labelClosed.toLowerCase() }</span></button>
+    </aside>
+    <main transition:animate={fade({duration:'200ms'})}>
       <slot />
     </main>
 
-    <script>
+    <script define:vars={{ labelOpen, labelClosed }}>
       const toggleIcon = () => {
-        const input = document.getElementById<HTMLInputElement>('nav-toggle');
-        const label = document.getElementById('nav-toggle-label')
+        const input = document.querySelector('#nav-toggle');
+        const body = document.querySelector('body');
+        const labelTextSpan = document.querySelector('#label-text')
+        const iconWrapper = document.querySelector('#nav-toggle-icon')
         const main = document.querySelector('main')
-        if (input && !input.checked) {
+        const sideNav = document.querySelector('#sidenav')
+        if (!input?.checked) {
+          labelTextSpan.innerText = labelClosed
+          iconWrapper.classList.remove('checked')
           main.removeAttribute('inert')
-          document.body.classList.remove('no-scroll')
+          sideNav.classList.remove('open')
+          body.classList.remove('no-scroll')
         } else {
+          labelTextSpan.innerText = labelOpen
+          iconWrapper.classList.add('checked')
           main.setAttribute('inert', true)
-          document.body.classList.add('no-scroll')
+          sideNav.classList.add('open')
+          body.classList.add('no-scroll')
         }
       }
-      const navToggle = document.getElementById('nav-toggle');
-      navToggle.addEventListener('click', toggleIcon);
+
+      const closeSidebar = () => {
+        const input = document.querySelector('#nav-toggle');
+        input?.checked ? input.click() : null
+      }
+
+      document.addEventListener('astro:page-load', () => {
+        const navToggle = document.querySelector('#nav-toggle');
+        navToggle.addEventListener('click', toggleIcon);
+        const closeButton = document.querySelector('#close-button')
+        closeButton.addEventListener('click', closeSidebar)
+        const navlinks = document.querySelectorAll('#sidenav a')
+        navlinks.forEach(link => link.addEventListener('click', closeSidebar))
+      }, { once: false });
     </script>
-    <style>
-      .wrapper {
-        position: fixed;
-        top: 0;
-        background-color: var(--nav-background);
-        width: 100vw;
-        line-height: 1;
-        height: 6.4rem  ;
-      }
-
-      header {
-        background-color: var(--nav-background);
-        position: fixed;
-        z-index: 999;
-        letter-spacing: 0.1rem;
-        width: 100vw;
-        padding: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      header h1 {
-        margin: 0;
-        flex-shrink: 1;
-        overflow: hidden;
-      }
-
-      .logo a {
-        color: #3d37e4;
-        font-size: 2.4rem;
-        font-weight: 500;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-
-      .screen-reader-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-      }
-
-      nav {
-        background-color: var(--nav-background);
-        position: absolute;
-        text-align: left;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        min-height: 100vh;
-        transform: scale(1, 0);
-        transform-origin: top;
-        transition: transform 200ms ease;
-      }
-
-      nav menu {
-        margin: 0 0 0;
-        padding: 4rem 0 8rem;
-        list-style: none;
-        background-color: var(--nav-background);
-        border-bottom: 2px solid #918dff;
-      }
-
-      nav li {
-        display: flex;
-        margin-bottom: 0.4em;
-      }
-
-      nav a {
-        color: var(--color-text);
-        text-decoration: none;
-        font-size: 2rem;
-        opacity: 0;
-        width: 100%;
-        padding: 1rem 2rem;
-        transition: opacity 10ms ease-in-out;
-      }
-
-      #nav-toggle:checked ~ nav {
-        transform: scale(1);
-      }
-      #nav-toggle:checked ~ nav a {
-        opacity: 1;
-      }
-
-      #nav-toggle-label {
-        display:flex;
-        flex-direction:column;
-        width: 26px;
-        cursor:pointer;
-      }
-
-      #nav-toggle-label span{
-        background-color: #3d37e4;
-        border-radius: 5px;
-        height:2px;
-        margin: 3px 0;
-        transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-      }
-
-      #nav-toggle-label span:nth-of-type(1){
-        width:50%;
-      }
-
-      #nav-toggle-label span:nth-of-type(2){
-        width:100%;
-      }
-
-      #nav-toggle-label span:nth-of-type(3){
-        width:75%;
-      }
-
-      #nav-toggle{
-        display:none;
-      }
-
-      #nav-toggle:checked ~ label span {
-        background-color: var(--accent);
-      }
-
-      #nav-toggle:checked ~ label > span:nth-of-type(1){
-        transform-origin:bottom;
-        transform:rotatez(45deg) translate(4px,0px)
-      }
-
-      #nav-toggle:checked ~ label > span:nth-of-type(2){
-        transform-origin:top;
-        transform:rotatez(-45deg)
-      }
-
-      #nav-toggle:checked ~ label > span:nth-of-type(3){
-        transform-origin:bottom;
-        width:50%;
-        transform: translate(12px,-4px) rotatez(45deg);
-      }
-
-      @media screen and (min-width: 800px) {
-        #nav-toggle-label,
-        #nav-toggle-label {
-          display: none;
-        }
-
-        div.wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        header {
-          display: flex;
-          width: 90rem;
-          max-width: 100vw;
-          justify-content: space-between;
-        }
-
-        .logo {
-          grid-column: 2 / 3;
-        }
-
-        nav {
-          all: unset;
-          grid-column: 3 / 4;
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-        }
-
-        nav menu {
-          display: flex;
-          margin-top: 0;
-          padding-top: 0;
-          padding-bottom: 0;
-          border-bottom: none;
-        }
-
-        nav li {
-          margin-bottom: 0;
-        }
-
-        nav a {
-          opacity: 1;
-          padding: 0 2rem;
-          position: relative;
-        }
-
-        nav a.active {
-          opacity: 1;
-          position: relative;
-        }
-
-        nav a.active::before {
-          transform: scale(1, 1);
-        }
-
-        nav a::before {
-          content: '';
-          display: block;
-          height: 5px;
-          background: var(--accent);
-          position: absolute;
-          top: -.8rem;
-          left: 1rem;
-          right: 1rem;
-          border-radius: 5px;
-          transform: scale(0, 1);
-          transition: ease-in-out 250ms;
-        }
-
-        nav a:hover::before {
-          transform: scale(1, 1);
-        }
-      }
-    </style>
   </body>
 </html>

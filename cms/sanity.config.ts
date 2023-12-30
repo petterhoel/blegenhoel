@@ -1,24 +1,24 @@
-import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
-import { visionTool } from '@sanity/vision'
-import { singletonTypes, structure } from './structure'
-import { schemaTypes } from './schemas/index'
+import { defineConfig } from "sanity";
+import { deskTool } from "sanity/desk";
+import { visionTool } from "@sanity/vision";
+import { singletonTypes, structure } from "./structure";
+import { schemaTypes } from "./schemas/index";
 
-export const singletonSet = new Set(singletonTypes)
+export const singletonSet = new Set(singletonTypes);
 
 export const singletonActions = new Set([
-  'publish',
-  'discardChanges',
-  'restore',
-  'unpublish',
-])
+  "publish",
+  "discardChanges",
+  "restore",
+  "unpublish",
+]);
 
 // @ts-ignore
-export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? ''
-export const projectId = '2uvu00qu'
+export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? "";
+export const projectId = "2uvu00qu";
 
-const name = 'default'
-const title = 'Belgenhoel'
+const name = "default";
+const title = "Belgenhoel";
 export default defineConfig({
   name,
   title,
@@ -46,4 +46,4 @@ export default defineConfig({
         ? input.filter(({ action }) => action && singletonActions.has(action))
         : input,
   },
-})
+});

@@ -35,7 +35,7 @@ const title = t('title.home')
   title={title}
   keywords={keywords}
   description={description}>
-  <section class="wrapper">
+  <section id="gallery-wrapper">
     {
       artworks.map((artwork) => (
         <Artwork artwork={artwork} />
@@ -43,23 +43,4 @@ const title = t('title.home')
     }
   </section>
 </BaseLayout>
-<style>
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6rem;
-        max-width: 100vw;
-        margin-bottom: 4rem;
-    }
 
-    @media screen and (min-width: 800px) {
-        .wrapper {
-            flex-direction: row;
-            flex-wrap: wrap;
-            width: 120rem;
-            gap: 4rem;
-            justify-content: center;
-        }
-    }
-</style>
