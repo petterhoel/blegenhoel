@@ -11,7 +11,12 @@ const { urls, alt, title, year, dimmenstions, material } = Astro.props.artwork
     {urls.map(url => (
       <source srcset={url}></source>
     ))}
-    <img src={urls[urls.length - 1]} alt={alt} title={title} decoding="async" />
+    <img
+      src={urls[urls.length - 1]}
+      alt={alt}
+      title={title}
+      loading='lazy'
+      decoding="async" />
   </picture>
   <figcaption>
     <div class="title-year">
