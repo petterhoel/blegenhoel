@@ -34,11 +34,13 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "prettier": "^3.1.1",
-    "prettier-plugin-astro": "^0.12.2",
+    "@sanity/eslint-config-studio": "3.0.1",
+    "eslint": "8.56.0",
+    "prettier": "3.2.2",
+    "prettier-plugin-astro": "0.12.3",
     "rimraf": "5.0.5",
     "typescript": "5.3.3",
-    "vitest": "1.0.4",
-    "wrangler": "3.19.0"
+    "vitest": "1.2.0",
+    "wrangler": "3.22.4"
   }
 }
