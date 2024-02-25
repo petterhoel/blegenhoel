@@ -20,7 +20,6 @@
     "format": "prettier -w .",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
-    "rimraf": "rimraf node_modules site/node_modules cms/node_modules package-lock.json",
     "copy:data:to:test": "npm run copy:data:to:test --workspace=cms"
   },
   "repository": {
@@ -35,12 +34,11 @@
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
     "@sanity/eslint-config-studio": "3.0.1",
-    "eslint": "8.56.0",
-    "prettier": "3.2.2",
-    "prettier-plugin-astro": "0.12.3",
-    "rimraf": "5.0.5",
+    "eslint": "8.57.0",
+    "prettier": "3.2.5",
+    "prettier-plugin-astro": "0.13.0",
     "typescript": "5.3.3",
-    "vitest": "1.2.0",
-    "wrangler": "3.22.4"
+    "vitest": "1.3.1",
+    "wrangler": "3.29.0"
   }
 }
