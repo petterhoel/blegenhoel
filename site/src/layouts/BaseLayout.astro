@@ -7,7 +7,7 @@ export interface Props {
   description: string
   keywords: string
 }
-
+Astro.response.headers.set("petter", "Hoel")
 const language = getLangFromUrl(Astro.url);
 const t = useTranslation(language);
 const labelOpen = t('nav.labelOpen')
