@@ -9,6 +9,7 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
+    "login": "sanity login",
     "test": "vitest run",
     "copy:data:to:test": "sanity dataset export production /Users/petter/production.tar.gz && sanity dataset delete test && sanity dataset import /Users/petter/production.tar.gz test"
   },

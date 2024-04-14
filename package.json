@@ -17,6 +17,7 @@
     "deploy": "npm run deploy --workspace=site",
     "build:cms": "npm run build --workspace=cms",
     "deploy:cms": "npm run deploy --workspace=cms",
+    "login:cms": "npm run login --workspace=cms",
     "format": "prettier -w .",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
