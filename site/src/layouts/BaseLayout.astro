@@ -12,7 +12,7 @@ const language = getLangFromUrl(Astro.url);
 const t = useTranslation(language);
 const labelOpen = t('nav.labelOpen')
 const labelClosed = t('nav.labelClosed')
-
+console.log(labelOpen)
 const langSwithUrl = getUrlWithLang(Astro.url);
 
 const { title, keywords, description } = Astro.props
@@ -55,7 +55,7 @@ const active = (linkHref: string): string => {
     <meta name="keywords" content={keywords} />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-label-open={labelOpen} data-label-closed={labelClosed}>
 
 
     <header id="site-header">
@@ -101,41 +101,46 @@ const active = (linkHref: string): string => {
       <slot />
     </main>
 
-    <script define:vars={{ labelOpen, labelClosed }}>
+    <script>
       const toggleIcon = () => {
-        const input = document.querySelector('#nav-toggle');
+        const input = document.querySelector<HTMLInputElement>('#nav-toggle');
         const body = document.querySelector('body');
-        const labelTextSpan = document.querySelector('#label-text')
+        const labelTextSpan = document.querySelector<HTMLSpanElement>('#label-text')
         const iconWrapper = document.querySelector('#nav-toggle-icon')
-        const main = document.querySelector('main')
+        const main = document.querySelector<HTMLHtmlElement>('main')
         const sideNav = document.querySelector('#sidenav')
         if (!input?.checked) {
-          labelTextSpan.innerText = labelClosed
-          iconWrapper.classList.remove('checked')
-          main.removeAttribute('inert')
-          sideNav.classList.remove('open')
-          body.classList.remove('no-scroll')
+          if (labelTextSpan){
+              labelTextSpan.innerText = document.body.dataset.labelClosed ?? ''
+          }
+          iconWrapper?.classList.remove('checked')
+          main?.removeAttribute('inert')
+          sideNav?.classList.remove('open')
+          body?.classList.remove('no-scroll')
         } else {
-          labelTextSpan.innerText = labelOpen
-          iconWrapper.classList.add('checked')
-          main.setAttribute('inert', true)
-          sideNav.classList.add('open')
-          body.classList.add('no-scroll')
+
+          if (labelTextSpan){
+              labelTextSpan.innerText = document.body.dataset.labelOpen ?? ''
+          }
+          iconWrapper?.classList.add('checked')
+          main?.setAttribute('inert', 'true')
+          sideNav?.classList.add('open')
+          body?.classList.add('no-scroll')
         }
       }
 
       const closeSidebar = () => {
-        const input = document.querySelector('#nav-toggle');
+        const input = document.querySelector<HTMLInputElement>('#nav-toggle');
         input?.checked ? input.click() : null
       }
 
       document.addEventListener('astro:page-load', () => {
         const navToggle = document.querySelector('#nav-toggle');
-        navToggle.addEventListener('click', toggleIcon);
+        navToggle?.addEventListener('click', toggleIcon);
         const closeButton = document.querySelector('#close-button')
-        closeButton.addEventListener('click', closeSidebar)
+        closeButton?.addEventListener('click', closeSidebar)
         const navlinks = document.querySelectorAll('#sidenav a')
-        navlinks.forEach(link => link.addEventListener('click', closeSidebar))
+        navlinks?.forEach(link => link.addEventListener('click', closeSidebar))
       }, { once: false });
     </script>
   </body>

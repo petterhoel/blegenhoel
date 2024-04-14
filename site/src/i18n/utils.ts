@@ -2,7 +2,7 @@ import { defaultLanguage, uiText } from "./ui";
 
 export const getLangFromUrl = (url: URL) => {
   const [, lang] = url.pathname.split("/");
-  if (lang in uiText) {
+  if (lang && lang in uiText) {
     return lang as keyof typeof uiText;
   }
   return defaultLanguage;
