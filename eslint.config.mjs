@@ -8,11 +8,10 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   {
     ignores: [
-      "**/node_modules/**/*",
-      "**/.idea/**/*",
-      "cms/.sanity/*",
-      "site/.astro/**/*"
-    ]
-  }
-);
-
+      '**/node_modules/**/*',
+      '**/.idea/**/*',
+      'cms/.sanity/*',
+      'site/.astro/**/*',
+    ],
+  },
+)

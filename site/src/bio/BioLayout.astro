@@ -14,25 +14,21 @@ const { keywords, description } = await getSeoAsync()
 const exhibitions = await getVisibleExhibitions()
 const bio = await getBiography()
 
-
 const language = getLangFromUrl(Astro.url)
 const exhibitionListVm = {
   heading: language === 'no' ? 'Utstillinger' : 'Exhibitions',
-  exhibitions: exhibitions.map(ex => toVm(ex, language))
+  exhibitions: exhibitions.map((ex) => toVm(ex, language)),
 }
 
-const content = bio[language];
-const t = useTranslation(language);
+const content = bio[language]
+const t = useTranslation(language)
 const title = t('title.bio')
 ---
 
-<Layout
-  title={title}
-  keywords={keywords}
-  description={description}>
+<Layout title={title} keywords={keywords} description={description}>
   <article>
     <PortableText value={content} />
-    <ExhibitionList vm={exhibitionListVm}/>
+    <ExhibitionList vm={exhibitionListVm} />
   </article>
   <aside>
     <ContactDetails />

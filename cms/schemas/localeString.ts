@@ -1,20 +1,20 @@
-import { english, norsk } from "./locales";
-import { defineField, defineType } from "sanity";
+import { english, norsk } from './locales'
+import { defineField, defineType } from 'sanity'
 
 export const localeString = defineType({
-  title: "Localized string",
-  name: "localeString",
-  type: "object",
+  title: 'Localized string',
+  name: 'localeString',
+  type: 'object',
   fields: [
     defineField({
-      title: "Norsk",
+      title: 'Norsk',
       name: norsk,
-      type: "string",
+      type: 'string',
     }),
     defineField({
-      title: "Engelsk",
+      title: 'Engelsk',
       name: english,
-      type: "string",
+      type: 'string',
     }),
   ],
-});
+})

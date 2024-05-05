@@ -1,26 +1,26 @@
-import { nbNOLocale } from "@sanity/locale-nb-no";
-import { visionTool } from "@sanity/vision";
-import { defineConfig } from "sanity";
-import { structureTool } from "sanity/structure";
-import { NavBarWithBundleChecker } from "./navbar/navbar";
-import { schemaTypes } from "./schemas/index";
-import { singletonTypes, structure } from "./structure";
+import { nbNOLocale } from '@sanity/locale-nb-no'
+import { visionTool } from '@sanity/vision'
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { NavBarWithBundleChecker } from './navbar/navbar'
+import { schemaTypes } from './schemas/index'
+import { singletonTypes, structure } from './structure'
 
-export const singletonSet = new Set(singletonTypes);
+export const singletonSet = new Set(singletonTypes)
 
 export const singletonActions = new Set([
-  "publish",
-  "discardChanges",
-  "restore",
-  "unpublish",
-]);
+  'publish',
+  'discardChanges',
+  'restore',
+  'unpublish',
+])
 
 // @ts-ignore
-export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? "";
-export const projectId = "2uvu00qu";
+export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? ''
+export const projectId = '2uvu00qu'
 
-const name = "default";
-const title = "Belgenhoel";
+const name = 'default'
+const title = 'Belgenhoel'
 export default defineConfig({
   name,
   title,
@@ -55,4 +55,4 @@ export default defineConfig({
         ? input.filter(({ action }) => action && singletonActions.has(action))
         : input,
   },
-});
+})

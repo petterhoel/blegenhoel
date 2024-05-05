@@ -9,8 +9,7 @@ import Artwork from '../artwork/Artwork.astro'
 import { languages } from '../i18n/ui'
 import { getLangFromUrl } from '../i18n/utils'
 
-
-function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages ) {
+function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
   const { title, dimmenstions, year, photo, material } = dto
   return {
     title: title[lang],
@@ -22,25 +21,18 @@ function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages ) {
   }
 }
 
-
 const { keywords, description } = await getSeoAsync()
-const language = getLangFromUrl(Astro.url);
+const language = getLangFromUrl(Astro.url)
 const artworkDtos = await getForsideArtworks()
-const artworks = artworkDtos.map(artwork => mapArtworkDtoToVm(artwork, language));
-const t = useTranslation(language);
+const artworks = artworkDtos.map((artwork) =>
+  mapArtworkDtoToVm(artwork, language),
+)
+const t = useTranslation(language)
 const title = t('title.home')
 ---
 
-<BaseLayout
-  title={title}
-  keywords={keywords}
-  description={description}>
+<BaseLayout title={title} keywords={keywords} description={description}>
   <section id="gallery-wrapper">
-    {
-      artworks.map((artwork) => (
-        <Artwork artwork={artwork} />
-      ))
-    }
+    {artworks.map((artwork) => <Artwork artwork={artwork} />)}
   </section>
 </BaseLayout>
-

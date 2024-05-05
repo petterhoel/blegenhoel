@@ -1,35 +1,35 @@
-import { ImagesIcon, SearchIcon, TextIcon } from "@sanity/icons";
-import { StructureBuilder } from "sanity/structure";
+import { ImagesIcon, SearchIcon, TextIcon } from '@sanity/icons'
+import { StructureBuilder } from 'sanity/structure'
 
-export const singletonTypes = ["biography", "aboutWorks", `seo`, "gallery"];
+export const singletonTypes = ['biography', 'aboutWorks', `seo`, 'gallery']
 
 // @ts-ignore
 export const structure = (S: StructureBuilder) => {
   const biography = S.listItem()
-    .title("Biografisk tekst")
+    .title('Biografisk tekst')
     .icon(TextIcon)
-    .child(S.document().schemaType("biography").documentId("biography"));
+    .child(S.document().schemaType('biography').documentId('biography'))
 
   const aboutWorks = S.listItem()
-    .title("Om bildene")
+    .title('Om bildene')
     .icon(TextIcon)
-    .child(S.document().schemaType("aboutWorks").documentId("aboutWorks"));
+    .child(S.document().schemaType('aboutWorks').documentId('aboutWorks'))
 
   const homePage = S.listItem()
-    .title("Forsidegalleri")
+    .title('Forsidegalleri')
     .icon(ImagesIcon)
-    .child(S.document().schemaType("gallery").documentId("gallery"));
+    .child(S.document().schemaType('gallery').documentId('gallery'))
 
   const seo = S.listItem()
-    .title("Søkemotor synlighet (SEO)")
+    .title('Søkemotor synlighet (SEO)')
     .icon(SearchIcon)
-    .child(S.document().schemaType("seo").documentId("seo"));
+    .child(S.document().schemaType('seo').documentId('seo'))
 
   const filteredNonSingles = S.documentTypeListItems().filter(
-    (item) => !singletonTypes.includes(item.getId() ?? ""),
-  );
+    (item) => !singletonTypes.includes(item.getId() ?? ''),
+  )
 
   return S.list()
-    .title("Innhold")
-    .items([homePage, biography, aboutWorks, ...filteredNonSingles, seo]);
-};
+    .title('Innhold')
+    .items([homePage, biography, aboutWorks, ...filteredNonSingles, seo])
+}
