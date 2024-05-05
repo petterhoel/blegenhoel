@@ -1,28 +1,20 @@
 ---
-import { dataClient } from '../cms-integration/data.client'
 import { PortableText } from 'astro-portabletext'
+import { getAboutWorksText } from './about.client'
 import ContactDetails from '../ContactDetails.astro'
 import { getSeoAsync } from '../seo/seo.client'
 import { getLangFromUrl, useTranslation } from '../i18n/utils'
-import BaseLayout from './BaseLayout.astro'
-
-export async function getAboutWorksText() {
-  const query = `*[_type == "aboutWorks"][0]`
-  return await dataClient.fetch(query)
-}
+import BaseLayout from '../BaseLayout.astro'
 
 const { aboutWorks } = await getAboutWorksText()
 const { keywords, description } = await getSeoAsync()
 const language = getLangFromUrl(Astro.url)
-const content = aboutWorks[language];
-const t = useTranslation(language);
+const content = aboutWorks[language]
+const t = useTranslation(language)
 const title = t('title.about-works')
 ---
 
-<BaseLayout
-  title={title}
-  keywords={keywords}
-  description={description}>
+<BaseLayout title={title} keywords={keywords} description={description}>
   <article>
     <PortableText value={content} />
   </article>

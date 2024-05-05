@@ -1,34 +1,34 @@
-import { RefreshIcon } from "@sanity/icons";
-import { Button, Card, Inline, Stack, Text } from "@sanity/ui";
-import React, { useEffect, useState } from "react";
+import { RefreshIcon } from '@sanity/icons'
+import { Button, Card, Inline, Stack, Text } from '@sanity/ui'
+import React, { useEffect, useState } from 'react'
 
 export const NavBarWithBundleChecker = (props: any) => {
-  const [nyVersjon, setValue] = useState(false);
+  const [nyVersjon, setValue] = useState(false)
   const createInterval = () =>
     setInterval(async () => {
-      const newHash = await getCurrentHash();
+      const newHash = await getCurrentHash()
 
       if (hash && newHash !== hash) {
-        clearInterval(interval);
-        setValue(true);
+        clearInterval(interval)
+        setValue(true)
       }
-    }, 60 * 1000);
+    }, 60 * 1000)
   async function getCurrentHash() {
-    const html = await window.fetch("/").then((res) => res.text());
-    const [, hash] = html.match(/static\/sanity-(\w+).js/) || [];
-    return hash;
+    const html = await window.fetch('/').then((res) => res.text())
+    const [, hash] = html.match(/static\/sanity-(\w+).js/) || []
+    return hash
   }
-  let hash: any = null;
-  let interval: any = null;
+  let hash: any = null
+  let interval: any = null
   useEffect(() => {
     getCurrentHash().then((newHash) => {
-      hash = newHash;
-    });
+      hash = newHash
+    })
 
-    interval = createInterval();
+    interval = createInterval()
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <Stack>
@@ -50,5 +50,5 @@ export const NavBarWithBundleChecker = (props: any) => {
       )}
       <>{props.renderDefault(props)}</>
     </Stack>
-  );
-};
+  )
+}

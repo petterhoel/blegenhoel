@@ -1,7 +1,8 @@
-import { dataClient } from "../cms-integration/data.client";
+import groq from 'groq'
+import type { SeoQueryResult } from '../cms-integration/cms-types.ts'
+import { dataClient } from '../cms-integration/data.client'
 
 export async function getSeoAsync() {
-  const query = `*[_type == "seo"][0]`;
-  const seo = await dataClient.fetch(query);
-  return { description: seo?.description ?? "", keywords: seo?.keywords ?? "" };
+  const seoQuery = groq`coalesce(*[_type == "seo"][0]{keywords, description}, 'result-error')`
+  return await dataClient.fetch<SeoQueryResult>(seoQuery)
 }

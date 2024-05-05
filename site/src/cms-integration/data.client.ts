@@ -1,4 +1,4 @@
-import { createClient } from "@sanity/client";
-import { sanityConfig } from "./sanity.config";
+import { createClient } from '@sanity/client'
+import { sanityConfig } from './sanity.config'
 
-export const dataClient = createClient(sanityConfig);
+export const dataClient = createClient(sanityConfig)
