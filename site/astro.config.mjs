@@ -8,4 +8,11 @@ export default defineConfig({
       destination: '/no',
     },
   },
+  vite: {
+    build: {
+      rollupOptions : {
+        external: ['groq']
+      }
+    }
+  }
 })
