@@ -22,8 +22,8 @@
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
     "copy:data:to:test": "npm run copy:data:to:test --workspace=cms",
-    "upgrade:cms" : "npm run upgrade --workspace=cms",
-    "upgrade" : "npm run upgrade --workspace=site"
+    "upgrade:cms": "npm run upgrade --workspace=cms",
+    "upgrade": "npm run upgrade --workspace=site"
   },
   "repository": {
     "type": "git",
@@ -44,5 +44,8 @@
     "typescript": "5.4.5",
     "vitest": "1.6.0",
     "wrangler": "3.53.1"
+  },
+  "dependencies": {
+    "@sanity/locale-nb-no": "^1.1.7"
   }
 }
