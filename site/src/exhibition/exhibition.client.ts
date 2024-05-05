@@ -1,8 +1,9 @@
-import type { ExhibitionDto } from "./exhibition.dto";
+import groq from "groq";
 import { dataClient } from "../cms-integration/data.client";
+import type { ExhibitionDto } from "./exhibition.dto";
 
 export async function getVisibleExhibitions(): Promise<ExhibitionDto[]> {
-  const query = `*[_type == "exhibition" && visibility]{
+  const exhibitionQuery = groq`*[_type == "exhibition" && visibility]{
   'exhibitionName': {
     'no': exhibitionName.no,
     'en': exhibitionName.en
@@ -15,6 +16,6 @@ export async function getVisibleExhibitions(): Promise<ExhibitionDto[]> {
   type,
 }
 | order(exhibitionFirstDay desc)`;
-  const exhibitions = await dataClient.fetch<ExhibitionDto[]>(query);
+  const exhibitions = await dataClient.fetch<ExhibitionDto[]>(exhibitionQuery);
   return exhibitions ?? [];
 }

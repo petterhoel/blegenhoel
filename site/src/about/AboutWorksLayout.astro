@@ -1,15 +1,10 @@
 ---
-import { dataClient } from '../cms-integration/data.client'
 import { PortableText } from 'astro-portabletext'
+import { getAboutWorksText } from './about.client'
 import ContactDetails from '../ContactDetails.astro'
 import { getSeoAsync } from '../seo/seo.client'
 import { getLangFromUrl, useTranslation } from '../i18n/utils'
-import BaseLayout from './BaseLayout.astro'
-
-export async function getAboutWorksText() {
-  const query = `*[_type == "aboutWorks"][0]`
-  return await dataClient.fetch(query)
-}
+import BaseLayout from '../BaseLayout.astro'
 
 const { aboutWorks } = await getAboutWorksText()
 const { keywords, description } = await getSeoAsync()

@@ -1,0 +1,5 @@
+{
+  "path": "../site/src/**/*.ts",
+  "schema": "schema.json",
+  "generates": "../site/src/cms-integration/cms-types.ts"
+}
