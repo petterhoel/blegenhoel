@@ -10,13 +10,15 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run"
+    "test": "vitest run",
+    "upgrade": "npx @astrojs/upgrade"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@sanity/client": "6.15.13",
+    "@astrojs/upgrade": "^0.3.0",
+    "@sanity/client": "6.17.2",
     "@sanity/image-url": "1.0.2",
-    "astro": "^4.6.1",
-    "astro-portabletext": "0.9.8"
+    "astro": "^4.7.1",
+    "astro-portabletext": "0.9.9"
   }
 }

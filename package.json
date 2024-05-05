@@ -21,7 +21,9 @@
     "format": "prettier -w .",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
-    "copy:data:to:test": "npm run copy:data:to:test --workspace=cms"
+    "copy:data:to:test": "npm run copy:data:to:test --workspace=cms",
+    "upgrade:cms" : "npm run upgrade --workspace=cms",
+    "upgrade" : "npm run upgrade --workspace=site"
   },
   "repository": {
     "type": "git",
@@ -35,12 +37,12 @@
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
     "@sanity/eslint-config-studio": "4.0.0",
-    "eslint": "9.0.0",
+    "eslint": "9.2.0",
     "prettier": "3.2.5",
     "prettier-plugin-astro": "0.13.0",
-    "sass": "1.75.0",
+    "sass": "1.76.0",
     "typescript": "5.4.5",
-    "vitest": "1.5.0",
-    "wrangler": "3.50.0"
+    "vitest": "1.6.0",
+    "wrangler": "3.53.1"
   }
 }
