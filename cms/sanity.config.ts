@@ -1,8 +1,8 @@
 import { nbNOLocale } from "@sanity/locale-nb-no";
 import { visionTool } from "@sanity/vision";
-import { NavBarWithBundleChecker } from "navbar/navbar";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
+import { NavBarWithBundleChecker } from "./navbar/navbar";
 import { schemaTypes } from "./schemas/index";
 import { singletonTypes, structure } from "./structure";
 
