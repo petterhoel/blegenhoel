@@ -21,6 +21,7 @@
     "format": "prettier -w .",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
+    "typegen": "npm run typegen --workspace=cms",
     "copy:data:to:test": "npm run copy:data:to:test --workspace=cms",
     "upgrade:cms": "npm run upgrade --workspace=cms",
     "upgrade": "npm run upgrade --workspace=site"
