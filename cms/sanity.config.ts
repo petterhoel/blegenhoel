@@ -1,8 +1,10 @@
-import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { nbNOLocale } from "@sanity/locale-nb-no";
 import { visionTool } from "@sanity/vision";
-import { singletonTypes, structure } from "./structure";
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
+import { NavBarWithBundleChecker } from "./navbar/navbar";
 import { schemaTypes } from "./schemas/index";
+import { singletonTypes, structure } from "./structure";
 
 export const singletonSet = new Set(singletonTypes);
 
@@ -26,18 +28,25 @@ export default defineConfig({
   dataset,
 
   plugins: [
-    deskTool({
+    structureTool({
       structure,
     }),
     visionTool(),
+    nbNOLocale(),
   ],
-
+  scheduledPublishing: {
+    enabled: false,
+  },
   schema: {
     types: schemaTypes,
     templates: (templates) =>
       templates.filter(({ schemaType }) => !singletonSet.has(schemaType)),
   },
-
+  studio: {
+    components: {
+      navbar: NavBarWithBundleChecker,
+    },
+  },
   document: {
     // For singletonstyper (definert i `singletonTypes`), filtreres alle actions,
     // med unntak av dem som explisitt er nevnt i `singletonActions`

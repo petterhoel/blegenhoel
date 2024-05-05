@@ -1,5 +1,6 @@
-import { StructureBuilder } from "sanity/desk";
-import { TextIcon, ImagesIcon, SearchIcon } from "@sanity/icons";
+import { ImagesIcon, SearchIcon, TextIcon } from "@sanity/icons";
+import { StructureBuilder } from "sanity/structure";
+
 export const singletonTypes = ["biography", "aboutWorks", `seo`, "gallery"];
 
 // @ts-ignore

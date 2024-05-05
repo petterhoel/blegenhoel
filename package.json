@@ -47,5 +47,8 @@
     "typescript-eslint": "^7.8.0",
     "vitest": "1.6.0",
     "wrangler": "3.53.1"
+  },
+  "dependencies": {
+    "@sanity/locale-nb-no": "^1.1.7"
   }
 }
