@@ -1,5 +1,6 @@
 import { nbNOLocale } from "@sanity/locale-nb-no";
 import { visionTool } from "@sanity/vision";
+import { NavBarWithBundleChecker } from "navbar/navbar";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./schemas/index";
@@ -41,7 +42,11 @@ export default defineConfig({
     templates: (templates) =>
       templates.filter(({ schemaType }) => !singletonSet.has(schemaType)),
   },
-
+  studio: {
+    components: {
+      navbar: NavBarWithBundleChecker,
+    },
+  },
   document: {
     // For singletonstyper (definert i `singletonTypes`), filtreres alle actions,
     // med unntak av dem som explisitt er nevnt i `singletonActions`
