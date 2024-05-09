@@ -20,7 +20,7 @@ const exhibitionListVm = {
   exhibitions: exhibitions.map((ex) => toVm(ex, language)),
 }
 
-const content = bio[language]
+const content = bio.biography[language]
 const t = useTranslation(language)
 const title = t('title.bio')
 ---
