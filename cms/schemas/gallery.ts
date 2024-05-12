@@ -34,20 +34,18 @@ const isNotAlreadyInDisplayedGallery = async (elm ,context) => {
 	}, 
 	'galleryName': galleryName.no}`)
 
-	console.log(otherGalleries)
-	const gall = otherGalleries
+	const galleriesWithDupes = otherGalleries
 		.filter(g => g.display)
 		.filter(og => thisGallery.some(id => og.galleryImages.some(i => i._id === id)))
 		.map(g => ({
 			galleryName : g.galleryName.trim(),
 			imageNames: g.galleryImages.filter(i => thisGallery.includes(i._id)).map(i => i.name.trim())
 		}))
-  if (!gall.length){
+  if (!galleriesWithDupes.length){
 		return true;
   }
-	console.log(toValidationMessage(gall))
 
-	return toValidationMessage(gall).join(', óg ');
+	return toValidationMessage(galleriesWithDupes).join(', óg ');
 }
 
 const toValidationMessage = (dupes: {galleryName: string, imageNames: string []}[]) =>{
@@ -56,7 +54,7 @@ const toValidationMessage = (dupes: {galleryName: string, imageNames: string []}
 
 export const webGallery = defineType({
 	name: 'web-gallery',
-	title: 'Gallerier',
+	title: 'Gallerier (vises foreløpig ikke)',
 	type: 'document',
 	fields: [
 		defineField({
@@ -93,7 +91,7 @@ export const webGallery = defineType({
 			const { title, display } = selection
 			return {
 				title: title?.no ?? "ingen tittel enda",
-				subtitle: display ? "Vises på nettsiden" : "Vises ikke på nettsiden",
+				subtitle: display ? "Skal vises på nettsiden" : "Skal ikke vises på nettsiden",
 			}
 		},
 	},

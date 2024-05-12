@@ -25,11 +25,11 @@ export const structure = (S: StructureBuilder) => {
     .icon(SearchIcon)
     .child(S.document().schemaType('seo').documentId('seo'))
 
-  const filteredNonSingles = S.documentTypeListItems().filter(
-    (item) => !singletonTypes.includes(item.getId() ?? ''),
-  )
+  const filteredNonSingles = S.documentTypeListItems()
+	  .filter((item) => !singletonTypes.includes(item.getId() ?? ''),)
+	 // .filter((item) => item.getId() !== 'web-gallery')
 
-  return S.list()
+	return S.list()
     .title('Innhold')
     .items([homePage, biography, aboutWorks, ...filteredNonSingles, seo])
 }
