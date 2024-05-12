@@ -5,10 +5,7 @@
   "main": "./package.json",
   "type": "module",
   "description": "Website for Øystein Blegen Hoel",
-  "workspaces": [
-    "site",
-    "cms"
-  ],
+  "workspaces": ["site", "cms"],
   "scripts": {
     "start": "npm run dev:cms & npm run dev:site",
     "dev:cms": "npm run dev --workspace=cms",

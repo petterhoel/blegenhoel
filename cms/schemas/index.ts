@@ -8,18 +8,20 @@ import { aboutWorks } from './aboutWorks'
 import { localeString } from './localeString'
 import { localeRichText } from './localeRichText'
 import { seo } from './seo'
-import { gallery } from './gallery'
+import { oldGallery, webGallery } from './gallery'
 import { localeText } from './localeText'
 import { exhibition } from './exhibition'
 
 artwork.icon = ImagesIcon
-gallery.icon = ImagesIcon
+oldGallery.icon = ImagesIcon
+webGallery.icon = ImagesIcon
 exhibition.icon = TbCircleLetterU
 
 export const schemaTypes = [
   artwork,
   artworkImage,
-  gallery,
+	oldGallery,
+	webGallery,
   richText,
   biography,
   aboutWorks,
