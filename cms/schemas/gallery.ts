@@ -22,6 +22,38 @@ export const oldGallery = defineType({
   ],
 })
 
+const isNotAlreadyInDisplayedGallery = async (elm ,context) => {
+  const thisGallery = context.document.galleryImages?.map(elm => elm._ref) ?? [];
+	const currentId = context.document._id;
+	const client = context.getClient({ apiVersion: '2024-01-01'})
+	const otherGalleries = await client.fetch(`*[_type == "web-gallery" && _id != '${currentId}']{
+	display,
+	'galleryImages': galleryImages[]->{
+	_id,
+	'name': title.no
+	}, 
+	'galleryName': galleryName.no}`)
+
+	console.log(otherGalleries)
+	const gall = otherGalleries
+		.filter(g => g.display)
+		.filter(og => thisGallery.some(id => og.galleryImages.some(i => i._id === id)))
+		.map(g => ({
+			galleryName : g.galleryName.trim(),
+			imageNames: g.galleryImages.filter(i => thisGallery.includes(i._id)).map(i => i.name.trim())
+		}))
+  if (!gall.length){
+		return true;
+  }
+	console.log(toValidationMessage(gall))
+
+	return toValidationMessage(gall).join(', óg ');
+}
+
+const toValidationMessage = (dupes: {galleryName: string, imageNames: string []}[]) =>{
+	return dupes.map(d => `"${d.imageNames.join('" og "')}" er allerede i galleriet "${d.galleryName}"`);
+}
+
 export const webGallery = defineType({
 	name: 'web-gallery',
 	title: 'Gallerier',
@@ -32,6 +64,7 @@ export const webGallery = defineType({
 			title: 'Navnet på galleriet',
 			description: '(vises i menyen)',
 			type: 'localeString',
+			validation: rule => rule.required()
 		}),
 		defineField({
 			name: 'display',
@@ -45,7 +78,10 @@ export const webGallery = defineType({
 			description: 'Sorter, legg til eller fjern bilder',
 			type: 'array',
 			of: [{ type: 'reference', to: [{ type: 'artwork' }] }],
-			validation: (Rule) => Rule.unique(),
+			validation: (Rule) => [
+				Rule.required(),
+				Rule.unique(),
+				Rule.custom(async (value, context) =>  await isNotAlreadyInDisplayedGallery(value, context))],
 		}),
 	],
 	preview: {
