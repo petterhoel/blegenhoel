@@ -14,11 +14,11 @@
     "upgrade": "npx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
+    "@astrojs/check": "^0.7.0",
     "@astrojs/upgrade": "^0.3.0",
     "@sanity/client": "6.17.2",
     "@sanity/image-url": "1.0.2",
-    "astro": "^4.7.1",
+    "astro": "^4.10.2",
     "astro-portabletext": "0.9.9"
   },
   "devDependencies": {

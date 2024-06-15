@@ -26,7 +26,6 @@ export default defineConfig({
   title,
   projectId,
   dataset,
-
   plugins: [
     structureTool({
       structure,
@@ -34,9 +33,6 @@ export default defineConfig({
     visionTool(),
     nbNOLocale(),
   ],
-  scheduledPublishing: {
-    enabled: false,
-  },
   schema: {
     types: schemaTypes,
     templates: (templates) =>
@@ -55,4 +51,10 @@ export default defineConfig({
         ? input.filter(({ action }) => action && singletonActions.has(action))
         : input,
   },
+	scheduledPublishing: {
+		enabled: false,
+	},
+	tasks: {
+		enabled: false
+	}
 })
