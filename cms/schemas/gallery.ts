@@ -76,7 +76,7 @@ const toValidationMessage = (
 
 export const webGallery = defineType({
   name: 'web-gallery',
-  title: 'Gallerier (vises foreløpig ikke)',
+  title: 'Gallerier (ingen publisering enda)',
   description: 'Til neste versjon av nettsiden',
   type: 'document',
   fields: [
@@ -99,13 +99,15 @@ export const webGallery = defineType({
       description: 'Sorter, legg til eller fjern bilder',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'artwork' }] }],
-      validation: (Rule) => [
-        Rule.required(),
-        Rule.unique(),
-        Rule.custom(
-          async (value, context) =>
-            await isNotAlreadyInDisplayedGallery(value, context),
-        ),
+      validation: (rule) => [
+        rule.required(),
+        rule.unique(),
+        rule
+          .custom(
+            async (value, context) =>
+              await isNotAlreadyInDisplayedGallery(value, context),
+          )
+          .warning(),
       ],
     }),
     defineField({
@@ -126,6 +128,14 @@ export const webGallery = defineType({
             .slice(0, 200),
       },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'preview',
+      readOnly: true,
+      title: 'Stenger publisering',
+      type: 'boolean',
+      validation: (rule) =>
+        rule.custom(() => 'Dette galleriet kan ikke publiseres enda'),
     }),
   ],
   preview: {
