@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@sanity/cli": "3.40.0",
+    "@sanity/locale-nb-no": "^1.1.7",
     "@sanity/icons": "^2.11.8",
     "@sanity/ui": "^2.1.6",
     "@sanity/vision": "3.40.0",
