@@ -1,14 +1,51 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "noParameterAssign": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
+      "suspicious": {
+        "noControlCharactersInRegex": "off"
+      }
+    }
+  },
   "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
     "indentWidth": 2,
-    "indentStyle": "space"
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto"
   },
   "javascript": {
     "formatter": {
-      "trailingComma": "all",
+      "jsxQuoteStyle": "single",
+      "enabled": true,
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
       "quoteStyle": "single",
-      "semicolons": "asNeeded"
+      "attributePosition": "auto"
     }
+  },
+  "files": {
+    "ignore": [
+      "cms/dist",
+      "site/dist",
+      "cms/navbar/navbar.tsx",
+      "site/src/cms-integration/cms-types.ts"
+    ]
   }
 }

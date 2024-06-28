@@ -1,5 +1,5 @@
-import type { ExhibitionVm } from './exhibition.vm'
 import type { ExhibitionDto } from './exhibition.dto'
+import type { ExhibitionVm } from './exhibition.vm'
 
 const noMap = new Map([
   ['separatutstilling', 'Separatutstilling'],

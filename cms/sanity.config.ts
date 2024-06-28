@@ -51,10 +51,10 @@ export default defineConfig({
         ? input.filter(({ action }) => action && singletonActions.has(action))
         : input,
   },
-	scheduledPublishing: {
-		enabled: false,
-	},
-	tasks: {
-		enabled: false
-	}
+  scheduledPublishing: {
+    enabled: false,
+  },
+  tasks: {
+    enabled: false,
+  },
 })

@@ -1,14 +1,14 @@
 ---
-import { getBiography } from './bio.client'
+import { PortableText } from 'astro-portabletext'
+import Layout from '../BaseLayout.astro'
+import ContactDetails from '../ContactDetails.astro'
+import ExhibitionList from '../exhibition/ExhibitionList.astro'
 import { getVisibleExhibitions } from '../exhibition/exhibition.client'
 import { toVm } from '../exhibition/exhibition.util'
-import ExhibitionList from '../exhibition/ExhibitionList.astro'
 import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
-import { PortableText } from 'astro-portabletext'
-import ContactDetails from '../ContactDetails.astro'
-import Layout from '../BaseLayout.astro'
 import { getSeoAsync } from '../seo/seo.client'
+import { getBiography } from './bio.client'
 
 const { keywords, description } = await getSeoAsync()
 const exhibitions = await getVisibleExhibitions()

@@ -15,7 +15,7 @@
     "build:cms": "npm run build --workspace=cms",
     "deploy:cms": "npm run deploy --workspace=cms",
     "login:cms": "npm run login --workspace=cms",
-    "format": "prettier -w .",
+    "format": "npx @biomejs/biome check --fix --unsafe .",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
     "typegen": "npm run typegen --workspace=cms",
@@ -34,14 +34,10 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
-    "eslint": "^8.57.0",
-    "prettier": "3.3.2",
-    "prettier-plugin-astro": "0.14.0",
-    "sass": "1.77.5",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^7.13.0",
+    "@biomejs/biome": "1.8.2",
+    "sass": "1.77.6",
+    "typescript": "^5.5.2",
     "vitest": "1.6.0",
-    "wrangler": "3.60.3"
+    "wrangler": "3.62.0"
   }
 }

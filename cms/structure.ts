@@ -1,9 +1,8 @@
 import { ImagesIcon, SearchIcon, TextIcon } from '@sanity/icons'
-import { StructureBuilder } from 'sanity/structure'
+import type { StructureBuilder } from 'sanity/structure'
 
-export const singletonTypes = ['biography', 'aboutWorks', `seo`, 'gallery']
+export const singletonTypes = ['biography', 'aboutWorks', 'seo', 'gallery']
 
-// @ts-ignore
 export const structure = (S: StructureBuilder) => {
   const biography = S.listItem()
     .title('Biografisk tekst')
@@ -25,11 +24,12 @@ export const structure = (S: StructureBuilder) => {
     .icon(SearchIcon)
     .child(S.document().schemaType('seo').documentId('seo'))
 
-  const filteredNonSingles = S.documentTypeListItems()
-	  .filter((item) => !singletonTypes.includes(item.getId() ?? ''),)
-	 // .filter((item) => item.getId() !== 'web-gallery')
+  const filteredNonSingles = S.documentTypeListItems().filter(
+    (item) => !singletonTypes.includes(item.getId() ?? ''),
+  )
+  // .filter((item) => item.getId() !== 'web-gallery')
 
-	return S.list()
+  return S.list()
     .title('Innhold')
     .items([homePage, biography, aboutWorks, ...filteredNonSingles, seo])
 }

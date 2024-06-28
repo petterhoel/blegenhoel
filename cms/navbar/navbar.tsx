@@ -33,22 +33,22 @@ export const NavBarWithBundleChecker = (props: any) => {
   return (
     <Stack>
       {nyVersjon && (
-        <Card padding={3} tone="caution">
+        <Card padding={3} tone='caution'>
           <Inline space={4}>
             <Text> 🎉 Det er kommet en oppdatert versjon 🎉 </Text>
             <Button
               onClick={() => window.location.reload()}
               fontSize={[1, 1, 1]}
               icon={RefreshIcon}
-              tone="caution"
+              tone='caution'
               padding={[3, 33, 2]}
-              radius="full"
-              text="Last siden på nytt"
+              radius='full'
+              text='Last siden på nytt'
             />
           </Inline>
         </Card>
       )}
-      <>{props.renderDefault(props)}</>
+      {props.renderDefault(props)}
     </Stack>
   )
 }

@@ -1,16 +1,16 @@
 import { ImagesIcon } from '@sanity/icons'
 import { TbCircleLetterU } from 'react-icons/tb'
+import { aboutWorks } from './aboutWorks'
 import { artwork } from './artwork'
 import { artworkImage } from './artworkImage'
-import { richText } from './richText'
 import { biography } from './biography'
-import { aboutWorks } from './aboutWorks'
-import { localeString } from './localeString'
-import { localeRichText } from './localeRichText'
-import { seo } from './seo'
-import { oldGallery, webGallery } from './gallery'
-import { localeText } from './localeText'
 import { exhibition } from './exhibition'
+import { oldGallery, webGallery } from './gallery'
+import { localeRichText } from './localeRichText'
+import { localeString } from './localeString'
+import { localeText } from './localeText'
+import { richText } from './richText'
+import { seo } from './seo'
 
 artwork.icon = ImagesIcon
 oldGallery.icon = ImagesIcon
@@ -20,8 +20,8 @@ exhibition.icon = TbCircleLetterU
 export const schemaTypes = [
   artwork,
   artworkImage,
-	oldGallery,
-	webGallery,
+  oldGallery,
+  webGallery,
   richText,
   biography,
   aboutWorks,

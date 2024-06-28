@@ -15,13 +15,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/upgrade": "^0.3.0",
-    "@sanity/client": "6.17.2",
+    "@astrojs/upgrade": "^0.3.1",
+    "@sanity/client": "6.20.1",
     "@sanity/image-url": "1.0.2",
-    "astro": "^4.10.2",
-    "astro-portabletext": "0.9.9"
+    "astro": "^4.11.3",
+    "astro-portabletext": "0.10.0"
   },
   "devDependencies": {
-    "groq": "^3.40.0"
+    "groq": "^3.48.1"
   }
 }

@@ -10,9 +10,9 @@ export const getLangFromUrl = (url: URL) => {
 
 export const getUrlWithLang = (url: URL) => {
   if (url.pathname.startsWith(`/${defaultLanguage}`)) {
-    return url.pathname.replace(`/${defaultLanguage}`, `/en`)
+    return url.pathname.replace(`/${defaultLanguage}`, '/en')
   }
-  return url.pathname.replace(`/en`, `/${defaultLanguage}`)
+  return url.pathname.replace('/en', `/${defaultLanguage}`)
 }
 
 export const useTranslation = (lang: keyof typeof uiText) => {

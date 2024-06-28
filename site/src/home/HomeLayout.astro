@@ -1,13 +1,13 @@
 ---
-import { getForsideArtworks } from '../artwork/forside.client'
-import type { ArtworkDto } from '../artwork/artwork.dto'
-import { useTranslation } from '../i18n/utils'
-import { urlsForImage } from '../image/image.util'
-import { getSeoAsync } from '../seo/seo.client'
 import BaseLayout from '../BaseLayout.astro'
 import Artwork from '../artwork/Artwork.astro'
-import { languages } from '../i18n/ui'
+import type { ArtworkDto } from '../artwork/artwork.dto'
+import { getForsideArtworks } from '../artwork/forside.client'
+import type { languages } from '../i18n/ui'
+import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
+import { urlsForImage } from '../image/image.util'
+import { getSeoAsync } from '../seo/seo.client'
 
 function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
   const { title, dimmenstions, year, photo, material } = dto

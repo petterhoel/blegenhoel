@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config'
 export default defineConfig({
   redirects: {
     '/': {
-      status: 302,
+      status: 301,
       destination: '/no',
     },
   },

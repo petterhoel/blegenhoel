@@ -1,10 +1,10 @@
 ---
 import { PortableText } from 'astro-portabletext'
-import { getAboutWorksText } from './about.client'
-import ContactDetails from '../ContactDetails.astro'
-import { getSeoAsync } from '../seo/seo.client'
-import { getLangFromUrl, useTranslation } from '../i18n/utils'
 import BaseLayout from '../BaseLayout.astro'
+import ContactDetails from '../ContactDetails.astro'
+import { getLangFromUrl, useTranslation } from '../i18n/utils'
+import { getSeoAsync } from '../seo/seo.client'
+import { getAboutWorksText } from './about.client'
 
 const { aboutWorks } = await getAboutWorksText()
 const { keywords, description } = await getSeoAsync()
