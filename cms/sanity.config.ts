@@ -20,7 +20,7 @@ export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? ''
 export const projectId = '2uvu00qu'
 
 const name = 'default'
-const title = 'Belgenhoel'
+const title = `Belgenhoel ${dataset === 'production' ? '' : dataset}`.trim()
 export default defineConfig({
   name,
   title,

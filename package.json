@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "@biomejs/biome": "1.8.2",
-    "sass": "1.77.6",
-    "typescript": "^5.5.2",
-    "vitest": "1.6.0",
-    "wrangler": "3.62.0"
+    "@biomejs/biome": "1.8.3",
+    "sass": "1.77.8",
+    "typescript": "^5.5.3",
+    "vitest": "2.0.2",
+    "wrangler": "3.64.0"
   }
 }

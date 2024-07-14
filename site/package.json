@@ -14,14 +14,14 @@
     "upgrade": "npx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/check": "^0.7.0",
+    "@astrojs/check": "^0.8.1",
     "@astrojs/upgrade": "^0.3.1",
-    "@sanity/client": "6.20.1",
+    "@sanity/client": "6.21.0",
     "@sanity/image-url": "1.0.2",
-    "astro": "^4.11.3",
+    "astro": "^4.11.5",
     "astro-portabletext": "0.10.0"
   },
   "devDependencies": {
-    "groq": "^3.48.1"
+    "groq": "^3.50.0"
   }
 }

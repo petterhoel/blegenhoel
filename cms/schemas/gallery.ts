@@ -76,16 +76,10 @@ const toValidationMessage = (
 
 export const webGallery = defineType({
   name: 'web-gallery',
-  title: 'Gallerier (ingen publisering enda)',
+  title: 'Alle gallerier (ingen publisering enda)',
   description: 'Til neste versjon av nettsiden',
   type: 'document',
   fields: [
-    defineField({
-      name: 'display',
-      title: 'Skal vises på nettsiden',
-      description: 'Her velger man om galleriet skal kunne vises på nettsiden',
-      type: 'boolean',
-    }),
     defineField({
       name: 'galleryName',
       title: 'Navnet på galleriet',
@@ -129,14 +123,6 @@ export const webGallery = defineType({
       },
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'preview',
-      readOnly: true,
-      title: 'Stenger publisering',
-      type: 'boolean',
-      validation: (rule) =>
-        rule.custom(() => 'Dette galleriet kan ikke publiseres enda'),
-    }),
   ],
   preview: {
     select: {
@@ -147,9 +133,6 @@ export const webGallery = defineType({
       const { title, display } = selection
       return {
         title: title?.no ?? 'ingen tittel enda',
-        subtitle: display
-          ? 'Skal vises på nettsiden'
-          : 'Skal ikke vises på nettsiden',
       }
     },
   },

@@ -11,23 +11,26 @@ import { localeString } from './localeString'
 import { localeText } from './localeText'
 import { richText } from './richText'
 import { seo } from './seo'
+import { publishedGalleries } from './websiteMenu'
 
 artwork.icon = ImagesIcon
 oldGallery.icon = ImagesIcon
 webGallery.icon = ImagesIcon
 exhibition.icon = TbCircleLetterU
+publishedGalleries.icon = ImagesIcon
 
 export const schemaTypes = [
+  aboutWorks,
   artwork,
   artworkImage,
-  oldGallery,
-  webGallery,
-  richText,
   biography,
-  aboutWorks,
-  localeString,
-  localeRichText,
-  localeText,
-  seo,
   exhibition,
+  localeRichText,
+  localeString,
+  localeText,
+  oldGallery,
+  richText,
+  seo,
+  webGallery,
+  publishedGalleries,
 ]
