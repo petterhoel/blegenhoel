@@ -1,0 +1,8 @@
+---
+import AboutWorksLayout from '../../about/AboutWorksLayout.astro'
+export function getStaticPaths() {
+  return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
+}
+---
+
+<AboutWorksLayout />

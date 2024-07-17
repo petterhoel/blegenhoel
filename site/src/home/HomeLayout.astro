@@ -9,6 +9,10 @@ import { getLangFromUrl } from '../i18n/utils'
 import { urlsForImage } from '../image/image.util'
 import { getSeoAsync } from '../seo/seo.client'
 
+export function getStaticPaths() {
+  return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
+}
+
 function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
   const { title, dimmenstions, year, photo, material } = dto
   return {
@@ -22,6 +26,8 @@ function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
 }
 
 const { keywords, description } = await getSeoAsync()
+const { lang } = Astro.params
+console.log(lang)
 const language = getLangFromUrl(Astro.url)
 const artworkDtos = await getForsideArtworks()
 const artworks = artworkDtos.map((artwork) =>
