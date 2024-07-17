@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../BaseLayout.astro'
+import Artwork from '../artwork/Artwork.astro'
+import type { ArtworkDto } from '../artwork/artwork.dto'
+import { getForsideArtworks } from '../artwork/forside.client'
+import type { languages } from '../i18n/ui'
+import { useTranslation } from '../i18n/utils'
+import { getLangFromUrl } from '../i18n/utils'
+import { urlsForImage } from '../image/image.util'
+import { getSeoAsync } from '../seo/seo.client'
+
+function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
+	const { title, dimmenstions, year, photo, material } = dto
+	return {
+		title: title[lang],
+		dimmenstions: dimmenstions,
+		material: material[lang],
+		year: year,
+		alt: photo.alt[lang],
+		urls: urlsForImage(photo.image),
+	}
+}
+
+const { keywords, description } = await getSeoAsync()
+const { lang } = Astro.params
+console.log(lang)
+const language = getLangFromUrl(Astro.url)
+const artworkDtos = await getForsideArtworks()
+const artworks = artworkDtos.map((artwork) =>
+	mapArtworkDtoToVm(artwork, language),
+)
+const t = useTranslation(language)
+const title = t('title.home')
+---
+
+<BaseLayout title={title} keywords={keywords} description={description}>
+    <section id="gallery-wrapper">
+			{artworks.map((artwork) => <Artwork artwork={artwork} />)}
+    </section>
+</BaseLayout>

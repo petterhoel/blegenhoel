@@ -46,13 +46,20 @@ html {
   transition: all var(--duration) var(--easeOutExpo);
 }
 
-#sidenav nav .group-heading {
+#sidenav nav h2 {
   color: #f1f3f6;
   text-transform: uppercase;
-  font-size: var(--font-size-base);
+  font-weight: normal;
+  font-size: 1.2rem;
 }
 
-#sidenav nav li:has(.group-heading):not(:first-of-type) {
+#sidenav nav li {
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#sidenav nav li:has(h2):not(:first-of-type) {
   margin-top: 1.4rem;
 }
 

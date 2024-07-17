@@ -29,17 +29,19 @@ export const generateMenu = async (language: I18nKey, currentPath: string): Prom
 		throw Error('Klarte ikke hente menyinfo for gallerier fra cms');
 	}
 
-	const galleryItems = meny.menuGalleries?.map(({galleryName, slug}) =>({
-		href: `/${language}/gallery/${slug}`,
+	const galleryItems = meny.menuGalleries?.map(({galleryName, slug}) =>{
+
+		const href = `/${language}/galleri/${slug}`
+		return {
+		href,
 		text: galleryName[language],
-		active: `${language}/${slug}` === currentPath,
+		active: href === currentPath,
 		type: 'href' as 'href'
-	})) ?? [];
+	}}) ?? [];
 
 	const omArbeideneHref = `/${language}/om-arbeidene`
 	const bioHref = `/${language}/biografi`
 
-	console.log(currentPath)
 
 	return [
 		{
@@ -48,7 +50,7 @@ export const generateMenu = async (language: I18nKey, currentPath: string): Prom
 		},
 		...galleryItems,
 		{
-			text: language === 'no' ? 'Om' : 'About',
+			text: language === 'no' ? 'Info' : 'About',
 			type: 'group-heading'
 		},
 		{
@@ -64,9 +66,13 @@ export const generateMenu = async (language: I18nKey, currentPath: string): Prom
 			type: 'href'
 		},
 		{
+			text: language === 'no' ? 'Switch language' : 'Bytt språk',
+			type: 'group-heading'
+		},
+		{
 			href: `/${menuLang.languageToggleKey[language]}`,
 			text: menuLang.languageToggleText[language],
-			active: language === currentPath,
+			active: false,
 			type: 'href'
 		}
 	]

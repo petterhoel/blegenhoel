@@ -20,7 +20,7 @@ const currentPath = Astro.request.url
 
 const menuItems = await generateMenu(language , currentPath)
 
-console.log(menuItems)
+console.log({currentPath, menuItems})
 
 const normalize = (value: string): string => {
   if (!value) {
@@ -87,7 +87,7 @@ const active = (linkHref: string): string => {
 	        {
 		        menuItems.map(({active, href, text,type}) => {
 				      if (type === 'group-heading'){
-					      return <li><span class="group-heading">{text}</span></li>
+					      return <li><h2>{text}</h2></li>
 				      }
 
 			        return <li>
