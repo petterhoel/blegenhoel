@@ -349,10 +349,10 @@ export type ExhibitionQueryResult = Array<{
 export type MenuQueryResult = {
   menuGalleries: Array<{
     galleryName: {
-      no: string | null;
-      en: string | null;
-    } | null;
-    slug: string | null;
+      no: string;
+      en: string;
+    };
+    slug: string;
   }> | null;
 };
 // Source: ../site/src/seo/seo.client.ts

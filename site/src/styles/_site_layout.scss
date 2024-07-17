@@ -46,6 +46,16 @@ html {
   transition: all var(--duration) var(--easeOutExpo);
 }
 
+#sidenav nav .group-heading {
+  color: #f1f3f6;
+  text-transform: uppercase;
+  font-size: var(--font-size-base);
+}
+
+#sidenav nav li:has(.group-heading):not(:first-of-type) {
+  margin-top: 1.4rem;
+}
+
 #sidenav #close-button {
   padding: 0;
   margin: 0;
