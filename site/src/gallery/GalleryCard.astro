@@ -1,0 +1,30 @@
+---
+const url = 'https://placehold.co/600x600'
+const title = ''
+const alt = ''
+interface Props {
+	galleryName: string
+}
+
+const {galleryName} = Astro.props
+---
+
+
+<figure class="gallery-card">
+    <picture>
+			<source srcset={url} />
+        <img
+          src={url}
+          alt={alt}
+          title={title}
+          loading="lazy"
+          decoding="async"/>
+    </picture>
+    <figcaption>
+
+        <div class="galleryName">
+
+					{galleryName}
+        </div>
+    </figcaption>
+</figure>

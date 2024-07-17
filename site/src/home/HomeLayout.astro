@@ -1,44 +1,29 @@
 ---
 import BaseLayout from '../BaseLayout.astro'
-import Artwork from '../artwork/Artwork.astro'
-import type { ArtworkDto } from '../artwork/artwork.dto'
-import { getForsideArtworks } from '../artwork/forside.client'
-import type { languages } from '../i18n/ui'
+import {getForsideGallerier} from '../artwork/forside.client'
+import GalleryCard from "../gallery/GalleryCard.astro";
+import {I18nKey} from "../i18n/i18n.string.dto";
 import { useTranslation } from '../i18n/utils'
-import { getLangFromUrl } from '../i18n/utils'
-import { urlsForImage } from '../image/image.util'
 import { getSeoAsync } from '../seo/seo.client'
 
 export function getStaticPaths() {
   return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
 }
 
-function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
-  const { title, dimmenstions, year, photo, material } = dto
-  return {
-    title: title[lang],
-    dimmenstions: dimmenstions,
-    material: material[lang],
-    year: year,
-    alt: photo.alt[lang],
-    urls: urlsForImage(photo.image),
-  }
-}
+
 
 const { keywords, description } = await getSeoAsync()
 const { lang } = Astro.params
-console.log(lang)
-const language = getLangFromUrl(Astro.url)
-const artworkDtos = await getForsideArtworks()
-const artworks = artworkDtos.map((artwork) =>
-  mapArtworkDtoToVm(artwork, language),
-)
-const t = useTranslation(language)
+const galleries = await getForsideGallerier()
+console.log({ galleries})
+const t = useTranslation(lang as I18nKey)
 const title = t('title.home')
 ---
 
 <BaseLayout title={title} keywords={keywords} description={description}>
+	<h1> Gallerier </h1>
+
   <section id="gallery-wrapper">
-    {artworks.map((artwork) => <Artwork artwork={artwork} />)}
+    {galleries.map((artwork) => <GalleryCard galleryName={artwork.galleryName[lang]} />)}
   </section>
 </BaseLayout>

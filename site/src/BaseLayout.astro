@@ -1,7 +1,7 @@
 ---
 import './styles/global.scss'
 import { ViewTransitions, fade } from 'astro:transitions'
-import { getLangFromUrl, getUrlWithLang, useTranslation } from './i18n/utils'
+import { getLangFromUrl, useTranslation } from './i18n/utils'
 import {generateMenu} from "./menu/menu.util";
 export interface Props {
   title: string
@@ -20,8 +20,6 @@ const currentPath = Astro.request.url
 
 const menuItems = await generateMenu(language , currentPath)
 
-console.log({currentPath, menuItems})
-
 const normalize = (value: string): string => {
   if (!value) {
     return ''
@@ -37,9 +35,7 @@ const normalize = (value: string): string => {
   return value.toLowerCase()
 }
 
-const active = (linkHref: string): string => {
-  return normalize(currentPath) === normalize(linkHref) ? 'active' : ''
-}
+
 ---
 
 <!doctype html>

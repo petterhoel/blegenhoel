@@ -12,3 +12,19 @@ export async function getForsideArtworks(): Promise<ArtworkDto[]> {
   }
   return []
 }
+
+
+export async function getForsideGallerier() {
+	const forsideGallerierQuery = groq`*[_type == "publishedGalleries"][0] {
+  menuGalleries[]-> {
+    galleryName {no, en},
+    'topImage': galleryImages[0]->
+  }
+}`
+	const artworks = await dataClient.fetch(forsideGallerierQuery)
+
+	if (artworks?.menuGalleries) {
+		return artworks.menuGalleries
+	}
+	return []
+}

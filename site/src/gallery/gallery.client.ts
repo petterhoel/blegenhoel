@@ -1,21 +1,20 @@
 import groq from "groq";
-import type {MenuQueryResult} from "../cms-integration/cms-types.ts";
 import {dataClient} from "../cms-integration/data.client.ts";
 
-export async function getAllGalleries(): Promise<MenuQueryResult> {
-	const menuQuery = groq`*[_type == "publishedGalleries"][0] {
-  menuGalleries[]-> {
-    galleryName {no, en},
-    'slug' : gallerySlug.current
-    }}`
-	return await dataClient.fetch<MenuQueryResult>(menuQuery)
+export async function getGalleryBySlug(slug: string) {
+	const galleryQuery = groq`*[_type == "web-gallery" && gallerySlug.current == '${slug}'][0]{
+  galleryImages[]->,
+  galleryName {en,no}
+}`
+
+	return await dataClient.fetch(galleryQuery)
 }
 
 export async function getAllGalleryPaths(): Promise<string[]> {
-	const menuQuery = groq`*[_type == "publishedGalleries"][0]{
+	const allGalleriesQuery = groq`*[_type == "publishedGalleries"][0]{
   'slugs': menuGalleries[]->gallerySlug.current
 }`
-	const restult = await dataClient.fetch<{slugs : string[]} | null>(menuQuery)
+	const restult = await dataClient.fetch<{slugs : string[]} | null>(allGalleriesQuery)
 	if (restult){
 		return restult.slugs
 	}
