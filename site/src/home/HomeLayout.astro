@@ -1,33 +1,34 @@
 ---
 import BaseLayout from '../BaseLayout.astro'
-import {getForsideGallerier} from '../artwork/forside.client'
-import GalleryCard from "../gallery/GalleryCard.astro";
-import {I18nKey} from "../i18n/i18n.string.dto";
+import { getForsideGallerier } from '../artwork/forside.client'
+import GalleryCard from '../gallery/GalleryCard.astro'
+import type { I18nKey } from '../i18n/i18n.string.dto'
 import { useTranslation } from '../i18n/utils'
-import {urlsForImage} from "../image/image.util";
+import { urlsForImage } from '../image/image.util'
 import { getSeoAsync } from '../seo/seo.client'
 
 export function getStaticPaths() {
   return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
 }
 
-
-
 const { keywords, description } = await getSeoAsync()
 const { lang } = Astro.params
 const galleries = await getForsideGallerier()
 
-
-const galleriesVms = galleries.map(g => ({name:g.galleryName[lang], urls: urlsForImage(g.topImage.photo.image)}))
+const galleriesVms = galleries.map((g) => ({
+  name: g.galleryName[lang],
+  urls: urlsForImage(g.topImage.photo.image),
+  slug: `/${lang}/galleri/${g.slug}`,
+}))
 
 const t = useTranslation(lang as I18nKey)
 const title = t('title.home')
 ---
 
 <BaseLayout title={title} keywords={keywords} description={description}>
-	<h1> Gallerier </h1>
+	<h1 class="screen-reader-only"> Gallerier </h1>
 
-  <section id="gallery-links-wrapper">
-    {galleriesVms.map((g) => <GalleryCard galleryName={g.name} urls={g.urls} />)}
-  </section>
+  <nav id="gallery-links-wrapper">
+    {galleriesVms.map((g) => <GalleryCard galleryName={g.name} urls={g.urls} slug={g.slug} />)}
+  </nav>
 </BaseLayout>

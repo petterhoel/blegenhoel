@@ -29,6 +29,10 @@ main article {
   font-weight: 300;
 }
 
+h1 {
+  font-weight: 300;
+}
+
 #site-header h1 a,
 #site-header h1 a:visited {
   color: var(--primary);
@@ -51,3 +55,4 @@ main article {
     text-underline-offset: 0.2rem;
   }
 }
+

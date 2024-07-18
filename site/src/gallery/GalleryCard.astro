@@ -2,59 +2,68 @@
 const url = 'https://placehold.co/600x600'
 const title = ''
 interface Props {
-	galleryName: string
-	urls: string[]
+  galleryName: string
+  urls: string[]
+  slug: string
 }
 
-const {galleryName, urls} = Astro.props
+const { galleryName, urls, slug } = Astro.props
 console.log(urls)
 ---
 
-
-<figure class="gallery-card">
-    <picture>
-	    {urls.map((url) => <source srcset={url} />)}
-        <img
-          src={urls[urls.length - 1]}
-          alt={galleryName}
-          loading="lazy"
-          decoding="async"/>
-    </picture>
-    <figcaption>
-
-        <div class="galleryName">
-
-					{galleryName}
-        </div>
-    </figcaption>
-</figure>
-
+<a href={slug} class="gallery-card">
+	<figure>
+	    <picture>
+		    {urls.map((url) => <source srcset={url} />)}
+	        <img
+	          src={urls[urls.length - 1]}
+	          alt={galleryName}
+	          loading="lazy"
+	          decoding="async"/>
+	    </picture>
+	</figure>
+	<span>
+			{galleryName}
+	</span>
+</a>
 
 <style>
-
-		figure {
-				--border-color: #dbdbdb;
-				border-radius: 2rem;
-				background: rgba(245, 245, 245, 0.4);
+		
+		a {
+				min-width: 100%;
+        --border-color: #dbdbdb;
+        border-radius: 2rem;
+        background: rgba(245, 245, 245, 0.4);
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        display: flex;
+        flex-direction: column;
+
+				span {
+          padding: 2rem;
+          font-size: 1.9rem;
+          font-weight: 300;
+          border-radius: 0 0 2rem 2rem;
+				}
 		}
 
-		figure:hover {
-				box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;;
-				scale: 1.1;
-				transition: box-shaddow, scale 250ms ease-in-out;
-				color: var(--primary);
-		}
-
+    a:hover {
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;;
+        scale: 1.03;
+        transition: box-shaddow, scale 250ms ease-in-out;
+        color: var(--primary);
+    }
+		
+		@media screen and (min-width: 700px) {
+        a {
+            min-width: 300px;
+        }
+    }
+		
 		img {
 				border-radius: 2rem 2rem 0 0;
-				width: 300px;
-				height: 260px;
 				object-fit: none;
+				max-height: 300px;
+				min-width: 100%;
 				object-position: center center;
-		}
-		figcaption {
-				padding: 2rem;
-				text-align: center;
 		}
 </style>
