@@ -4,6 +4,7 @@ import {getForsideGallerier} from '../artwork/forside.client'
 import GalleryCard from "../gallery/GalleryCard.astro";
 import {I18nKey} from "../i18n/i18n.string.dto";
 import { useTranslation } from '../i18n/utils'
+import {urlsForImage} from "../image/image.util";
 import { getSeoAsync } from '../seo/seo.client'
 
 export function getStaticPaths() {
@@ -15,7 +16,10 @@ export function getStaticPaths() {
 const { keywords, description } = await getSeoAsync()
 const { lang } = Astro.params
 const galleries = await getForsideGallerier()
-console.log({ galleries})
+
+
+const galleriesVms = galleries.map(g => ({name:g.galleryName[lang], urls: urlsForImage(g.topImage.photo.image)}))
+
 const t = useTranslation(lang as I18nKey)
 const title = t('title.home')
 ---
@@ -23,7 +27,7 @@ const title = t('title.home')
 <BaseLayout title={title} keywords={keywords} description={description}>
 	<h1> Gallerier </h1>
 
-  <section id="gallery-wrapper">
-    {galleries.map((artwork) => <GalleryCard galleryName={artwork.galleryName[lang]} />)}
+  <section id="gallery-links-wrapper">
+    {galleriesVms.map((g) => <GalleryCard galleryName={g.name} urls={g.urls} />)}
   </section>
 </BaseLayout>

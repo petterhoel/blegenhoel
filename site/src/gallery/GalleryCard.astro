@@ -1,22 +1,22 @@
 ---
 const url = 'https://placehold.co/600x600'
 const title = ''
-const alt = ''
 interface Props {
 	galleryName: string
+	urls: string[]
 }
 
-const {galleryName} = Astro.props
+const {galleryName, urls} = Astro.props
+console.log(urls)
 ---
 
 
 <figure class="gallery-card">
     <picture>
-			<source srcset={url} />
+	    {urls.map((url) => <source srcset={url} />)}
         <img
-          src={url}
-          alt={alt}
-          title={title}
+          src={urls[urls.length - 1]}
+          alt={galleryName}
           loading="lazy"
           decoding="async"/>
     </picture>
@@ -28,3 +28,33 @@ const {galleryName} = Astro.props
         </div>
     </figcaption>
 </figure>
+
+
+<style>
+
+		figure {
+				--border-color: #dbdbdb;
+				border-radius: 2rem;
+				background: rgba(245, 245, 245, 0.4);
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		}
+
+		figure:hover {
+				box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;;
+				scale: 1.1;
+				transition: box-shaddow, scale 250ms ease-in-out;
+				color: var(--primary);
+		}
+
+		img {
+				border-radius: 2rem 2rem 0 0;
+				width: 300px;
+				height: 260px;
+				object-fit: none;
+				object-position: center center;
+		}
+		figcaption {
+				padding: 2rem;
+				text-align: center;
+		}
+</style>

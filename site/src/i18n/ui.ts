@@ -14,7 +14,7 @@ export const uiText = {
     'nav.labelClosed': 'Meny',
     'nav.labelOpen': 'Lukk',
 
-    'title.home': 'Galleri | Øystein Blegen Hoel',
+    'title.home': 'Øystein Blegen Hoel',
     'title.about-works': 'Om bildene | Øystein Blegen Hoel',
     'title.bio': 'Biografi | Øystein Blegen Hoel',
 
@@ -29,7 +29,7 @@ export const uiText = {
     'nav.labelClosed': 'Menu',
     'nav.labelOpen': 'Close',
 
-    'title.home': 'Gallery | Øystein Blegen Hoel',
+    'title.home': 'Øystein Blegen Hoel',
     'title.about-works': 'About the works | Øystein Blegen Hoel',
     'title.bio': 'Biography | Øystein Blegen Hoel',
 

@@ -11,7 +11,7 @@ const { lang, slug } = Astro.params
 const artworkDtos = await getGalleryBySlug(slug)
 const { keywords, description } = await getSeoAsync()
 const title = artworkDtos.galleryName[lang]
-
+console.log(artworkDtos.galleryImages[0].photo)
 const artworks = artworkDtos.galleryImages.map((artwork) =>
 	mapArtworkDtoToVm(artwork, lang as I18nKey),
 )

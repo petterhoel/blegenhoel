@@ -20,22 +20,6 @@ const currentPath = Astro.request.url
 
 const menuItems = await generateMenu(language , currentPath)
 
-const normalize = (value: string): string => {
-  if (!value) {
-    return ''
-  }
-  if (value.startsWith('/')) {
-    value = value.substring(1, value.length)
-  }
-
-  if (value.endsWith('/')) {
-    value = value.substring(0, value.length - 1)
-  }
-
-  return value.toLowerCase()
-}
-
-
 ---
 
 <!doctype html>
@@ -103,7 +87,10 @@ const normalize = (value: string): string => {
     </main>
 
     <script>
+
+	    console.log('loading')
       const toggleIcon = () => {
+	      console.log('yas')
         const input = document.querySelector<HTMLInputElement>('#nav-toggle')
         const body = document.querySelector('body')
         const labelTextSpan =
@@ -138,7 +125,9 @@ const normalize = (value: string): string => {
       document.addEventListener(
         'astro:page-load',
         () => {
+	        console.log('sldfjlsdfj')
           const navToggle = document.querySelector('#nav-toggle')
+	        console.log(navToggle)
           navToggle?.addEventListener('click', toggleIcon)
           const closeButton = document.querySelector('#close-button')
           closeButton?.addEventListener('click', closeSidebar)
