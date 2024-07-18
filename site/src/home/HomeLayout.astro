@@ -19,6 +19,7 @@ const galleriesVms = galleries.map((g) => ({
   name: g.galleryName[lang],
   urls: urlsForImage(g.topImage.photo.image),
   slug: `/${lang}/galleri/${g.slug}`,
+  ctaText: lang === 'no' ? 'Gå til galleri' : 'Go to gallery',
 }))
 
 const t = useTranslation(lang as I18nKey)
@@ -29,6 +30,6 @@ const title = t('title.home')
 	<h1 class="screen-reader-only"> Gallerier </h1>
 
   <nav id="gallery-links-wrapper">
-    {galleriesVms.map((g) => <GalleryCard galleryName={g.name} urls={g.urls} slug={g.slug} />)}
+    {galleriesVms.map((g) => <GalleryCard galleryName={g.name} urls={g.urls} slug={g.slug} ctaText={g.ctaText}/>)}
   </nav>
 </BaseLayout>

@@ -1,22 +1,25 @@
-import groq from "groq";
-import {dataClient} from "../cms-integration/data.client.ts";
+import groq from 'groq'
+import { dataClient } from '../cms-integration/data.client.ts'
 
 export async function getGalleryBySlug(slug: string) {
-	const galleryQuery = groq`*[_type == "web-gallery" && gallerySlug.current == '${slug}'][0]{
+  const galleryQuery = groq`*[_type == "web-gallery" && gallerySlug.current == '${slug}'][0]{
   galleryImages[]->,
   galleryName {en,no}
 }`
 
-	return await dataClient.fetch(galleryQuery)
+  return await dataClient.fetch(galleryQuery)
 }
 
 export async function getAllGalleryPaths(): Promise<string[]> {
-	const allGalleriesQuery = groq`*[_type == "publishedGalleries"][0]{
+  const allGalleriesQuery = groq`*[_type == "publishedGalleries"][0]{
   'slugs': menuGalleries[]->gallerySlug.current
 }`
-	const restult = await dataClient.fetch<{slugs : string[]} | null>(allGalleriesQuery)
-	if (restult){
-		return restult.slugs
-	}
-	return []
+  const restult = await dataClient.fetch<{ slugs: string[] } | null>(
+    allGalleriesQuery,
+  )
+  if (restult) {
+    console.log(restult.slugs)
+    return restult.slugs
+  }
+  return []
 }

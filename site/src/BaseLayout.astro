@@ -1,15 +1,17 @@
 ---
 import './styles/global.scss'
 import { ViewTransitions, fade } from 'astro:transitions'
-import { getLangFromUrl, useTranslation } from './i18n/utils'
-import {generateMenu} from "./menu/menu.util";
+import type { I18nKey } from './i18n/i18n.string.dto'
+import { useTranslation } from './i18n/utils'
+import { generateMenu } from './menu/menu.util'
 export interface Props {
   title: string
   description: string
   keywords: string
 }
-const language = getLangFromUrl(Astro.url)
-const t = useTranslation(language)
+const { lang } = Astro.params
+
+const t = useTranslation(lang as I18nKey)
 const labelOpen = t('nav.labelOpen')
 const labelClosed = t('nav.labelClosed')
 
@@ -18,12 +20,11 @@ const currentPath = Astro.request.url
   ? new URL(Astro.request.url)?.pathname
   : ''
 
-const menuItems = await generateMenu(language , currentPath)
-
+const menuItems = await generateMenu(lang as I18nKey, currentPath)
 ---
 
 <!doctype html>
-<html lang="no">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <ViewTransitions />
@@ -58,7 +59,7 @@ const menuItems = await generateMenu(language , currentPath)
         </span>
       </label>
       <h1 class="logo text-gradient">
-        <a href={`/${language}`}>Øystein Blegen Hoel</a>
+        <a href={`/${lang}`}>Øystein Blegen Hoel</a>
       </h1>
     </header>
     <aside id="sidenav">
@@ -88,9 +89,7 @@ const menuItems = await generateMenu(language , currentPath)
 
     <script>
 
-	    console.log('loading')
       const toggleIcon = () => {
-	      console.log('yas')
         const input = document.querySelector<HTMLInputElement>('#nav-toggle')
         const body = document.querySelector('body')
         const labelTextSpan =
@@ -125,9 +124,7 @@ const menuItems = await generateMenu(language , currentPath)
       document.addEventListener(
         'astro:page-load',
         () => {
-	        console.log('sldfjlsdfj')
           const navToggle = document.querySelector('#nav-toggle')
-	        console.log(navToggle)
           navToggle?.addEventListener('click', toggleIcon)
           const closeButton = document.querySelector('#close-button')
           closeButton?.addEventListener('click', closeSidebar)

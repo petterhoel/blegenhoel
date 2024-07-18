@@ -181,11 +181,20 @@ main {
 
 #gallery-links-wrapper {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 5rem;
+  gap: 3rem;
+  align-items: center;
 
   figure {
     margin: 0;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #gallery-links-wrapper {
+    flex-direction: row;
+    align-items: unset;
   }
 }
 

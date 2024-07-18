@@ -1,14 +1,12 @@
 ---
-const url = 'https://placehold.co/600x600'
-const title = ''
 interface Props {
   galleryName: string
   urls: string[]
   slug: string
+  ctaText: string
 }
 
-const { galleryName, urls, slug } = Astro.props
-console.log(urls)
+const { galleryName, urls, slug, ctaText } = Astro.props
 ---
 
 <a href={slug} class="gallery-card">
@@ -22,35 +20,53 @@ console.log(urls)
 	          decoding="async"/>
 	    </picture>
 	</figure>
-	<span>
-			{galleryName}
-	</span>
+	<div>
+		<span>{galleryName}</span><span class="cta">{ctaText} →</span>
+	</div>
 </a>
 
 <style>
-		
 		a {
-				min-width: 100%;
-        --border-color: #dbdbdb;
-        border-radius: 2rem;
-        background: rgba(245, 245, 245, 0.4);
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+				width: 100%;
+				max-width: 400px;
         display: flex;
         flex-direction: column;
+				color: black;
+				text-decoration: none;
+        text-decoration-thickness: 0;
+				
 
-				span {
-          padding: 2rem;
+				div {
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-end;
+          padding: 1rem;
           font-size: 1.9rem;
           font-weight: 300;
-          border-radius: 0 0 2rem 2rem;
+					.cta {
+							color: transparent;
+							font-size: 1.4rem;
+					}
 				}
 		}
 
     a:hover {
-        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;;
-        scale: 1.03;
-        transition: box-shaddow, scale 250ms ease-in-out;
-        color: var(--primary);
+
+		    div span:first-child {
+            text-decoration: underline;
+            text-decoration-color: currentcolor;
+            text-decoration-thickness: auto;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 0.4rem;
+            text-decoration-skip-ink: all;
+            text-underline-offset: 0.2rem;
+            transition: color, text-decoration-thickness 100ms ease-in-out;
+        }
+		    .cta {
+				    color: var(--primary);
+				    transition: color 300ms ease-in-out;
+				    text-decoration: none!important;
+		    }
     }
 		
 		@media screen and (min-width: 700px) {
@@ -60,10 +76,10 @@ console.log(urls)
     }
 		
 		img {
-				border-radius: 2rem 2rem 0 0;
 				object-fit: none;
-				max-height: 300px;
+				max-height: 200px;
 				min-width: 100%;
 				object-position: center center;
+				border-radius: 2px;
 		}
 </style>
