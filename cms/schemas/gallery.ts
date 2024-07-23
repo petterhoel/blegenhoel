@@ -115,10 +115,14 @@ export const webGallery = defineType({
         slugify: (input) =>
           input
             .toLowerCase()
-            // eslint-disable-next-line no-control-regex
+	          .replace('æ', 'ae')
+	          .replace('ø', 'oe')
+	          .replace('å', 'aa')
+	          // eslint-disable-next-line no-control-regex
             .replace(/[^\x00-\x7F]/g, '')
             .trim()
             .replace(/\s+/g, '-')
+	          .replace(/-+/, '-')
             .slice(0, 200),
       },
       validation: (rule) => rule.required(),

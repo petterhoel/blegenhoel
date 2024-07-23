@@ -18,7 +18,6 @@ export async function getAllGalleryPaths(): Promise<string[]> {
     allGalleriesQuery,
   )
   if (restult) {
-    console.log(restult.slugs)
     return restult.slugs
   }
   return []

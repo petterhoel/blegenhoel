@@ -44,6 +44,9 @@ export default defineConfig({
     },
   },
   document: {
+		comments: {
+			enabled: false,
+		},
     // For singletonstyper (definert i `singletonTypes`), filtreres alle actions,
     // med unntak av dem som explisitt er nevnt i `singletonActions`
     actions: (input, context) =>

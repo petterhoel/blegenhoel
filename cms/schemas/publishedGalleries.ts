@@ -9,7 +9,7 @@ export const publishedGalleries = defineType({
       name: 'galleryList',
       title: 'Gallerier på nettsiden',
       type: 'array',
-      description: 'Sorter, legg til eller fjern gallerier',
+      description: 'Legg til eller fjern gallerier fra nettsiden og sorter rekkefølgen',
       of: [{ type: 'reference', to: [{ type: 'web-gallery' }] }],
       validation: (Rule) => Rule.unique(),
     }),

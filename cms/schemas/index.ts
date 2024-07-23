@@ -11,7 +11,7 @@ import { localeString } from './localeString'
 import { localeText } from './localeText'
 import { richText } from './richText'
 import { seo } from './seo'
-import { publishedGalleries } from './websiteMenu'
+import { publishedGalleries } from './publishedGalleries'
 
 artwork.icon = ImagesIcon
 oldGallery.icon = ImagesIcon

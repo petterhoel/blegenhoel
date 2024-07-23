@@ -1,7 +1,7 @@
 import { ImagesIcon, SearchIcon, TextIcon } from '@sanity/icons'
 import { ListItemBuilder } from 'sanity/lib/structure'
 import type { StructureBuilder } from 'sanity/structure'
-import { publishedGalleries } from './schemas/websiteMenu'
+import { publishedGalleries } from './schemas/publishedGalleries'
 
 export const singletonTypes = [
   'biography',
