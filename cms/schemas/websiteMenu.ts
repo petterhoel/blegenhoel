@@ -6,9 +6,8 @@ export const publishedGalleries = defineType({
   title: 'Publiserte gallerier',
   fields: [
     defineField({
-      name: 'menuGalleries',
+      name: 'galleryList',
       title: 'Gallerier på nettsiden',
-
       type: 'array',
       description: 'Sorter, legg til eller fjern gallerier',
       of: [{ type: 'reference', to: [{ type: 'web-gallery' }] }],

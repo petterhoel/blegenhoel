@@ -74,7 +74,7 @@ export type PublishedGalleries = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  menuGalleries?: Array<{
+  galleryList?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -347,7 +347,7 @@ export type ExhibitionQueryResult = Array<{
 // Variable: menuQuery
 // Query: *[_type == "publishedGalleries"][0] {  menuGalleries[]-> {    galleryName {no, en},    'slug' : gallerySlug.current    }}
 export type MenuQueryResult = {
-  menuGalleries: Array<{
+  galleryList: Array<{
     galleryName: {
       no: string;
       en: string;

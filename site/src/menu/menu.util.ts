@@ -31,7 +31,7 @@ export const generateMenu = async (
 	}
 
 	const galleryItems =
-		meny.menuGalleries?.map(({galleryName, slug}) => {
+		meny.galleryList?.map(({galleryName, slug}) => {
 			const href = `/${language}/galleri/${slug}`
 			return {
 				href,

@@ -12,7 +12,7 @@ export async function getGalleryBySlug(slug: string) {
 
 export async function getAllGalleryPaths(): Promise<string[]> {
   const allGalleriesQuery = groq`*[_type == "publishedGalleries"][0]{
-  'slugs': menuGalleries[]->gallerySlug.current
+  'slugs': galleryList[]->gallerySlug.current
 }`
   const restult = await dataClient.fetch<{ slugs: string[] } | null>(
     allGalleriesQuery,

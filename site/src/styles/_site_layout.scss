@@ -52,8 +52,8 @@ nav {
   background: transparent;
   backdrop-filter: blur(1rem);
   height: calc(100vh - 6rem);
+  border-right: 1px solid gray;
   transition: all var(--duration) var(--easeOutExpo);
-
 
    h2 {
     text-transform: uppercase;
@@ -92,7 +92,6 @@ nav {
     margin: 0;
     flex-grow: 2;
     border: none;
-    border-left: 1px solid gray;
     background: none;
   }
 }

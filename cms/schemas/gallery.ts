@@ -76,8 +76,8 @@ const toValidationMessage = (
 
 export const webGallery = defineType({
   name: 'web-gallery',
-  title: 'Alle gallerier (ingen publisering enda)',
-  description: 'Til neste versjon av nettsiden',
+  title: 'Alle gallerier',
+  description: 'Både publiserte og ikke-publiserte gallerier. Bruk "Gallerier på nettsiden" for å styre hvilke gallerier som vises og rekkefølgen på de',
   type: 'document',
   fields: [
     defineField({
@@ -130,7 +130,7 @@ export const webGallery = defineType({
       display: 'display',
     },
     prepare(selection) {
-      const { title, display } = selection
+      const { title } = selection
       return {
         title: title?.no ?? 'ingen tittel enda',
       }

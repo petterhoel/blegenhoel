@@ -4,7 +4,7 @@ import { dataClient } from '../cms-integration/data.client'
 
 export async function getGalleryMenuItems(): Promise<MenuQueryResult> {
   const menuQuery = groq`*[_type == "publishedGalleries"][0] {
-  menuGalleries[]-> {
+  galleryList[]-> {
     galleryName {no, en},
     'slug' : gallerySlug.current
     }}`
