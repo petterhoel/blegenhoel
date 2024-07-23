@@ -2,6 +2,12 @@ html {
   scrollbar-gutter: stable;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #sidenav {
   position: fixed;
   top: 6rem;
@@ -36,41 +42,59 @@ html {
   visibility: visible;
 }
 
-#sidenav nav {
+#sidenav {
+
+nav {
   --easeOutExpo: cubic-bezier(0.16, 1, 0.3, 1);
   --duration: 0.4s;
   width: 0;
   max-width: 0;
-  background: #4f39fa;
+  background: transparent;
+  backdrop-filter: blur(1rem);
   height: calc(100vh - 6rem);
   transition: all var(--duration) var(--easeOutExpo);
-}
 
-#sidenav nav h2 {
-  color: #f1f3f6;
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 1.2rem;
-}
 
-#sidenav nav li {
-  word-break: keep-all;
-  white-space: nowrap;
-  overflow: hidden;
-}
+   h2 {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.2rem;
+  }
 
-#sidenav nav li:has(h2):not(:first-of-type) {
-  margin-top: 1.4rem;
-}
+   li {
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-#sidenav #close-button {
-  padding: 0;
-  margin: 0;
-  flex-grow: 2;
-  border: 3px dotted var(--primary);
-  background: none;
-}
+  li.language-switcher a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    svg {
+      width: 2.2rem;
+      path {
+        fill: var(--color-text);
+      }
+    }
+    .cap {
+      text-transform: capitalize;
+    }
+  }
 
+
+   li:has(h2):not(:first-of-type) {
+    margin-top: 1.4rem;
+  }
+}
+  #close-button {
+    padding: 0;
+    margin: 0;
+    flex-grow: 2;
+    border: 4px dashed var(--primary);
+    background: none;
+  }
+}
 #sidenav.open nav {
   width: 35rem;
   max-width: 100vw;
@@ -166,8 +190,10 @@ html {
 }
 
 main {
+  max-width: 2100px;
   padding: 10rem 2rem 0;
   margin-block-end: 4rem;
+  align-self: center;
 }
 
 #gallery-wrapper {
@@ -180,6 +206,7 @@ main {
 }
 
 #gallery-links-wrapper {
+  max-width: 130rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

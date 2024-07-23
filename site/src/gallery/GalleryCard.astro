@@ -39,6 +39,7 @@ const { galleryName, urls, slug, ctaText } = Astro.props
 				div {
 					display: flex;
 					justify-content: space-between;
+						gap: 1rem;
 					align-items: flex-end;
           padding: 1rem;
           font-size: 1.9rem;
@@ -60,7 +61,7 @@ const { galleryName, urls, slug, ctaText } = Astro.props
             text-decoration-thickness: 0.4rem;
             text-decoration-skip-ink: all;
             text-underline-offset: 0.2rem;
-            transition: color, text-decoration-thickness 100ms ease-in-out;
+            transition: text-decoration-thickness 100ms ease-in-out;
         }
 		    .cta {
 				    color: var(--primary);

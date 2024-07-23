@@ -45,11 +45,21 @@ h1 {
   a {
     display: inline-block;
     text-decoration: none;
-    color: aliceblue;
+    color: var(--color-text);
+  }
+  a:hover {
+    text-decoration: underline;
+    text-decoration-color: currentcolor;
+    text-decoration-thickness: auto;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 0.4rem;
+    text-decoration-skip-ink: all;
+    text-underline-offset: 0.2rem;
+    transition: text-decoration, text-decoration-thickness 100ms ease-in-out;
   }
   a.active {
     text-decoration: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--primary);
     text-decoration-thickness: 0.4rem;
     text-decoration-skip-ink: all;
     text-underline-offset: 0.2rem;
