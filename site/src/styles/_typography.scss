@@ -1,7 +1,7 @@
 :root {
   --font-size-base: 10px;
   --color-text: hsl(12, 5%, 4%);
-  --sans-font: Nunito, sans-serif;
+  --sans-font: Cantarell, sans-serif;
   --font-size-normal: 1.9rem;
   --font-size-lg: 2rem;
   --font-size-xl: 2.4rem;
@@ -12,7 +12,7 @@ html {
   font-size: var(--font-size-base);
   color: var(--color-text);
   letter-spacing: 0.1rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 body,
@@ -30,7 +30,7 @@ main article {
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 
