@@ -4,7 +4,7 @@ import { getForsideGallerier } from '../artwork/forside.client'
 import GalleryCard from '../gallery/GalleryCard.astro'
 import type { I18nKey } from '../i18n/i18n.string.dto'
 import { useTranslation } from '../i18n/utils'
-import { urlsForImage } from '../image/image.util'
+import { toDimmentionsAndUrls } from '../image/image.util'
 import { getSeoAsync } from '../seo/seo.client'
 
 export function getStaticPaths() {
@@ -17,7 +17,7 @@ const galleries = await getForsideGallerier()
 
 const galleriesVms = galleries.map((g) => ({
   name: g.galleryName[lang],
-  urls: urlsForImage(g.topImage.photo.image),
+  urls: toDimmentionsAndUrls(g.topImage.photo.image),
   slug: `/${lang}/galleri/${g.slug}`,
   ctaText: lang === 'no' ? 'Gå til galleri' : 'Go to gallery',
 }))
@@ -34,7 +34,7 @@ const title = t('title.home')
       galleriesVms.map((g) => (
         <GalleryCard
           galleryName={g.name}
-          urls={g.urls}
+          urls={g.urls.urls}
           slug={g.slug}
           ctaText={g.ctaText}
         />
