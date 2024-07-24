@@ -6,13 +6,16 @@ export const mapArtworkDtoToVm = (
   dto: ArtworkDto,
   lang: keyof typeof languages
 ) => {
+  console.log(dto)
   const { title, dimmenstions, year, photo, material } = dto
+  const { urls, aspectRatio } = urlsForImage(photo.image)
   return {
     title: title[lang],
     dimmenstions: dimmenstions,
     material: material[lang],
     year: year,
     alt: photo.alt[lang],
-    urls: urlsForImage(photo.image),
+    aspectRatio,
+    urls,
   }
 }
