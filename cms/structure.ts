@@ -33,7 +33,7 @@ export const structure = (S: StructureBuilder) => {
     .child(
       S.document()
         .schemaType('publishedGalleries')
-        .documentId('publishedGalleries'),
+        .documentId('publishedGalleries')
     )
 
   const seo = S.listItem()
@@ -42,7 +42,7 @@ export const structure = (S: StructureBuilder) => {
     .child(S.document().schemaType('seo').documentId('seo'))
 
   const filteredNonSingles = S.documentTypeListItems().filter(
-    (item) => !singletonTypes.includes(item.getId() ?? ''),
+    (item) => !singletonTypes.includes(item.getId() ?? '')
   )
   // .filter((item) => item.getId() !== 'web-gallery')
 

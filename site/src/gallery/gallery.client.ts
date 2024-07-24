@@ -15,7 +15,7 @@ export async function getAllGalleryPaths(): Promise<string[]> {
   'slugs': galleryList[]->gallerySlug.current
 }`
   const restult = await dataClient.fetch<{ slugs: string[] } | null>(
-    allGalleriesQuery,
+    allGalleriesQuery
   )
   if (restult) {
     return restult.slugs

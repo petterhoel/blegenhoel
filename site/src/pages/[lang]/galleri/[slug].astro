@@ -1,16 +1,13 @@
 ---
-import {getAllGalleryPaths} from "../../../gallery/gallery.client";
-import GalleryLayout from "../../../gallery/GalleryLayout.astro";
+import { getAllGalleryPaths } from '../../../gallery/gallery.client'
+import GalleryLayout from '../../../gallery/GalleryLayout.astro'
 export async function getStaticPaths() {
-	const slugs = await getAllGalleryPaths()
-	const norske = slugs.map(slug => ({ params: {slug , lang: 'no'} }))
-	const engelsk = slugs.map(slug => ({ params: {slug , lang: 'en'} }))
+  const slugs = await getAllGalleryPaths()
+  const norske = slugs.map((slug) => ({ params: { slug, lang: 'no' } }))
+  const engelsk = slugs.map((slug) => ({ params: { slug, lang: 'en' } }))
 
-	return [
-		...norske,
-		...engelsk
-	]
+  return [...norske, ...engelsk]
 }
-
 ---
-<GalleryLayout/>
+
+<GalleryLayout />

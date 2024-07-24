@@ -49,8 +49,8 @@ const isNotAlreadyInDisplayedGallery = async (elm, context) => {
     .filter((g: { display: boolean }) => g.display)
     .filter((og: { galleryImages: { _id: string }[] }) =>
       thisGallery.some((id: string) =>
-        og.galleryImages.some((i: { _id: string }) => i._id === id),
-      ),
+        og.galleryImages.some((i: { _id: string }) => i._id === id)
+      )
     )
     .map((g) => ({
       galleryName: g.galleryName.trim(),
@@ -66,18 +66,19 @@ const isNotAlreadyInDisplayedGallery = async (elm, context) => {
 }
 
 const toValidationMessage = (
-  dupes: { galleryName: string; imageNames: string[] }[],
+  dupes: { galleryName: string; imageNames: string[] }[]
 ) => {
   return dupes.map(
     (d) =>
-      `"${d.imageNames.join('" og "')}" er allerede i galleriet "${d.galleryName}"`,
+      `"${d.imageNames.join('" og "')}" er allerede i galleriet "${d.galleryName}"`
   )
 }
 
 export const webGallery = defineType({
   name: 'web-gallery',
   title: 'Alle gallerier',
-  description: 'Både publiserte og ikke-publiserte gallerier. Bruk "Gallerier på nettsiden" for å styre hvilke gallerier som vises og rekkefølgen på de',
+  description:
+    'Både publiserte og ikke-publiserte gallerier. Bruk "Gallerier på nettsiden" for å styre hvilke gallerier som vises og rekkefølgen på de',
   type: 'document',
   fields: [
     defineField({
@@ -99,7 +100,7 @@ export const webGallery = defineType({
         rule
           .custom(
             async (value, context) =>
-              await isNotAlreadyInDisplayedGallery(value, context),
+              await isNotAlreadyInDisplayedGallery(value, context)
           )
           .warning(),
       ],
@@ -115,14 +116,14 @@ export const webGallery = defineType({
         slugify: (input) =>
           input
             .toLowerCase()
-	          .replace('æ', 'ae')
-	          .replace('ø', 'oe')
-	          .replace('å', 'aa')
-	          // eslint-disable-next-line no-control-regex
+            .replace('æ', 'ae')
+            .replace('ø', 'oe')
+            .replace('å', 'aa')
+            // eslint-disable-next-line no-control-regex
             .replace(/[^\x00-\x7F]/g, '')
             .trim()
             .replace(/\s+/g, '-')
-	          .replace(/-+/, '-')
+            .replace(/-+/, '-')
             .slice(0, 200),
       },
       validation: (rule) => rule.required(),

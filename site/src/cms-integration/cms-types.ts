@@ -14,351 +14,386 @@
 
 // Source: schema.json
 export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-};
+  _type: 'sanity.imagePaletteSwatch'
+  background?: string
+  foreground?: string
+  population?: number
+  title?: string
+}
 
 export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-};
+  _type: 'sanity.imagePalette'
+  darkMuted?: SanityImagePaletteSwatch
+  lightVibrant?: SanityImagePaletteSwatch
+  darkVibrant?: SanityImagePaletteSwatch
+  vibrant?: SanityImagePaletteSwatch
+  dominant?: SanityImagePaletteSwatch
+  lightMuted?: SanityImagePaletteSwatch
+  muted?: SanityImagePaletteSwatch
+}
 
 export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
+  _type: 'sanity.imageDimensions'
+  height?: number
+  width?: number
+  aspectRatio?: number
+}
 
 export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.fileAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  source?: SanityAssetSourceData
+}
 
 export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-};
+  _type: 'geopoint'
+  lat?: number
+  lng?: number
+  alt?: number
+}
 
 export type PublishedGalleries = {
-  _id: string;
-  _type: "publishedGalleries";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
+  _id: string
+  _type: 'publishedGalleries'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
   galleryList?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "web-gallery";
-  }>;
-};
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'web-gallery'
+  }>
+}
 
 export type WebGallery = {
-  _id: string;
-  _type: "web-gallery";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  galleryName?: LocaleString;
+  _id: string
+  _type: 'web-gallery'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  galleryName?: LocaleString
   galleryImages?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "artwork";
-  }>;
-  gallerySlug?: Slug;
-};
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'artwork'
+  }>
+  gallerySlug?: Slug
+}
 
 export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
+  _type: 'slug'
+  current?: string
+  source?: string
+}
 
 export type Seo = {
-  _id: string;
-  _type: "seo";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  description?: string;
-  keywords?: string;
-};
+  _id: string
+  _type: 'seo'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  description?: string
+  keywords?: string
+}
 
 export type RichText = Array<{
   children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-  listItem?: "bullet" | "number";
+    marks?: Array<string>
+    text?: string
+    _type: 'span'
+    _key: string
+  }>
+  style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+  listItem?: 'bullet' | 'number'
   markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-}>;
+    href?: string
+    _type: 'link'
+    _key: string
+  }>
+  level?: number
+  _type: 'block'
+  _key: string
+}>
 
 export type Gallery = {
-  _id: string;
-  _type: "gallery";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
+  _id: string
+  _type: 'gallery'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
   galleryImages?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "artwork";
-  }>;
-  galleryName?: string;
-};
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'artwork'
+  }>
+  galleryName?: string
+}
 
 export type Exhibition = {
-  _id: string;
-  _type: "exhibition";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  exhibitionName?: LocaleString;
-  visibility?: boolean;
-  spaceName?: LocaleString;
-  type?: "separatutstilling" | "duo-utstilling" | "trio-utstilling" | "gruppeutstilling";
-  exhibitionFirstDay?: string;
-  exhibitionLastDay?: string;
-};
+  _id: string
+  _type: 'exhibition'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  exhibitionName?: LocaleString
+  visibility?: boolean
+  spaceName?: LocaleString
+  type?:
+    | 'separatutstilling'
+    | 'duo-utstilling'
+    | 'trio-utstilling'
+    | 'gruppeutstilling'
+  exhibitionFirstDay?: string
+  exhibitionLastDay?: string
+}
 
 export type Biography = {
-  _id: string;
-  _type: "biography";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  biography?: LocaleRichText;
-};
+  _id: string
+  _type: 'biography'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  biography?: LocaleRichText
+}
 
 export type LocaleText = {
-  _type: "localeText";
-  no?: string;
-  en?: string;
-};
+  _type: 'localeText'
+  no?: string
+  en?: string
+}
 
 export type Artwork = {
-  _id: string;
-  _type: "artwork";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: LocaleString;
-  material?: LocaleString;
-  year?: string;
-  dimmenstions?: string;
-  photo?: ArtworkImage;
-};
+  _id: string
+  _type: 'artwork'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: LocaleString
+  material?: LocaleString
+  year?: string
+  dimmenstions?: string
+  photo?: ArtworkImage
+}
 
 export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
 
 export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
 
 export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.imageAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
 
 export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
+}
 
 export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
+}
 
 export type ArtworkImage = {
-  _type: "artworkImage";
+  _type: 'artworkImage'
   image?: {
     asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  alt?: LocaleText;
-};
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  alt?: LocaleText
+}
 
 export type LocaleString = {
-  _type: "localeString";
-  no?: string;
-  en?: string;
-};
+  _type: 'localeString'
+  no?: string
+  en?: string
+}
 
 export type AboutWorks = {
-  _id: string;
-  _type: "aboutWorks";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  aboutWorks?: LocaleRichText;
-};
+  _id: string
+  _type: 'aboutWorks'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  aboutWorks?: LocaleRichText
+}
 
 export type LocaleRichText = {
-  _type: "localeRichText";
-  no?: RichText;
-  en?: RichText;
-};
+  _type: 'localeRichText'
+  no?: RichText
+  en?: RichText
+}
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PublishedGalleries | WebGallery | Slug | Seo | RichText | Gallery | Exhibition | Biography | LocaleText | Artwork | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | ArtworkImage | LocaleString | AboutWorks | LocaleRichText;
-export declare const internalGroqTypeReferenceTo: unique symbol;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | PublishedGalleries
+  | WebGallery
+  | Slug
+  | Seo
+  | RichText
+  | Gallery
+  | Exhibition
+  | Biography
+  | LocaleText
+  | Artwork
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | ArtworkImage
+  | LocaleString
+  | AboutWorks
+  | LocaleRichText
+export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ../site/src/about/about.client.ts
 // Variable: aboutQuery
 // Query: *[_type == "aboutWorks"][0]
 export type AboutQueryResult = {
-  _id: string;
-  _type: "aboutWorks";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  aboutWorks?: LocaleRichText;
-} | null;
+  _id: string
+  _type: 'aboutWorks'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  aboutWorks?: LocaleRichText
+} | null
 // Source: ../site/src/bio/bio.client.ts
 // Variable: bioQuery
 // Query: *[_type == "biography"][0]
 export type BioQueryResult = {
-  _id: string;
-  _type: "biography";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  biography?: LocaleRichText;
-} | null;
+  _id: string
+  _type: 'biography'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  biography?: LocaleRichText
+} | null
 // Source: ../site/src/artwork/forside.client.ts
 // Variable: artworkQuery
 // Query: *[_type == "gallery" && _id == 'gallery'][0]{galleryImages[]->}
 export type ArtworkQueryResult = {
   galleryImages: Array<{
-    _id: string;
-    _type: "artwork";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: LocaleString;
-    material?: LocaleString;
-    year?: string;
-    dimmenstions?: string;
-    photo?: ArtworkImage;
-  }> | null;
-} | null;
+    _id: string
+    _type: 'artwork'
+    _createdAt: string
+    _updatedAt: string
+    _rev: string
+    title?: LocaleString
+    material?: LocaleString
+    year?: string
+    dimmenstions?: string
+    photo?: ArtworkImage
+  }> | null
+} | null
 // Source: ../site/src/exhibition/exhibition.client.ts
 // Variable: exhibitionQuery
 // Query: *[_type == "exhibition" && visibility]{  'exhibitionName': {    'no': exhibitionName.no,    'en': exhibitionName.en  },  'spaceName': {    'no': spaceName.no,    'en': spaceName.en  },  exhibitionFirstDay,  type,}| order(exhibitionFirstDay desc)
 export type ExhibitionQueryResult = Array<{
   exhibitionName: {
-    no: string | null;
-    en: string | null;
-  };
+    no: string | null
+    en: string | null
+  }
   spaceName: {
-    no: string | null;
-    en: string | null;
-  };
-  exhibitionFirstDay: string | null;
-  type: "duo-utstilling" | "gruppeutstilling" | "separatutstilling" | "trio-utstilling" | null;
-}>;
+    no: string | null
+    en: string | null
+  }
+  exhibitionFirstDay: string | null
+  type:
+    | 'duo-utstilling'
+    | 'gruppeutstilling'
+    | 'separatutstilling'
+    | 'trio-utstilling'
+    | null
+}>
 // Source: ../site/src/menu/menu.client.ts
 // Variable: menuQuery
 // Query: *[_type == "publishedGalleries"][0] {  menuGalleries[]-> {    galleryName {no, en},    'slug' : gallerySlug.current    }}
 export type MenuQueryResult = {
   galleryList: Array<{
     galleryName: {
-      no: string;
-      en: string;
-    };
-    slug: string;
-  }> | null;
-};
+      no: string
+      en: string
+    }
+    slug: string
+  }> | null
+}
 // Source: ../site/src/seo/seo.client.ts
 // Variable: seoQuery
 // Query: coalesce(*[_type == "seo"][0]{keywords, description}, 'result-error')
-export type SeoQueryResult = {
-  keywords: string | null;
-  description: string | null;
-} | "result-error";
+export type SeoQueryResult =
+  | {
+      keywords: string | null
+      description: string | null
+    }
+  | 'result-error'

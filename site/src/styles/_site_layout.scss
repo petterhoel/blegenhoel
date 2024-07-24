@@ -51,49 +51,47 @@ body {
 }
 
 #sidenav {
+  nav {
+    width: 0;
+    max-width: 0;
+    background: transparent;
+    backdrop-filter: blur(1rem);
+    padding-top: 6rem;
+    height: 100vh;
+    border-right: 1px solid #b8b8b8;
+    transition: all var(--duration) var(--easeOutExpo);
 
-nav {
-  width: 0;
-  max-width: 0;
-  background: transparent;
-  backdrop-filter: blur(1rem);
-  padding-top: 6rem;
-  height: 100vh;
-  border-right: 1px solid #b8b8b8;
-  transition: all var(--duration) var(--easeOutExpo);
+    h2 {
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 1.2rem;
+    }
 
-   h2 {
-    text-transform: uppercase;
-    font-weight: normal;
-    font-size: 1.2rem;
-  }
+    li {
+      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+    }
 
-   li {
-    word-break: keep-all;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  li.language-switcher a {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    svg {
-      width: 2.2rem;
-      path {
-        fill: var(--color-text);
+    li.language-switcher a {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      svg {
+        width: 2.2rem;
+        path {
+          fill: var(--color-text);
+        }
+      }
+      .cap {
+        text-transform: capitalize;
       }
     }
-    .cap {
-      text-transform: capitalize;
+
+    li:has(h2):not(:first-of-type) {
+      margin-top: 1.4rem;
     }
   }
-
-
-   li:has(h2):not(:first-of-type) {
-    margin-top: 1.4rem;
-  }
-}
   #close-button {
     padding: 0;
     margin: 0;

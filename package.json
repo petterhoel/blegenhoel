@@ -19,12 +19,13 @@
     "deploy:cms": "npm run deploy --workspace=cms",
     "login:cms": "npm run login --workspace=cms",
     "format": "npx prettier . --write",
-    "test": "npm run test --workspace=site",
-    "test:cms": "npm run test --workspace=cms",
+    "test": "vitest run",
     "typegen": "npm run typegen --workspace=cms",
     "copy:data:to:test": "npm run copy:data:to:test --workspace=cms",
+    "check": "npm run check --workspace=site",
     "upgrade:cms": "npm run upgrade --workspace=cms",
-    "upgrade": "npm run upgrade --workspace=site"
+    "upgrade:site": "npm run upgrade --workspace=site",
+    "upgrade": "npm run upgrade:cms && npm run upgrade:site"
   },
   "repository": {
     "type": "git",
@@ -37,13 +38,16 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
-    "eslint": "^9.7.0",
+    "@eslint/js": "^9.7.0",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^8.57.0",
     "eslint-plugin-astro": "^1.2.3",
+    "groq": "^3.52.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "1.77.8",
     "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0",
     "vitest": "2.0.4",
     "wrangler": "3.66.0"
   }

@@ -12,72 +12,71 @@ const menuLang = {
   },
 }
 
-
-
 export const generateMenu = async (
   language: I18nKey,
-  currentPath: string,
+  currentPath: string
 ): Promise<{
-	menuItems:  Array<MenyItem | MenuGroupHeading>,
-	languageItems: {
-	  href: string,
-		text: string,
-		heading: string
-}}> => {
-	const meny = await getGalleryMenuItems()
+  menuItems: Array<MenyItem | MenuGroupHeading>
+  languageItems: {
+    href: string
+    text: string
+    heading: string
+  }
+}> => {
+  const meny = await getGalleryMenuItems()
 
-	if (!meny) {
-		throw Error('Klarte ikke hente menyinfo for gallerier fra cms')
-	}
+  if (!meny) {
+    throw Error('Klarte ikke hente menyinfo for gallerier fra cms')
+  }
 
-	const galleryItems =
-		meny.galleryList?.map(({galleryName, slug}) => {
-			const href = `/${language}/galleri/${slug}`
-			return {
-				href,
-				text: galleryName[language],
-				active: href === currentPath,
-				type: 'href' as const,
-			}
-		}) ?? []
+  const galleryItems =
+    meny.galleryList?.map(({ galleryName, slug }) => {
+      const href = `/${language}/galleri/${slug}`
+      return {
+        href,
+        text: galleryName[language],
+        active: href === currentPath,
+        type: 'href' as const,
+      }
+    }) ?? []
 
-	const langToggleHref = (currentPath.startsWith('/no')
-		? `/en${currentPath.substring(3)}`
-		: `/no${currentPath.substring(3)}`)
-	const omArbeideneHref = `/${language}/om-arbeidene`
-	const bioHref = `/${language}/biografi`
+  const langToggleHref = currentPath.startsWith('/no')
+    ? `/en${currentPath.substring(3)}`
+    : `/no${currentPath.substring(3)}`
+  const omArbeideneHref = `/${language}/om-arbeidene`
+  const bioHref = `/${language}/biografi`
 
-	return {
-		languageItems: {
-			heading: language === 'no' ? 'View in' : 'Se siden på',
-			href: langToggleHref,
-			text: language === 'no' ? 'English' : 'Norsk'
-		},
-		menuItems: [
-			{
-				text: language === 'no' ? 'Gallerier' : 'Galleries',
-				type: 'group-heading',
-			},
+  return {
+    languageItems: {
+      heading: language === 'no' ? 'View in' : 'Se siden på',
+      href: langToggleHref,
+      text: language === 'no' ? 'English' : 'Norsk',
+    },
+    menuItems: [
+      {
+        text: language === 'no' ? 'Gallerier' : 'Galleries',
+        type: 'group-heading',
+      },
 
-			...galleryItems,
-			{
-				text: language === 'no' ? 'Info' : 'About',
-				type: 'group-heading',
-			},
-			{
-				href: omArbeideneHref,
-				text: menuLang.aboutText[language],
-				active: omArbeideneHref === currentPath,
-				type: 'href',
-			},
-			{
-				href: bioHref,
-				text: menuLang.bioText[language],
-				active: bioHref === currentPath,
-				type: 'href',
-			}
-		]
-	}
+      ...galleryItems,
+      {
+        text: language === 'no' ? 'Info' : 'About',
+        type: 'group-heading',
+      },
+      {
+        href: omArbeideneHref,
+        text: menuLang.aboutText[language],
+        active: omArbeideneHref === currentPath,
+        type: 'href',
+      },
+      {
+        href: bioHref,
+        text: menuLang.bioText[language],
+        active: bioHref === currentPath,
+        type: 'href',
+      },
+    ],
+  }
 }
 
 interface MenyItem {

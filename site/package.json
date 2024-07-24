@@ -10,8 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run",
-    "upgrade": "npx @astrojs/upgrade"
+    "upgrade": "npx @astrojs/upgrade",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.2",
@@ -20,8 +20,5 @@
     "@sanity/image-url": "1.0.2",
     "astro": "^4.12.2",
     "astro-portabletext": "0.10.0"
-  },
-  "devDependencies": {
-    "groq": "^3.52.0"
   }
 }

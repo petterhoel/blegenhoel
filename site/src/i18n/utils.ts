@@ -8,11 +8,9 @@ export const getLangFromUrl = (url: URL) => {
   return defaultLanguage
 }
 
-
-
 export const useTranslation = (lang: keyof typeof uiText) => {
   return function t(key: keyof (typeof uiText)[typeof defaultLanguage]) {
-    // @ts-ignore
+    // @ts-expect-error we want to be dynamic here
     return uiText[lang][key] || uiText[defaultLanguage][key]
   }
 }
