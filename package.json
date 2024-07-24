@@ -5,7 +5,10 @@
   "main": "./package.json",
   "type": "module",
   "description": "Website for Øystein Blegen Hoel",
-  "workspaces": ["site", "cms"],
+  "workspaces": [
+    "site",
+    "cms"
+  ],
   "scripts": {
     "start": "npm run dev:cms & npm run dev:site",
     "dev:cms": "npm run dev --workspace=cms",
@@ -15,7 +18,7 @@
     "build:cms": "npm run build --workspace=cms",
     "deploy:cms": "npm run deploy --workspace=cms",
     "login:cms": "npm run login --workspace=cms",
-    "format": "npx @biomejs/biome check --fix --unsafe .",
+    "format": "npx prettier . --write",
     "test": "npm run test --workspace=site",
     "test:cms": "npm run test --workspace=cms",
     "typegen": "npm run typegen --workspace=cms",
@@ -35,6 +38,10 @@
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
+    "eslint": "^9.7.0",
+    "eslint-plugin-astro": "^1.2.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "sass": "1.77.8",
     "typescript": "^5.5.4",
     "vitest": "2.0.4",
