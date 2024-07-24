@@ -22,7 +22,9 @@ const { galleryName, urls, slug, ctaText } = Astro.props
     </picture>
   </figure>
   <div>
-    <span>{galleryName}</span><span class="cta">{ctaText} →</span>
+    <span class="gallery-name">{galleryName}</span><span class="cta"
+      >{ctaText} →</span
+    >
   </div>
 </a>
 
@@ -42,16 +44,20 @@ const { galleryName, urls, slug, ctaText } = Astro.props
     }
 
     div {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: flex-end;
       padding: 1rem;
       font-size: 1.9rem;
       font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
       .cta {
+        width: 0;
+        overflow: hidden;
         color: transparent;
         font-size: 1.4rem;
+        text-wrap: nowrap;
+        text-align: left;
       }
     }
   }
@@ -68,8 +74,9 @@ const { galleryName, urls, slug, ctaText } = Astro.props
       transition: text-decoration-thickness 100ms ease-in-out;
     }
     .cta {
-      color: var(--primary);
-      transition: color 300ms ease-in-out;
+      width: 100%;
+      color: var(--color-text);
+      transition: width 450ms ease-in-out;
       text-decoration: none !important;
     }
   }

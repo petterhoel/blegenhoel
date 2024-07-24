@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../BaseLayout.astro'
 import { getForsideGallerier } from '../artwork/forside.client'
+import ContactDetails from '../ContactDetails.astro'
 import GalleryCard from '../gallery/GalleryCard.astro'
 import type { I18nKey } from '../i18n/i18n.string.dto'
 import { useTranslation } from '../i18n/utils'
@@ -41,4 +42,5 @@ const title = t('title.home')
       ))
     }
   </nav>
+  <ContactDetails />
 </BaseLayout>

@@ -35,11 +35,7 @@ export const generateMenu = async (
       return {
         href,
         text: galleryName[language],
-        active:
-          href ===
-          (currentPath.endsWith('/')
-            ? currentPath.substring(0, currentPath.length - 1)
-            : currentPath),
+        active: isActive(href, currentPath),
         type: 'href' as const,
       }
     }) ?? []
@@ -70,17 +66,26 @@ export const generateMenu = async (
       {
         href: omArbeideneHref,
         text: menuLang.aboutText[language],
-        active: omArbeideneHref === currentPath,
+        active: isActive(omArbeideneHref, currentPath),
         type: 'href',
       },
       {
         href: bioHref,
         text: menuLang.bioText[language],
-        active: bioHref === currentPath,
+        active: isActive(bioHref, currentPath),
         type: 'href',
       },
     ],
   }
+}
+
+const isActive = (href: string, currentPath: string) => {
+  return (
+    href ===
+    (currentPath.endsWith('/')
+      ? currentPath.substring(0, currentPath.length - 1)
+      : currentPath)
+  )
 }
 
 interface MenyItem {
