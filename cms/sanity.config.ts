@@ -20,7 +20,7 @@ export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? ''
 export const projectId = '2uvu00qu'
 
 const name = 'default'
-const title = 'Belgenhoel'
+const title = `Belgenhoel ${dataset === 'production' ? '' : dataset}`.trim()
 export default defineConfig({
   name,
   title,
@@ -44,6 +44,9 @@ export default defineConfig({
     },
   },
   document: {
+    comments: {
+      enabled: false,
+    },
     // For singletonstyper (definert i `singletonTypes`), filtreres alle actions,
     // med unntak av dem som explisitt er nevnt i `singletonActions`
     actions: (input, context) =>

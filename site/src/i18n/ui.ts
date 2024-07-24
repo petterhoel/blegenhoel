@@ -11,10 +11,10 @@ export const uiText = {
     'nav.bio': 'Bio',
     'nav.languageSwitcher': 'English',
     'nav.languageSwitcherPath': 'en',
-    'nav.labelClosed': 'Meny',
-    'nav.labelOpen': 'Lukk',
+    'nav.labelOpenMenu': 'Åpne meny',
+    'nav.labelCloseMenu': 'Lukk meny',
 
-    'title.home': 'Galleri | Øystein Blegen Hoel',
+    'title.home': 'Øystein Blegen Hoel',
     'title.about-works': 'Om bildene | Øystein Blegen Hoel',
     'title.bio': 'Biografi | Øystein Blegen Hoel',
 
@@ -26,10 +26,10 @@ export const uiText = {
     'nav.about': 'Artist statement',
     'nav.languageSwitcher': 'Norsk',
     'nav.languageSwitcherPath': 'no',
-    'nav.labelClosed': 'Menu',
-    'nav.labelOpen': 'Close',
+    'nav.labelOpenMenu': 'Open mennu',
+    'nav.labelCloseMenu': 'Close menu',
 
-    'title.home': 'Gallery | Øystein Blegen Hoel',
+    'title.home': 'Øystein Blegen Hoel',
     'title.about-works': 'About the works | Øystein Blegen Hoel',
     'title.bio': 'Biography | Øystein Blegen Hoel',
 

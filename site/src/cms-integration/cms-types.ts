@@ -68,28 +68,42 @@ export type Geopoint = {
   alt?: number
 }
 
+export type PublishedGalleries = {
+  _id: string
+  _type: 'publishedGalleries'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  galleryList?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'web-gallery'
+  }>
+}
+
+export type WebGallery = {
+  _id: string
+  _type: 'web-gallery'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  galleryName?: LocaleString
+  galleryImages?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'artwork'
+  }>
+  gallerySlug?: Slug
+}
+
 export type Slug = {
   _type: 'slug'
   current?: string
   source?: string
-}
-
-export type Exhibition = {
-  _id: string
-  _type: 'exhibition'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  exhibitionName?: LocaleString
-  visibility?: boolean
-  spaceName?: LocaleString
-  type?:
-    | 'separatutstilling'
-    | 'duo-utstilling'
-    | 'trio-utstilling'
-    | 'gruppeutstilling'
-  exhibitionFirstDay?: string
-  exhibitionLastDay?: string
 }
 
 export type Seo = {
@@ -100,64 +114,6 @@ export type Seo = {
   _rev: string
   description?: string
   keywords?: string
-}
-
-export type AboutWorks = {
-  _id: string
-  _type: 'aboutWorks'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  aboutWorks?: LocaleRichText
-}
-
-export type Biography = {
-  _id: string
-  _type: 'biography'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  biography?: LocaleRichText
-}
-
-export type LocaleRichText = {
-  _type: 'localeRichText'
-  no?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  en?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
 }
 
 export type RichText = Array<{
@@ -193,6 +149,33 @@ export type Gallery = {
     [internalGroqTypeReferenceTo]?: 'artwork'
   }>
   galleryName?: string
+}
+
+export type Exhibition = {
+  _id: string
+  _type: 'exhibition'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  exhibitionName?: LocaleString
+  visibility?: boolean
+  spaceName?: LocaleString
+  type?:
+    | 'separatutstilling'
+    | 'duo-utstilling'
+    | 'trio-utstilling'
+    | 'gruppeutstilling'
+  exhibitionFirstDay?: string
+  exhibitionLastDay?: string
+}
+
+export type Biography = {
+  _id: string
+  _type: 'biography'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  biography?: LocaleRichText
 }
 
 export type LocaleText = {
@@ -292,8 +275,48 @@ export type LocaleString = {
   no?: string
   en?: string
 }
-export declare const internalGroqTypeReferenceTo: unique symbol
 
+export type AboutWorks = {
+  _id: string
+  _type: 'aboutWorks'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  aboutWorks?: LocaleRichText
+}
+
+export type LocaleRichText = {
+  _type: 'localeRichText'
+  no?: RichText
+  en?: RichText
+}
+
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | PublishedGalleries
+  | WebGallery
+  | Slug
+  | Seo
+  | RichText
+  | Gallery
+  | Exhibition
+  | Biography
+  | LocaleText
+  | Artwork
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | ArtworkImage
+  | LocaleString
+  | AboutWorks
+  | LocaleRichText
+export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ../site/src/about/about.client.ts
 // Variable: aboutQuery
 // Query: *[_type == "aboutWorks"][0]
@@ -305,7 +328,6 @@ export type AboutQueryResult = {
   _rev: string
   aboutWorks?: LocaleRichText
 } | null
-
 // Source: ../site/src/bio/bio.client.ts
 // Variable: bioQuery
 // Query: *[_type == "biography"][0]
@@ -317,7 +339,6 @@ export type BioQueryResult = {
   _rev: string
   biography?: LocaleRichText
 } | null
-
 // Source: ../site/src/artwork/forside.client.ts
 // Variable: artworkQuery
 // Query: *[_type == "gallery" && _id == 'gallery'][0]{galleryImages[]->}
@@ -335,7 +356,6 @@ export type ArtworkQueryResult = {
     photo?: ArtworkImage
   }> | null
 } | null
-
 // Source: ../site/src/exhibition/exhibition.client.ts
 // Variable: exhibitionQuery
 // Query: *[_type == "exhibition" && visibility]{  'exhibitionName': {    'no': exhibitionName.no,    'en': exhibitionName.en  },  'spaceName': {    'no': spaceName.no,    'en': spaceName.en  },  exhibitionFirstDay,  type,}| order(exhibitionFirstDay desc)
@@ -356,7 +376,18 @@ export type ExhibitionQueryResult = Array<{
     | 'trio-utstilling'
     | null
 }>
-
+// Source: ../site/src/menu/menu.client.ts
+// Variable: menuQuery
+// Query: *[_type == "publishedGalleries"][0] {  menuGalleries[]-> {    galleryName {no, en},    'slug' : gallerySlug.current    }}
+export type MenuQueryResult = {
+  galleryList: Array<{
+    galleryName: {
+      no: string
+      en: string
+    }
+    slug: string
+  }> | null
+}
 // Source: ../site/src/seo/seo.client.ts
 // Variable: seoQuery
 // Query: coalesce(*[_type == "seo"][0]{keywords, description}, 'result-error')

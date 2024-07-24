@@ -5,7 +5,10 @@
   "main": "./package.json",
   "type": "module",
   "description": "Website for Øystein Blegen Hoel",
-  "workspaces": ["site", "cms"],
+  "workspaces": [
+    "site",
+    "cms"
+  ],
   "scripts": {
     "start": "npm run dev:cms & npm run dev:site",
     "dev:cms": "npm run dev --workspace=cms",
@@ -15,13 +18,14 @@
     "build:cms": "npm run build --workspace=cms",
     "deploy:cms": "npm run deploy --workspace=cms",
     "login:cms": "npm run login --workspace=cms",
-    "format": "npx @biomejs/biome check --fix --unsafe .",
-    "test": "npm run test --workspace=site",
-    "test:cms": "npm run test --workspace=cms",
+    "format": "npx prettier . --write",
+    "test": "vitest run",
     "typegen": "npm run typegen --workspace=cms",
     "copy:data:to:test": "npm run copy:data:to:test --workspace=cms",
+    "check": "npm run check --workspace=site",
     "upgrade:cms": "npm run upgrade --workspace=cms",
-    "upgrade": "npm run upgrade --workspace=site"
+    "upgrade:site": "npm run upgrade --workspace=site",
+    "upgrade": "npm run upgrade:cms && npm run upgrade:site"
   },
   "repository": {
     "type": "git",
@@ -34,10 +38,16 @@
   },
   "homepage": "https://github.com/petterhoel/blegenhoel#readme",
   "devDependencies": {
-    "@biomejs/biome": "1.8.2",
-    "sass": "1.77.6",
-    "typescript": "^5.5.2",
-    "vitest": "1.6.0",
-    "wrangler": "3.62.0"
+    "@eslint/js": "^9.7.0",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^1.2.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "sass": "1.77.8",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0",
+    "vitest": "2.0.4",
+    "wrangler": "3.66.0"
   }
 }

@@ -49,8 +49,8 @@ const isNotAlreadyInDisplayedGallery = async (elm, context) => {
     .filter((g: { display: boolean }) => g.display)
     .filter((og: { galleryImages: { _id: string }[] }) =>
       thisGallery.some((id: string) =>
-        og.galleryImages.some((i: { _id: string }) => i._id === id),
-      ),
+        og.galleryImages.some((i: { _id: string }) => i._id === id)
+      )
     )
     .map((g) => ({
       galleryName: g.galleryName.trim(),
@@ -66,26 +66,21 @@ const isNotAlreadyInDisplayedGallery = async (elm, context) => {
 }
 
 const toValidationMessage = (
-  dupes: { galleryName: string; imageNames: string[] }[],
+  dupes: { galleryName: string; imageNames: string[] }[]
 ) => {
   return dupes.map(
     (d) =>
-      `"${d.imageNames.join('" og "')}" er allerede i galleriet "${d.galleryName}"`,
+      `"${d.imageNames.join('" og "')}" er allerede i galleriet "${d.galleryName}"`
   )
 }
 
 export const webGallery = defineType({
   name: 'web-gallery',
-  title: 'Gallerier (ingen publisering enda)',
-  description: 'Til neste versjon av nettsiden',
+  title: 'Alle gallerier',
+  description:
+    'Både publiserte og ikke-publiserte gallerier. Bruk "Gallerier på nettsiden" for å styre hvilke gallerier som vises og rekkefølgen på de',
   type: 'document',
   fields: [
-    defineField({
-      name: 'display',
-      title: 'Skal vises på nettsiden',
-      description: 'Her velger man om galleriet skal kunne vises på nettsiden',
-      type: 'boolean',
-    }),
     defineField({
       name: 'galleryName',
       title: 'Navnet på galleriet',
@@ -105,7 +100,7 @@ export const webGallery = defineType({
         rule
           .custom(
             async (value, context) =>
-              await isNotAlreadyInDisplayedGallery(value, context),
+              await isNotAlreadyInDisplayedGallery(value, context)
           )
           .warning(),
       ],
@@ -121,21 +116,17 @@ export const webGallery = defineType({
         slugify: (input) =>
           input
             .toLowerCase()
+            .replace('æ', 'ae')
+            .replace('ø', 'oe')
+            .replace('å', 'aa')
             // eslint-disable-next-line no-control-regex
             .replace(/[^\x00-\x7F]/g, '')
             .trim()
             .replace(/\s+/g, '-')
+            .replace(/-+/, '-')
             .slice(0, 200),
       },
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'preview',
-      readOnly: true,
-      title: 'Stenger publisering',
-      type: 'boolean',
-      validation: (rule) =>
-        rule.custom(() => 'Dette galleriet kan ikke publiseres enda'),
     }),
   ],
   preview: {
@@ -144,12 +135,9 @@ export const webGallery = defineType({
       display: 'display',
     },
     prepare(selection) {
-      const { title, display } = selection
+      const { title } = selection
       return {
         title: title?.no ?? 'ingen tittel enda',
-        subtitle: display
-          ? 'Skal vises på nettsiden'
-          : 'Skal ikke vises på nettsiden',
       }
     },
   },

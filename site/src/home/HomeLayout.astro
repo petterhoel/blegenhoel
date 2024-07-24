@@ -1,38 +1,44 @@
 ---
 import BaseLayout from '../BaseLayout.astro'
-import Artwork from '../artwork/Artwork.astro'
-import type { ArtworkDto } from '../artwork/artwork.dto'
-import { getForsideArtworks } from '../artwork/forside.client'
-import type { languages } from '../i18n/ui'
+import { getForsideGallerier } from '../artwork/forside.client'
+import GalleryCard from '../gallery/GalleryCard.astro'
+import type { I18nKey } from '../i18n/i18n.string.dto'
 import { useTranslation } from '../i18n/utils'
-import { getLangFromUrl } from '../i18n/utils'
-import { urlsForImage } from '../image/image.util'
+import { toDimmentionsAndUrls } from '../image/image.util'
 import { getSeoAsync } from '../seo/seo.client'
 
-function mapArtworkDtoToVm(dto: ArtworkDto, lang: keyof typeof languages) {
-  const { title, dimmenstions, year, photo, material } = dto
-  return {
-    title: title[lang],
-    dimmenstions: dimmenstions,
-    material: material[lang],
-    year: year,
-    alt: photo.alt[lang],
-    urls: urlsForImage(photo.image),
-  }
+export function getStaticPaths() {
+  return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
 }
 
 const { keywords, description } = await getSeoAsync()
-const language = getLangFromUrl(Astro.url)
-const artworkDtos = await getForsideArtworks()
-const artworks = artworkDtos.map((artwork) =>
-  mapArtworkDtoToVm(artwork, language),
-)
-const t = useTranslation(language)
+const { lang } = Astro.params
+const galleries = await getForsideGallerier()
+
+const galleriesVms = galleries.map((g) => ({
+  name: g.galleryName[lang],
+  urls: toDimmentionsAndUrls(g.topImage.photo.image),
+  slug: `/${lang}/galleri/${g.slug}`,
+  ctaText: lang === 'no' ? 'Gå til galleri' : 'Go to gallery',
+}))
+
+const t = useTranslation(lang as I18nKey)
 const title = t('title.home')
 ---
 
 <BaseLayout title={title} keywords={keywords} description={description}>
-  <section id="gallery-wrapper">
-    {artworks.map((artwork) => <Artwork artwork={artwork} />)}
-  </section>
+  <h1 class="screen-reader-only">Gallerier</h1>
+
+  <nav id="gallery-links-wrapper">
+    {
+      galleriesVms.map((g) => (
+        <GalleryCard
+          galleryName={g.name}
+          urls={g.urls.urls}
+          slug={g.slug}
+          ctaText={g.ctaText}
+        />
+      ))
+    }
+  </nav>
 </BaseLayout>

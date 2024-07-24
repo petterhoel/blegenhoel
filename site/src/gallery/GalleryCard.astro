@@ -1,0 +1,90 @@
+---
+interface Props {
+  galleryName: string
+  urls: string[]
+  slug: string
+  ctaText: string
+}
+
+const { galleryName, urls, slug, ctaText } = Astro.props
+---
+
+<a href={slug} class="gallery-card">
+  <figure>
+    <picture>
+      {urls.map((url) => <source srcset={url} />)}
+      <img
+        src={urls[urls.length - 1]}
+        alt={galleryName}
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+  </figure>
+  <div>
+    <span>{galleryName}</span><span class="cta">{ctaText} →</span>
+  </div>
+</a>
+
+<style>
+  a {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    text-decoration: none;
+    text-decoration-thickness: 0;
+
+    img {
+      border-radius: var(--img-border-radius);
+      box-shadow: var(--img-box-shaddow);
+    }
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-end;
+      padding: 1rem;
+      font-size: 1.9rem;
+      font-weight: 300;
+      .cta {
+        color: transparent;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  a:hover {
+    div span:first-child {
+      text-decoration: underline;
+      text-decoration-color: currentcolor;
+      text-decoration-thickness: auto;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: var(--link-underline-thickness);
+      text-decoration-skip-ink: var(--link-skip-ink);
+      text-underline-offset: var(--link-underline-offset);
+      transition: text-decoration-thickness 100ms ease-in-out;
+    }
+    .cta {
+      color: var(--primary);
+      transition: color 300ms ease-in-out;
+      text-decoration: none !important;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    a {
+      min-width: 300px;
+    }
+  }
+
+  img {
+    object-fit: none;
+    max-height: 200px;
+    min-width: 100%;
+    object-position: center center;
+    border-radius: 2px;
+  }
+</style>

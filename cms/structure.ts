@@ -1,7 +1,15 @@
 import { ImagesIcon, SearchIcon, TextIcon } from '@sanity/icons'
+import { ListItemBuilder } from 'sanity/lib/structure'
 import type { StructureBuilder } from 'sanity/structure'
+import { publishedGalleries } from './schemas/publishedGalleries'
 
-export const singletonTypes = ['biography', 'aboutWorks', 'seo', 'gallery']
+export const singletonTypes = [
+  'biography',
+  'aboutWorks',
+  'seo',
+  'gallery',
+  'publishedGalleries',
+]
 
 export const structure = (S: StructureBuilder) => {
   const biography = S.listItem()
@@ -19,17 +27,35 @@ export const structure = (S: StructureBuilder) => {
     .icon(ImagesIcon)
     .child(S.document().schemaType('gallery').documentId('gallery'))
 
+  const publishedGalleries = S.listItem()
+    .title('Gallerier på nettsiden')
+    .icon(ImagesIcon)
+    .child(
+      S.document()
+        .schemaType('publishedGalleries')
+        .documentId('publishedGalleries')
+    )
+
   const seo = S.listItem()
     .title('Søkemotor synlighet (SEO)')
     .icon(SearchIcon)
     .child(S.document().schemaType('seo').documentId('seo'))
 
   const filteredNonSingles = S.documentTypeListItems().filter(
-    (item) => !singletonTypes.includes(item.getId() ?? ''),
+    (item) => !singletonTypes.includes(item.getId() ?? '')
   )
   // .filter((item) => item.getId() !== 'web-gallery')
 
   return S.list()
-    .title('Innhold')
-    .items([homePage, biography, aboutWorks, ...filteredNonSingles, seo])
+    .id('main')
+    .items([
+      homePage,
+      publishedGalleries,
+      biography,
+      aboutWorks,
+      S.divider(),
+      ...filteredNonSingles,
+      S.divider(),
+      seo,
+    ])
 }

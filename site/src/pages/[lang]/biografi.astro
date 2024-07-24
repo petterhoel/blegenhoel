@@ -1,0 +1,8 @@
+---
+import BioLayout from '../../bio/BioLayout.astro'
+export function getStaticPaths() {
+  return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
+}
+---
+
+<BioLayout />
