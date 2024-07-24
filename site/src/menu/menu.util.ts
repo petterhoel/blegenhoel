@@ -35,7 +35,11 @@ export const generateMenu = async (
       return {
         href,
         text: galleryName[language],
-        active: href === currentPath,
+        active:
+          href ===
+          (currentPath.endsWith('/')
+            ? currentPath.substring(0, currentPath.length - 1)
+            : currentPath),
         type: 'href' as const,
       }
     }) ?? []
