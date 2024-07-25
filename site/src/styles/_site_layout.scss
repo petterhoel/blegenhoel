@@ -170,7 +170,7 @@ button.menu-button:hover {
 
 main {
   width: 2100px;
-  max-width: 100vw;
+  max-width: 100%;
   padding: 10rem 2rem 0;
   margin-block-end: 4rem;
   align-self: center;
@@ -189,12 +189,14 @@ main {
 }
 
 #gallery-links-wrapper {
+  width: 100%;
   max-width: 130rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 3rem;
   align-items: center;
+  justify-content: space-around;
 
   figure {
     margin: 0;
