@@ -147,6 +147,7 @@ button.menu-button:hover {
 }
 
 #site-header {
+  z-index: 1;
   background: var(--nav-background);
   --header-padding: 1rem;
   position: fixed;
