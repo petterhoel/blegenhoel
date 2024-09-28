@@ -4,4 +4,5 @@ export default defineCliConfig({
   api: {
     projectId: '2uvu00qu',
   },
+  studioHost: 'blegenhoel'
 })
