@@ -14,12 +14,12 @@
     "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/upgrade": "^0.3.3",
-    "@sanity/client": "6.22.0",
-    "@sanity/image-url": "1.0.2",
-    "astro": "^4.15.9",
-    "astro-portabletext": "0.10.0",
-    "groq": "^3.58.0"
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/upgrade": "^0.3.4",
+    "@sanity/client": "6.22.5",
+    "@sanity/image-url": "1.1.0",
+    "astro": "^4.16.14",
+    "astro-portabletext": "0.10.1",
+    "groq": "^3.64.3"
   }
 }
