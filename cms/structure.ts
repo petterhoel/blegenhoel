@@ -1,13 +1,10 @@
 import { ImagesIcon, SearchIcon, TextIcon } from '@sanity/icons'
-import { ListItemBuilder } from 'sanity/lib/structure'
 import type { StructureBuilder } from 'sanity/structure'
-import { publishedGalleries } from './schemas/publishedGalleries'
 
 export const singletonTypes = [
   'biography',
   'aboutWorks',
   'seo',
-  'gallery',
   'publishedGalleries',
 ]
 
@@ -21,11 +18,6 @@ export const structure = (S: StructureBuilder) => {
     .title('Om bildene')
     .icon(TextIcon)
     .child(S.document().schemaType('aboutWorks').documentId('aboutWorks'))
-
-  const homePage = S.listItem()
-    .title('Forsidegalleri')
-    .icon(ImagesIcon)
-    .child(S.document().schemaType('gallery').documentId('gallery'))
 
   const publishedGalleries = S.listItem()
     .title('Gallerier på nettsiden')
@@ -49,7 +41,6 @@ export const structure = (S: StructureBuilder) => {
   return S.list()
     .id('main')
     .items([
-      homePage,
       publishedGalleries,
       biography,
       aboutWorks,
