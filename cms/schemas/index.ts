@@ -5,7 +5,7 @@ import { artwork } from './artwork'
 import { artworkImage } from './artworkImage'
 import { biography } from './biography'
 import { exhibition } from './exhibition'
-import { oldGallery, webGallery } from './gallery'
+import { webGallery } from './gallery'
 import { localeRichText } from './localeRichText'
 import { localeString } from './localeString'
 import { localeText } from './localeText'
@@ -14,7 +14,6 @@ import { seo } from './seo'
 import { publishedGalleries } from './publishedGalleries'
 
 artwork.icon = ImagesIcon
-oldGallery.icon = ImagesIcon
 webGallery.icon = ImagesIcon
 exhibition.icon = TbCircleLetterU
 publishedGalleries.icon = ImagesIcon
@@ -28,7 +27,6 @@ export const schemaTypes = [
   localeRichText,
   localeString,
   localeText,
-  oldGallery,
   richText,
   seo,
   webGallery,

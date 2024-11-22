@@ -3,7 +3,7 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { NavBarWithBundleChecker } from './navbar/navbar'
-import { schemaTypes } from './schemas/index'
+import { schemaTypes } from './schemas'
 import { singletonTypes, structure } from './structure'
 
 export const singletonSet = new Set(singletonTypes)
