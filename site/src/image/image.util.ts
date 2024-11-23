@@ -17,29 +17,44 @@ export function toDimmentionsAndUrls(source: SanityImageSource | undefined): {
     }
   }
 
-  const webp = imageUrlBuilder
+  const baseImg = imageUrlBuilder
+    .image(source).url()
+
+  const aspectRatio = extractDimmentionsFromUrl(baseImg)
+
+  const isLandscapeOrientation = aspectRatio.orientation === 'landscape';
+  const longestSideMax = 600
+
+
+  const builderLadscape = imageUrlBuilder
     .image(source)
-    .width(600)
-    .quality(70)
-    .sharpen(10)
+    .width(longestSideMax)
+
+  const builderPortrait = imageUrlBuilder
+    .image(source)
+    .height(longestSideMax)
+
+  const builder = isLandscapeOrientation ? builderLadscape : builderPortrait;
+
+  const webp = builder
+    .quality(100)
+    .sharpen(12)
     .format('webp')
     .url()
 
-  const jpg = imageUrlBuilder
-    .image(source)
-    .width(600)
-    .quality(70)
-    .sharpen(10)
+  const jpg = builder
+    .quality(85)
+    .sharpen(12)
     .format('jpg')
     .url()
 
   return {
-    aspectRatio: extractWithHeightFromUrl(webp),
+    aspectRatio,
     urls: [webp, jpg],
   }
 }
 
-export function extractWithHeightFromUrl(url: string): ImageDimensions {
+export function extractDimmentionsFromUrl(url: string): ImageDimensions {
   const splitPoint = url.lastIndexOf('-')
   const splitEnd = url.lastIndexOf('.')
 
