@@ -8,11 +8,11 @@ const imageUrlBuilder = sanityImageUrlBuilder({ projectId, dataset })
 
 export function toDimmentionsAndUrls(source: SanityImageSource | undefined): {
   urls: string[]
-  aspectRatio: ImageDimmentions
+  aspectRatio: ImageDimensions
 } {
   if (!source) {
     return {
-      aspectRatio: { width: 1, height: 1 },
+      aspectRatio: { width: 1, height: 1, orientation: orientation(1, 1) },
       urls: [],
     }
   }
@@ -20,7 +20,7 @@ export function toDimmentionsAndUrls(source: SanityImageSource | undefined): {
   const webp = imageUrlBuilder
     .image(source)
     .width(600)
-    .quality(100)
+    .quality(70)
     .sharpen(10)
     .format('webp')
     .url()
@@ -39,7 +39,7 @@ export function toDimmentionsAndUrls(source: SanityImageSource | undefined): {
   }
 }
 
-export function extractWithHeightFromUrl(url: string): ImageDimmentions {
+export function extractWithHeightFromUrl(url: string): ImageDimensions {
   const splitPoint = url.lastIndexOf('-')
   const splitEnd = url.lastIndexOf('.')
 
@@ -50,10 +50,18 @@ export function extractWithHeightFromUrl(url: string): ImageDimmentions {
 
   const height = +dimmentionParts.substring(xDivider + 1)
 
-  return { width, height }
+  return { width, height, orientation: orientation(width, height) }
 }
 
-export interface ImageDimmentions {
+function orientation(width: number, height: number) : ImageOrientation {
+  return width > height ? 'landscape' : 'portrait'
+}
+
+export type ImageOrientation = 'landscape'| 'portrait'
+
+export interface ImageDimensions {
   width: number
   height: number
+  orientation: ImageOrientation
 }
+

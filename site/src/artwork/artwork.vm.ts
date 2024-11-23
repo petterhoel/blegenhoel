@@ -1,4 +1,4 @@
-import type { ImageDimmentions } from '../image/image.util.ts'
+import type { ImageDimensions } from '../image/image.util.ts'
 
 export interface ArtworkVm {
   title: string
@@ -7,5 +7,5 @@ export interface ArtworkVm {
   dimmenstions: string
   material: string
   year: string
-  aspectRatio: ImageDimmentions
+  aspectRatio: ImageDimensions
 }

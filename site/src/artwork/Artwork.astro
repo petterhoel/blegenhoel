@@ -6,14 +6,14 @@ interface Props {
 const { urls, alt, title, year, dimmenstions, material, aspectRatio } =
   Astro.props.artwork
 
-const ratio = `${aspectRatio.width} / ${aspectRatio.height}; 
-    `
+const ratio = `${aspectRatio.width} / ${aspectRatio.height}`
 ---
 
 <figure>
   <picture>
     {urls.map((url) => <source srcset={url} />)}
     <img
+      class={aspectRatio.orientation}
       src={urls[urls.length - 1]}
       alt={alt}
       title={title}
@@ -42,12 +42,29 @@ const ratio = `${aspectRatio.width} / ${aspectRatio.height};
 
   img {
     aspect-ratio: var(--ratio);
-    width: auto;
-    max-width: 100%;
-    max-height: 60rem;
     box-shadow: var(--img-box-shaddow);
     border-radius: var(--img-border-radius);
+    transition: height 100ms ease-in-out
   }
+
+  img.portrait {
+    height: 500px;
+    width: auto;
+  }
+
+  img.landscape {
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+  }
+
+
+  @media screen and (min-width: 800px) {
+      img.portrait {
+         height: 600px
+      }
+  }
+
 
   .title-year,
   .dimmension-material {
@@ -62,12 +79,5 @@ const ratio = `${aspectRatio.width} / ${aspectRatio.height};
 
   .dimmension-material {
     padding-inline-start: 0.3rem;
-  }
-
-  @media screen and (min-width: 800px) {
-    img {
-      max-height: calc(100vh - 30rem);
-      min-height: 33rem;
-    }
   }
 </style>
