@@ -15,7 +15,7 @@ export const singletonActions = new Set([
   'unpublish',
 ])
 
-// @ts-ignore
+// @ts-expect-error env not recognised
 export const dataset = import.meta.env.SANITY_STUDIO_API_DATASET ?? ''
 export const projectId = '2uvu00qu'
 
