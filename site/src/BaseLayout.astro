@@ -1,6 +1,6 @@
 ---
 import './styles/global.scss'
-import { ViewTransitions, fade } from 'astro:transitions'
+import { ClientRouter, fade } from 'astro:transitions'
 import type { I18nKey } from './i18n/i18n.string.dto'
 import { useTranslation } from './i18n/utils'
 import { generateMenu } from './menu/menu.util'
@@ -27,7 +27,7 @@ const menuItems = await generateMenu(lang as I18nKey, currentPath)
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <ViewTransitions />
+    <ClientRouter />
     <meta name="viewport" content="width=device-width" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -110,7 +110,7 @@ const menuItems = await generateMenu(lang as I18nKey, currentPath)
         ><span class="screen-reader-only">{labelCloseMenu}</span></button
       >
     </aside>
-    <main transition:animate={fade({ duration: '200ms' })}>
+    <main transition:animate={fade({ duration: '100ms' })}>
       <slot />
     </main>
 
