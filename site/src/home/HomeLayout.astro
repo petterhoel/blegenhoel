@@ -12,7 +12,7 @@ export function getStaticPaths() {
   return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
 }
 
-const { keywords, description } = await getSeoAsync()
+const { keywords, description } = await getSeoAsync();
 const { lang } = Astro.params
 const galleries = await getForsideGallerier()
 

@@ -121,7 +121,7 @@ const menuItems = await generateMenu(lang as I18nKey, currentPath)
         elms.sideNav?.classList.add('open')
         elms.body?.classList.add('no-scroll')
         const btn = document.querySelector<HTMLButtonElement>('#menu-close')
-        btn.focus()
+        btn?.focus()
       }
 
       const closeMenu = () => {

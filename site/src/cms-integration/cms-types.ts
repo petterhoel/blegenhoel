@@ -330,22 +330,6 @@ export type AboutQueryResult = {
 } | null
 
 // Source: ../site/src/artwork/forside.client.ts
-// Variable: artworkQuery
-// Query: *[_type == "gallery" && _id == 'gallery'][0]{galleryImages[]->}
-export type ArtworkQueryResult = {
-  galleryImages: Array<{
-    _id: string
-    _type: 'artwork'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    title?: LocaleString
-    material?: LocaleString
-    year?: string
-    dimmenstions?: string
-    photo?: ArtworkImage
-  }> | null
-} | null
 // Variable: forsideGallerierQuery
 // Query: *[_type == "publishedGalleries"][0] {  galleryList[]-> {    'slug': gallerySlug.current,    galleryName {no, en},    'topImage': galleryImages[0]->  }}
 export type ForsideGallerierQueryResult = {
@@ -354,15 +338,15 @@ export type ForsideGallerierQueryResult = {
 
 // Source: ../site/src/bio/bio.client.ts
 // Variable: bioQuery
-// Query: *[_type == "biography"][0]
-export type BioQueryResult = {
-  _id: string
-  _type: 'biography'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  biography?: LocaleRichText
-} | null
+// Query: coalesce(*[_type == "biography"][0]{  'biography': {       'no': coalesce(biography.no, ""),       'en': coalesce(biography.en, "")     }  },  'result-error')
+export type BioQueryResult =
+  | {
+      biography: {
+        no: RichText | ''
+        en: RichText | ''
+      }
+    }
+  | 'result-error'
 
 // Source: ../site/src/exhibition/exhibition.client.ts
 // Variable: exhibitionQuery
@@ -394,11 +378,11 @@ export type MenuQueryResult = {
 
 // Source: ../site/src/seo/seo.client.ts
 // Variable: seoQuery
-// Query: coalesce(*[_type == "seo"][0]{keywords, description}, 'result-error')
+// Query: coalesce(*[_type == "seo"][0]{    'keywords': coalesce(keywords, ''),     'description': coalesce(description, ''),  },   'result-error'  )
 export type SeoQueryResult =
   | {
-      keywords: string | null
-      description: string | null
+      keywords: string | ''
+      description: string | ''
     }
   | 'result-error'
 
@@ -407,11 +391,10 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "aboutWorks"][0]': AboutQueryResult
-    '*[_type == "gallery" && _id == \'gallery\'][0]{galleryImages[]->}': ArtworkQueryResult
     "*[_type == \"publishedGalleries\"][0] {\n  galleryList[]-> {\n    'slug': gallerySlug.current,\n    galleryName {no, en},\n    'topImage': galleryImages[0]->\n  }\n}": ForsideGallerierQueryResult
-    '*[_type == "biography"][0]': BioQueryResult
+    "coalesce(*[_type == \"biography\"][0]{\n  'biography': { \n      'no': coalesce(biography.no, \"\"), \n      'en': coalesce(biography.en, \"\") \n    }\n  },\n  'result-error')": BioQueryResult
     "*[_type == \"exhibition\" && visibility]{\n  'exhibitionName': {\n    'no': exhibitionName.no,\n    'en': exhibitionName.en\n  },\n  'spaceName': {\n    'no': spaceName.no,\n    'en': spaceName.en\n  },\n  exhibitionFirstDay,\n  type,\n}\n| order(exhibitionFirstDay desc)": ExhibitionQueryResult
     '*[_type == "publishedGalleries"][0] {\n  galleryList[]-> {\n    galleryName {no, en},\n    \'slug\' : gallerySlug.current\n    }}': MenuQueryResult
-    'coalesce(*[_type == "seo"][0]{keywords, description}, \'result-error\')': SeoQueryResult
+    "coalesce(*[_type == \"seo\"][0]{\n    'keywords': coalesce(keywords, ''), \n    'description': coalesce(description, ''),\n  }, \n  'result-error'\n  )": SeoQueryResult
   }
 }
