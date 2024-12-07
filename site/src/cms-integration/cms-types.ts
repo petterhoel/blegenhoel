@@ -74,7 +74,7 @@ export type PublishedGalleries = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  galleryList?: Array<{
+  menuGalleries?: Array<{
     _ref: string
     _type: 'reference'
     _weak?: boolean
@@ -328,17 +328,7 @@ export type AboutQueryResult = {
   _rev: string
   aboutWorks?: LocaleRichText
 } | null
-// Source: ../site/src/bio/bio.client.ts
-// Variable: bioQuery
-// Query: *[_type == "biography"][0]
-export type BioQueryResult = {
-  _id: string
-  _type: 'biography'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  biography?: LocaleRichText
-} | null
+
 // Source: ../site/src/artwork/forside.client.ts
 // Variable: artworkQuery
 // Query: *[_type == "gallery" && _id == 'gallery'][0]{galleryImages[]->}
@@ -356,6 +346,24 @@ export type ArtworkQueryResult = {
     photo?: ArtworkImage
   }> | null
 } | null
+// Variable: forsideGallerierQuery
+// Query: *[_type == "publishedGalleries"][0] {  galleryList[]-> {    'slug': gallerySlug.current,    galleryName {no, en},    'topImage': galleryImages[0]->  }}
+export type ForsideGallerierQueryResult = {
+  galleryList: null
+} | null
+
+// Source: ../site/src/bio/bio.client.ts
+// Variable: bioQuery
+// Query: *[_type == "biography"][0]
+export type BioQueryResult = {
+  _id: string
+  _type: 'biography'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  biography?: LocaleRichText
+} | null
+
 // Source: ../site/src/exhibition/exhibition.client.ts
 // Variable: exhibitionQuery
 // Query: *[_type == "exhibition" && visibility]{  'exhibitionName': {    'no': exhibitionName.no,    'en': exhibitionName.en  },  'spaceName': {    'no': spaceName.no,    'en': spaceName.en  },  exhibitionFirstDay,  type,}| order(exhibitionFirstDay desc)
@@ -376,18 +384,14 @@ export type ExhibitionQueryResult = Array<{
     | 'trio-utstilling'
     | null
 }>
+
 // Source: ../site/src/menu/menu.client.ts
 // Variable: menuQuery
-// Query: *[_type == "publishedGalleries"][0] {  menuGalleries[]-> {    galleryName {no, en},    'slug' : gallerySlug.current    }}
+// Query: *[_type == "publishedGalleries"][0] {  galleryList[]-> {    galleryName {no, en},    'slug' : gallerySlug.current    }}
 export type MenuQueryResult = {
-  galleryList: Array<{
-    galleryName: {
-      no: string
-      en: string
-    }
-    slug: string
-  }> | null
-}
+  galleryList: null
+} | null
+
 // Source: ../site/src/seo/seo.client.ts
 // Variable: seoQuery
 // Query: coalesce(*[_type == "seo"][0]{keywords, description}, 'result-error')
@@ -397,3 +401,17 @@ export type SeoQueryResult =
       description: string | null
     }
   | 'result-error'
+
+// Query TypeMap
+import '@sanity/client'
+declare module '@sanity/client' {
+  interface SanityQueries {
+    '*[_type == "aboutWorks"][0]': AboutQueryResult
+    '*[_type == "gallery" && _id == \'gallery\'][0]{galleryImages[]->}': ArtworkQueryResult
+    "*[_type == \"publishedGalleries\"][0] {\n  galleryList[]-> {\n    'slug': gallerySlug.current,\n    galleryName {no, en},\n    'topImage': galleryImages[0]->\n  }\n}": ForsideGallerierQueryResult
+    '*[_type == "biography"][0]': BioQueryResult
+    "*[_type == \"exhibition\" && visibility]{\n  'exhibitionName': {\n    'no': exhibitionName.no,\n    'en': exhibitionName.en\n  },\n  'spaceName': {\n    'no': spaceName.no,\n    'en': spaceName.en\n  },\n  exhibitionFirstDay,\n  type,\n}\n| order(exhibitionFirstDay desc)": ExhibitionQueryResult
+    '*[_type == "publishedGalleries"][0] {\n  galleryList[]-> {\n    galleryName {no, en},\n    \'slug\' : gallerySlug.current\n    }}': MenuQueryResult
+    'coalesce(*[_type == "seo"][0]{keywords, description}, \'result-error\')': SeoQueryResult
+  }
+}
