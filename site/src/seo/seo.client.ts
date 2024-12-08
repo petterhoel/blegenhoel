@@ -3,6 +3,15 @@ import type { SeoQueryResult } from '../cms-integration/cms-types.ts'
 import { dataClient } from '../cms-integration/data.client'
 
 export async function getSeoAsync() {
-  const seoQuery = groq`coalesce(*[_type == "seo"][0]{keywords, description}, 'result-error')`
-  return await dataClient.fetch<SeoQueryResult>(seoQuery)
+  const seoQuery = groq`coalesce(*[_type == "seo"][0]{
+    'keywords': coalesce(keywords, ''), 
+    'description': coalesce(description, ''),
+  }, 
+  'result-error'
+  )`
+  const seo = await dataClient.fetch<SeoQueryResult>(seoQuery)
+  if (seo === 'result-error') {
+    throw new Error('Missing SEO info')
+  }
+  return seo;
 }

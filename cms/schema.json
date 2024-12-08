@@ -360,7 +360,7 @@
           "type": "string"
         }
       },
-      "menuGalleries": {
+      "galleryList": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -447,7 +447,7 @@
           "type": "inline",
           "name": "localeString"
         },
-        "optional": true
+        "optional": false
       },
       "galleryImages": {
         "type": "objectAttribute",
@@ -491,7 +491,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "gallerySlug": {
         "type": "objectAttribute",
@@ -499,7 +499,7 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": true
+        "optional": false
       }
     }
   },
@@ -521,7 +521,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         },
         "source": {
           "type": "objectAttribute",
@@ -764,94 +764,6 @@
     }
   },
   {
-    "name": "gallery",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "gallery"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "galleryImages": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "_ref": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              },
-              "_type": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string",
-                  "value": "reference"
-                }
-              },
-              "_weak": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "boolean"
-                },
-                "optional": true
-              }
-            },
-            "dereferencesTo": "artwork",
-            "rest": {
-              "type": "object",
-              "attributes": {
-                "_key": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "optional": true
-      },
-      "galleryName": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
     "name": "exhibition",
     "type": "document",
     "attributes": {
@@ -892,14 +804,14 @@
           "type": "inline",
           "name": "localeString"
         },
-        "optional": true
+        "optional": false
       },
       "visibility": {
         "type": "objectAttribute",
         "value": {
           "type": "boolean"
         },
-        "optional": true
+        "optional": false
       },
       "spaceName": {
         "type": "objectAttribute",
@@ -907,7 +819,7 @@
           "type": "inline",
           "name": "localeString"
         },
-        "optional": true
+        "optional": false
       },
       "type": {
         "type": "objectAttribute",
@@ -939,7 +851,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "exhibitionLastDay": {
         "type": "objectAttribute",
@@ -1096,7 +1008,7 @@
           "type": "inline",
           "name": "artworkImage"
         },
-        "optional": true
+        "optional": false
       }
     }
   },
@@ -1518,7 +1430,7 @@
             "type": "inline",
             "name": "localeText"
           },
-          "optional": true
+          "optional": false
         }
       }
     }

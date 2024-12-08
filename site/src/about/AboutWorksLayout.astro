@@ -1,10 +1,10 @@
 ---
-import { PortableText } from 'astro-portabletext'
 import BaseLayout from '../BaseLayout.astro'
 import ContactDetails from '../ContactDetails.astro'
 import { getLangFromUrl, useTranslation } from '../i18n/utils'
 import { getSeoAsync } from '../seo/seo.client'
 import { getAboutWorksText } from './about.client'
+import CmsPortableText from "../cms-integration/CmsPortableText.astro";
 
 const { aboutWorks } = await getAboutWorksText()
 const { keywords, description } = await getSeoAsync()
@@ -16,7 +16,7 @@ const title = t('title.about-works')
 
 <BaseLayout title={title} keywords={keywords} description={description}>
   <article>
-    <PortableText value={content} />
+    <CmsPortableText value={content} />
   </article>
   <aside>
     <ContactDetails />

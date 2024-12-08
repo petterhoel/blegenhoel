@@ -4,7 +4,7 @@ export interface ArtworkVm {
   title: string
   alt: string
   urls: string[]
-  dimmenstions: string
+  dimensions: string
   material: string
   year: string
   aspectRatio: ImageDimensions

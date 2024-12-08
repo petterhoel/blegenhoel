@@ -6,7 +6,7 @@ const { projectId, dataset } = sanityConfig
 
 const imageUrlBuilder = sanityImageUrlBuilder({ projectId, dataset })
 
-export function toDimmentionsAndUrls(source: SanityImageSource | undefined): {
+export function toDimmentionsAndUrls(source: SanityImageSource | undefined | null): {
   urls: string[]
   aspectRatio: ImageDimensions
 } {

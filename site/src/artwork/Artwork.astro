@@ -3,7 +3,7 @@ import type { ArtworkVm } from './artwork.vm'
 interface Props {
   artwork: ArtworkVm
 }
-const { urls, alt, title, year, dimmenstions, material, aspectRatio } =
+const { urls, alt, title, year, dimensions, material, aspectRatio } =
   Astro.props.artwork
 
 const ratio = `${aspectRatio.width} / ${aspectRatio.height}`
@@ -27,7 +27,7 @@ const ratio = `${aspectRatio.width} / ${aspectRatio.height}`
     </div>
     <div class="dimmension-material">
       {material}
-      {dimmenstions}
+      {dimensions}
     </div>
   </figcaption>
 </figure>

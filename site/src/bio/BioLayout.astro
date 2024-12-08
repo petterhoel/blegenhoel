@@ -1,5 +1,4 @@
 ---
-import { PortableText } from 'astro-portabletext'
 import Layout from '../BaseLayout.astro'
 import ContactDetails from '../ContactDetails.astro'
 import ExhibitionList from '../exhibition/ExhibitionList.astro'
@@ -8,11 +7,13 @@ import { toVm } from '../exhibition/exhibition.util'
 import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
 import { getSeoAsync } from '../seo/seo.client'
-import { getBiography } from './bio.client'
+import { getBiographyAsync } from './bio.client'
+import CmsPortableText from "../cms-integration/CmsPortableText.astro";
 
 const { keywords, description } = await getSeoAsync()
+
 const exhibitions = await getVisibleExhibitions()
-const bio = await getBiography()
+const {biography} = await getBiographyAsync()
 
 const language = getLangFromUrl(Astro.url)
 const exhibitionListVm = {
@@ -20,14 +21,13 @@ const exhibitionListVm = {
   exhibitions: exhibitions.map((ex) => toVm(ex, language)),
 }
 
-const content = bio.biography[language]
 const t = useTranslation(language)
 const title = t('title.bio')
 ---
 
 <Layout title={title} keywords={keywords} description={description}>
   <article>
-    <PortableText value={content} />
+    <CmsPortableText value={biography[language]} />
     <ExhibitionList vm={exhibitionListVm} />
   </article>
   <aside>
