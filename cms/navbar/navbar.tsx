@@ -2,24 +2,25 @@ import { RefreshIcon } from '@sanity/icons'
 import { Button, Card, Inline, Stack, Text } from '@sanity/ui'
 import React, { useEffect, useState } from 'react'
 
-export const NavBarWithBundleChecker = (props: any) => {
+// @ts-expect-error props er whatever
+export const NavBarWithBundleChecker = (props) => {
   const [nyVersjon, setValue] = useState(false)
   const createInterval = () =>
     setInterval(async () => {
       const newHash = await getCurrentHash()
 
       if (hash && newHash !== hash) {
-        clearInterval(interval)
+        clearInterval(interval as number)
         setValue(true)
       }
     }, 60 * 1000)
   async function getCurrentHash() {
-    const html = await window.fetch('/').then((res) => res.text())
+    const html = await window.fetch(`/?noCache=${Date.now()}`).then((res) => res.text())
     const [, hash] = html.match(/static\/sanity-(\w+).js/) || []
     return hash
   }
-  let hash: any = null
-  let interval: any = null
+  let hash: string | null = null
+  let interval: number | NodeJS.Timeout = 0 ;
   useEffect(() => {
     getCurrentHash().then((newHash) => {
       hash = newHash
@@ -27,7 +28,7 @@ export const NavBarWithBundleChecker = (props: any) => {
 
     interval = createInterval()
 
-    return () => clearInterval(interval)
+    return () => clearInterval(interval as number)
   }, [])
 
   return (
