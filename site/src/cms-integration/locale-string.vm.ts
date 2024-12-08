@@ -1,14 +1,13 @@
-import type {LocaleString} from "./cms-types.ts";
+import type { LocaleString } from './cms-types.ts'
 
 export type LocaleStringVm = {
-    no: string
-    en: string
+  no: string
+  en: string
 }
 
-
 export function toLocaleStringVm(from?: LocaleString): LocaleStringVm {
-    return {
-        no: from?.no ?? '',
-        en: from?.en ?? '',
-    }
+  return {
+    no: from?.no ?? '',
+    en: from?.en ?? '',
+  }
 }

@@ -12,9 +12,7 @@ const { heading, exhibitions } = Astro.props.vm
       <li>
         <span>{name}</span>
         <br />
-        {
-          type && <span class="meta">{type}, </span>
-        }
+        {type && <span class="meta">{type}, </span>}
         <span class="meta">{space}, </span>
         <time class="meta">{year} </time>
       </li>

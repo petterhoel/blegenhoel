@@ -7,10 +7,10 @@ import { toVm } from '../exhibition/exhibition.util'
 import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
 import { getBiographyAsync } from './bio.client'
-import CmsPortableText from "../cms-integration/CmsPortableText.astro";
+import CmsPortableText from '../cms-integration/CmsPortableText.astro'
 
 const exhibitions = await getVisibleExhibitions()
-const {biography} = await getBiographyAsync()
+const { biography } = await getBiographyAsync()
 const language = getLangFromUrl(Astro.url)
 const exhibitionListVm = {
   heading: language === 'no' ? 'Utstillinger' : 'Exhibitions',

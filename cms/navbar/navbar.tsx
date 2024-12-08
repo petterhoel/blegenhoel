@@ -15,12 +15,14 @@ export const NavBarWithBundleChecker = (props) => {
       }
     }, 60 * 1000)
   async function getCurrentHash() {
-    const html = await window.fetch(`/?noCache=${Date.now()}`).then((res) => res.text())
+    const html = await window
+      .fetch(`/?noCache=${Date.now()}`)
+      .then((res) => res.text())
     const [, hash] = html.match(/static\/sanity-(\w+).js/) || []
     return hash
   }
   let hash: string | null = null
-  let interval: number | NodeJS.Timeout = 0 ;
+  let interval: number | NodeJS.Timeout = 0
   useEffect(() => {
     getCurrentHash().then((newHash) => {
       hash = newHash

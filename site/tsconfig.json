@@ -5,7 +5,7 @@
   "plugins": [
     {
       "name": "@astrojs/ts-plugin"
-    },
+    }
   ],
   "compilerOptions": {
     "verbatimModuleSyntax": true

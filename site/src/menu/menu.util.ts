@@ -28,7 +28,7 @@ export const generateMenu = async (
   const omArbeideneHref = `/${language}/om-arbeidene`
   const bioHref = `/${language}/biografi`
 
-  const isNorwegian = language === 'no';
+  const isNorwegian = language === 'no'
 
   return {
     languageItems: {

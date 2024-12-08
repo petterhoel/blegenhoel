@@ -1,8 +1,8 @@
-import {defineField, defineType, ValidationContext} from 'sanity'
+import { defineField, defineType, ValidationContext } from 'sanity'
 
 interface GalleryVm {
-  galleryId: string,
-  galleryName: string,
+  galleryId: string
+  galleryName: string
   galleryImages: {
     imageId: string
     name: string
@@ -10,7 +10,11 @@ interface GalleryVm {
 }
 
 const isNotAlreadyInDisplayedGallery = async (context: ValidationContext) => {
-  const images = (context.document?.galleryImages ?? []) as {_id: string,name: string, _ref: string}[];
+  const images = (context.document?.galleryImages ?? []) as {
+    _id: string
+    name: string
+    _ref: string
+  }[]
   const imageRefs = images.map((elm) => elm._ref) ?? []
 
   const currentId = context.document?._id.replace('drafts.', '')
@@ -28,13 +32,17 @@ const isNotAlreadyInDisplayedGallery = async (context: ValidationContext) => {
   const publishedIdQuery = `*[_type == "publishedGalleries"][0]{
   'ids': galleryList[]._ref
 }`
-  const publishedIds = await client.fetch<{ids: string[]}>(publishedIdQuery);
-  const publishedGalleries = allOtherGalleries.filter((g) => publishedIds.ids.some(pid => pid === g.galleryId))
+  const publishedIds = await client.fetch<{ ids: string[] }>(publishedIdQuery)
+  const publishedGalleries = allOtherGalleries.filter((g) =>
+    publishedIds.ids.some((pid) => pid === g.galleryId)
+  )
 
   const galleriesWithDupes = publishedGalleries
-    .filter((og: GalleryVm) => imageRefs
-      .some((ref: string) => og.galleryImages
-        .some(({imageId}) => imageId === ref)))
+    .filter((og: GalleryVm) =>
+      imageRefs.some((ref: string) =>
+        og.galleryImages.some(({ imageId }) => imageId === ref)
+      )
+    )
     .map((g) => ({
       galleryName: g.galleryName.trim(),
       imageNames: g.galleryImages
@@ -82,8 +90,7 @@ export const webGallery = defineType({
         rule.unique(),
         rule
           .custom(
-            async (_, context) =>
-              await isNotAlreadyInDisplayedGallery(context)
+            async (_, context) => await isNotAlreadyInDisplayedGallery(context)
           )
           .warning(),
       ],
@@ -116,13 +123,13 @@ export const webGallery = defineType({
     select: {
       title: 'galleryName',
       display: 'display',
-      image: 'galleryImages.0.photo.image'
+      image: 'galleryImages.0.photo.image',
     },
     prepare(selection) {
       const { title, image } = selection
       return {
         title: title?.no ?? 'ingen tittel enda',
-        media: image ?? null
+        media: image ?? null,
       }
     },
   },

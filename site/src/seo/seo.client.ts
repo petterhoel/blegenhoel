@@ -12,5 +12,5 @@ export async function getSeoAsync() {
   if (seo === 'result-error') {
     throw new Error('Missing SEO info')
   }
-  return seo;
+  return seo
 }

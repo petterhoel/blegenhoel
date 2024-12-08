@@ -11,7 +11,7 @@ export async function getBiographyAsync() {
   },
   'result-error')`
   const bio = await dataClient.fetch<BioQueryResult>(bioQuery)
-  if (bio === 'result-error'){
+  if (bio === 'result-error') {
     throw new Error('Missing bio info')
   }
   return bio

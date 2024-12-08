@@ -11,6 +11,4 @@ export const sanityConfig: ClientConfig = {
 const dataClient = createClient(sanityConfig)
 
 // delete by id
-dataClient.delete('gallery')
-  .catch(console.log)
-  .then(console.log)
+dataClient.delete('gallery').catch(console.log).then(console.log)

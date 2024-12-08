@@ -3,7 +3,7 @@ import BaseLayout from '../BaseLayout.astro'
 import ContactDetails from '../ContactDetails.astro'
 import { getLangFromUrl, useTranslation } from '../i18n/utils'
 import { getAboutWorksText } from './about.client'
-import CmsPortableText from "../cms-integration/CmsPortableText.astro";
+import CmsPortableText from '../cms-integration/CmsPortableText.astro'
 
 const { aboutWorks } = await getAboutWorksText()
 const language = getLangFromUrl(Astro.url)

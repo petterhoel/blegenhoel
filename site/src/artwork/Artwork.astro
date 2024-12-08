@@ -44,7 +44,7 @@ const ratio = `${aspectRatio.width} / ${aspectRatio.height}`
     aspect-ratio: var(--ratio);
     box-shadow: var(--img-box-shaddow);
     border-radius: var(--img-border-radius);
-    transition: height 100ms cubic-bezier( 0.68, -0.55, 0.265, 1.55 )
+    transition: height 100ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   img.portrait {
@@ -58,21 +58,18 @@ const ratio = `${aspectRatio.width} / ${aspectRatio.height}`
     height: auto;
   }
 
-
   @media screen and (min-width: 800px) {
-      img.portrait {
-         height: 600px;
-      }
+    img.portrait {
+      height: 600px;
+    }
   }
 
   @media screen and (max-width: 539px) {
-      img.portrait {
-          max-width: 100%;
-          height: auto;
-
-      }
+    img.portrait {
+      max-width: 100%;
+      height: auto;
+    }
   }
-
 
   .title-year,
   .dimmension-material {

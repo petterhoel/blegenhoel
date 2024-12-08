@@ -14,7 +14,7 @@ export const artworkImage = defineType({
       name: 'alt',
       type: 'localeText',
       title: 'Beskrivende tekst (for blinde)',
-      validation: (Rule) => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

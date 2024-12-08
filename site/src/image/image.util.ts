@@ -6,7 +6,9 @@ const { projectId, dataset } = sanityConfig
 
 const imageUrlBuilder = sanityImageUrlBuilder({ projectId, dataset })
 
-export function toDimmentionsAndUrls(source: SanityImageSource | undefined | null): {
+export function toDimmentionsAndUrls(
+  source: SanityImageSource | undefined | null
+): {
   urls: string[]
   aspectRatio: ImageDimensions
 } {
@@ -17,36 +19,22 @@ export function toDimmentionsAndUrls(source: SanityImageSource | undefined | nul
     }
   }
 
-  const baseImg = imageUrlBuilder
-    .image(source).url()
+  const baseImg = imageUrlBuilder.image(source).url()
 
   const aspectRatio = extractDimmentionsFromUrl(baseImg)
 
-  const isLandscapeOrientation = aspectRatio.orientation === 'landscape';
+  const isLandscapeOrientation = aspectRatio.orientation === 'landscape'
   const longestSideMax = 600
 
+  const builderLadscape = imageUrlBuilder.image(source).width(longestSideMax)
 
-  const builderLadscape = imageUrlBuilder
-    .image(source)
-    .width(longestSideMax)
+  const builderPortrait = imageUrlBuilder.image(source).height(longestSideMax)
 
-  const builderPortrait = imageUrlBuilder
-    .image(source)
-    .height(longestSideMax)
+  const builder = isLandscapeOrientation ? builderLadscape : builderPortrait
 
-  const builder = isLandscapeOrientation ? builderLadscape : builderPortrait;
+  const webp = builder.quality(100).sharpen(12).format('webp').url()
 
-  const webp = builder
-    .quality(100)
-    .sharpen(12)
-    .format('webp')
-    .url()
-
-  const jpg = builder
-    .quality(85)
-    .sharpen(12)
-    .format('jpg')
-    .url()
+  const jpg = builder.quality(85).sharpen(12).format('jpg').url()
 
   return {
     aspectRatio,
@@ -68,15 +56,14 @@ export function extractDimmentionsFromUrl(url: string): ImageDimensions {
   return { width, height, orientation: orientation(width, height) }
 }
 
-function orientation(width: number, height: number) : ImageOrientation {
+function orientation(width: number, height: number): ImageOrientation {
   return width > height ? 'landscape' : 'portrait'
 }
 
-export type ImageOrientation = 'landscape'| 'portrait'
+export type ImageOrientation = 'landscape' | 'portrait'
 
 export interface ImageDimensions {
   width: number
   height: number
   orientation: ImageOrientation
 }
-

@@ -29,7 +29,7 @@ export const artwork = defineType({
       title: 'Bilde',
       name: 'photo',
       type: 'artworkImage',
-      validation: (Rule) => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
