@@ -571,14 +571,16 @@
       "description": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "inline",
+          "name": "localeText"
         },
         "optional": true
       },
       "keywords": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "inline",
+          "name": "localeText"
         },
         "optional": true
       }

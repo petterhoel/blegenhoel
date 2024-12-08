@@ -6,9 +6,7 @@ import GalleryCard from '../gallery/GalleryCard.astro'
 import type { I18nKey } from '../i18n/i18n.string.dto'
 import { useTranslation } from '../i18n/utils'
 import { toDimmentionsAndUrls } from '../image/image.util'
-import { getSeoAsync } from '../seo/seo.client'
 
-const { keywords, description } = await getSeoAsync();
 const { lang } = Astro.params
 const galleries = await getForsideGallerier()
 
@@ -23,7 +21,7 @@ const t = useTranslation(lang as I18nKey)
 const title = t('title.home')
 ---
 
-<BaseLayout title={title} keywords={keywords} description={description}>
+<BaseLayout title={title}>
   <h1 class="screen-reader-only">{ lang === 'no' ? 'Gallerier' : 'Galleries'}</h1>
 
   <nav id="gallery-links-wrapper">

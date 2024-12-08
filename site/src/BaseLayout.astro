@@ -4,18 +4,18 @@ import { ClientRouter, fade } from 'astro:transitions'
 import type { I18nKey } from './i18n/i18n.string.dto'
 import { useTranslation } from './i18n/utils'
 import { generateMenu } from './menu/menu.util'
+import {getSeoAsync} from "./seo/seo.client";
 export interface Props {
   title: string
-  description: string
-  keywords: string
 }
 const { lang } = Astro.params
+const { keywords, description } = await getSeoAsync()
 
 const t = useTranslation(lang as I18nKey)
 const labelOpenMenu = t('nav.labelOpenMenu')
 const labelCloseMenu = t('nav.labelCloseMenu')
 
-const { title, keywords, description } = Astro.props
+const { title } = Astro.props
 const currentPath = Astro.request.url
   ? new URL(Astro.request.url)?.pathname
   : ''
@@ -40,8 +40,8 @@ const menuItems = await generateMenu(lang as I18nKey, currentPath)
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
+    <meta name="description" content={description[lang as I18nKey]} />
+    <meta name="keywords" content={keywords[lang as I18nKey]} />
     <title>{title}</title>
   </head>
   <body>

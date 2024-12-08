@@ -2,19 +2,17 @@
 import BaseLayout from '../BaseLayout.astro'
 import ContactDetails from '../ContactDetails.astro'
 import { getLangFromUrl, useTranslation } from '../i18n/utils'
-import { getSeoAsync } from '../seo/seo.client'
 import { getAboutWorksText } from './about.client'
 import CmsPortableText from "../cms-integration/CmsPortableText.astro";
 
 const { aboutWorks } = await getAboutWorksText()
-const { keywords, description } = await getSeoAsync()
 const language = getLangFromUrl(Astro.url)
 const content = aboutWorks[language]
 const t = useTranslation(language)
 const title = t('title.about-works')
 ---
 
-<BaseLayout title={title} keywords={keywords} description={description}>
+<BaseLayout title={title}>
   <article>
     <CmsPortableText value={content} />
   </article>

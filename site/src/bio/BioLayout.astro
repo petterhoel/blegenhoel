@@ -6,15 +6,11 @@ import { getVisibleExhibitions } from '../exhibition/exhibition.client'
 import { toVm } from '../exhibition/exhibition.util'
 import { useTranslation } from '../i18n/utils'
 import { getLangFromUrl } from '../i18n/utils'
-import { getSeoAsync } from '../seo/seo.client'
 import { getBiographyAsync } from './bio.client'
 import CmsPortableText from "../cms-integration/CmsPortableText.astro";
 
-const { keywords, description } = await getSeoAsync()
-
 const exhibitions = await getVisibleExhibitions()
 const {biography} = await getBiographyAsync()
-
 const language = getLangFromUrl(Astro.url)
 const exhibitionListVm = {
   heading: language === 'no' ? 'Utstillinger' : 'Exhibitions',
@@ -25,7 +21,7 @@ const t = useTranslation(language)
 const title = t('title.bio')
 ---
 
-<Layout title={title} keywords={keywords} description={description}>
+<Layout title={title}>
   <article>
     <CmsPortableText value={biography[language]} />
     <ExhibitionList vm={exhibitionListVm} />
