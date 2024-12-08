@@ -74,7 +74,7 @@ export type PublishedGalleries = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  menuGalleries?: Array<{
+  galleryList?: Array<{
     _ref: string
     _type: 'reference'
     _weak?: boolean
@@ -89,20 +89,20 @@ export type WebGallery = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  galleryName?: LocaleString
-  galleryImages?: Array<{
+  galleryName: LocaleString
+  galleryImages: Array<{
     _ref: string
     _type: 'reference'
     _weak?: boolean
     _key: string
     [internalGroqTypeReferenceTo]?: 'artwork'
   }>
-  gallerySlug?: Slug
+  gallerySlug: Slug
 }
 
 export type Slug = {
   _type: 'slug'
-  current?: string
+  current: string
   source?: string
 }
 
@@ -135,37 +135,21 @@ export type RichText = Array<{
   _key: string
 }>
 
-export type Gallery = {
-  _id: string
-  _type: 'gallery'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  galleryImages?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'artwork'
-  }>
-  galleryName?: string
-}
-
 export type Exhibition = {
   _id: string
   _type: 'exhibition'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  exhibitionName?: LocaleString
-  visibility?: boolean
-  spaceName?: LocaleString
+  exhibitionName: LocaleString
+  visibility: boolean
+  spaceName: LocaleString
   type?:
     | 'separatutstilling'
     | 'duo-utstilling'
     | 'trio-utstilling'
     | 'gruppeutstilling'
-  exhibitionFirstDay?: string
+  exhibitionFirstDay: string
   exhibitionLastDay?: string
 }
 
@@ -302,7 +286,6 @@ export type AllSanitySchemaTypes =
   | Slug
   | Seo
   | RichText
-  | Gallery
   | Exhibition
   | Biography
   | LocaleText
@@ -333,7 +316,25 @@ export type AboutQueryResult = {
 // Variable: forsideGallerierQuery
 // Query: *[_type == "publishedGalleries"][0] {  galleryList[]-> {    'slug': gallerySlug.current,    galleryName {no, en},    'topImage': galleryImages[0]->  }}
 export type ForsideGallerierQueryResult = {
-  galleryList: null
+  galleryList: Array<{
+    slug: string
+    galleryName: {
+      no: string | null
+      en: string | null
+    }
+    topImage: {
+      _id: string
+      _type: 'artwork'
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      title?: LocaleString
+      material?: LocaleString
+      year?: string
+      dimmenstions?: string
+      photo?: ArtworkImage
+    } | null
+  }> | null
 } | null
 
 // Source: ../site/src/bio/bio.client.ts
@@ -360,7 +361,7 @@ export type ExhibitionQueryResult = Array<{
     no: string | null
     en: string | null
   }
-  exhibitionFirstDay: string | null
+  exhibitionFirstDay: string
   type:
     | 'duo-utstilling'
     | 'gruppeutstilling'
@@ -369,11 +370,43 @@ export type ExhibitionQueryResult = Array<{
     | null
 }>
 
+// Source: ../site/src/gallery/gallery.client.ts
+// Variable: galleryQuery
+// Query: coalesce(  *[_type == "web-gallery" && gallerySlug.current == 'sdf'][0]{    galleryImages[]->,    galleryName  }, 'no-result')
+export type GalleryQueryResult =
+  | {
+      galleryImages: Array<{
+        _id: string
+        _type: 'artwork'
+        _createdAt: string
+        _updatedAt: string
+        _rev: string
+        title?: LocaleString
+        material?: LocaleString
+        year?: string
+        dimmenstions?: string
+        photo?: ArtworkImage
+      }>
+      galleryName: LocaleString
+    }
+  | 'no-result'
+// Variable: allGalleriesQuery
+// Query: *[_type == "publishedGalleries"][0]{  'slugs': galleryList[]->gallerySlug.current}
+export type AllGalleriesQueryResult = {
+  slugs: Array<string> | null
+} | null
+
 // Source: ../site/src/menu/menu.client.ts
 // Variable: menuQuery
 // Query: *[_type == "publishedGalleries"][0] {  galleryList[]-> {    galleryName {no, en},    'slug' : gallerySlug.current    }}
 export type MenuQueryResult = {
-  galleryList: null
+  galleryList: Array<{
+    galleryName: {
+      no: string | null
+      en: string | null
+    }
+    slug: string
+  }> | null
 } | null
 
 // Source: ../site/src/seo/seo.client.ts
@@ -394,6 +427,8 @@ declare module '@sanity/client' {
     "*[_type == \"publishedGalleries\"][0] {\n  galleryList[]-> {\n    'slug': gallerySlug.current,\n    galleryName {no, en},\n    'topImage': galleryImages[0]->\n  }\n}": ForsideGallerierQueryResult
     "coalesce(*[_type == \"biography\"][0]{\n  'biography': { \n      'no': coalesce(biography.no, \"\"), \n      'en': coalesce(biography.en, \"\") \n    }\n  },\n  'result-error')": BioQueryResult
     "*[_type == \"exhibition\" && visibility]{\n  'exhibitionName': {\n    'no': exhibitionName.no,\n    'en': exhibitionName.en\n  },\n  'spaceName': {\n    'no': spaceName.no,\n    'en': spaceName.en\n  },\n  exhibitionFirstDay,\n  type,\n}\n| order(exhibitionFirstDay desc)": ExhibitionQueryResult
+    "coalesce(\n  *[_type == \"web-gallery\" && gallerySlug.current == 'sdf'][0]{\n    galleryImages[]->,\n    galleryName\n  }, 'no-result')": GalleryQueryResult
+    '*[_type == "publishedGalleries"][0]{\n  \'slugs\': galleryList[]->gallerySlug.current\n}': AllGalleriesQueryResult
     '*[_type == "publishedGalleries"][0] {\n  galleryList[]-> {\n    galleryName {no, en},\n    \'slug\' : gallerySlug.current\n    }}': MenuQueryResult
     "coalesce(*[_type == \"seo\"][0]{\n    'keywords': coalesce(keywords, ''), \n    'description': coalesce(description, ''),\n  }, \n  'result-error'\n  )": SeoQueryResult
   }

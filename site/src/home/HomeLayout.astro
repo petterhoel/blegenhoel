@@ -11,7 +11,7 @@ import { getSeoAsync } from '../seo/seo.client'
 export function getStaticPaths() {
   return [{ params: { lang: 'no' } }, { params: { lang: 'en' } }]
 }
-
+d
 const { keywords, description } = await getSeoAsync();
 const { lang } = Astro.params
 const galleries = await getForsideGallerier()

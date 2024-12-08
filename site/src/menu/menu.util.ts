@@ -1,28 +1,10 @@
 import type { I18nKey } from '../i18n/i18n.string.dto.ts'
 import { getGalleryMenuItems } from './menu.client.ts'
 
-const menuLang = {
-  aboutText: {
-    no: 'Om arbeidene',
-    en: 'Artist statement',
-  },
-  bioText: {
-    no: 'Biografi',
-    en: 'Biogaphy',
-  },
-}
-
 export const generateMenu = async (
   language: I18nKey,
   currentPath: string
-): Promise<{
-  menuItems: Array<MenyItem | MenuGroupHeading>
-  languageItems: {
-    href: string
-    text: string
-    heading: string
-  }
-}> => {
+): Promise<MenuStructure> => {
   const meny = await getGalleryMenuItems()
 
   if (!meny) {
@@ -34,7 +16,7 @@ export const generateMenu = async (
       const href = `/${language}/galleri/${slug}`
       return {
         href,
-        text: galleryName[language],
+        text: galleryName[language] ?? '',
         active: isActive(href, currentPath),
         type: 'href' as const,
       }
@@ -46,32 +28,34 @@ export const generateMenu = async (
   const omArbeideneHref = `/${language}/om-arbeidene`
   const bioHref = `/${language}/biografi`
 
+  const isNorwegian = language === 'no';
+
   return {
     languageItems: {
-      heading: language === 'no' ? 'View in' : 'Se siden på',
+      heading: isNorwegian ? 'View in' : 'Se siden på',
       href: langToggleHref,
-      text: language === 'no' ? 'English' : 'Norsk',
+      text: isNorwegian ? 'English' : 'Norsk',
     },
     menuItems: [
       {
-        text: language === 'no' ? 'Gallerier' : 'Galleries',
+        text: isNorwegian ? 'Gallerier' : 'Galleries',
         type: 'group-heading',
       },
 
       ...galleryItems,
       {
-        text: language === 'no' ? 'Info' : 'About',
+        text: isNorwegian ? 'Info' : 'About',
         type: 'group-heading',
       },
       {
         href: omArbeideneHref,
-        text: menuLang.aboutText[language],
+        text: isNorwegian ? 'Om arbeidene' : 'Artist statement',
         active: isActive(omArbeideneHref, currentPath),
         type: 'href',
       },
       {
         href: bioHref,
-        text: menuLang.bioText[language],
+        text: isNorwegian ? 'Biografi' : 'Biogaphy',
         active: isActive(bioHref, currentPath),
         type: 'href',
       },
@@ -98,4 +82,12 @@ interface MenyItem {
 interface MenuGroupHeading {
   text: string
   type: 'group-heading'
+}
+interface MenuStructure {
+  menuItems: Array<MenyItem | MenuGroupHeading>
+  languageItems: {
+    href: string
+    text: string
+    heading: string
+  }
 }

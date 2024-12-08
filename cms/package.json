@@ -11,6 +11,7 @@
     "deploy": "sanity deploy",
     "login": "sanity login",
     "test": "vitest run",
+    "extract": "sanity schema extract --enforce-required-fields",
     "typegen": "sanity typegen generate --enforce-required-fields",
     "upgrade": "npm install sanity@latest",
     "copy:data:to:test": "sanity dataset export production /Users/petter/production.tar.gz && sanity dataset delete test && sanity dataset import /Users/petter/production.tar.gz test"
