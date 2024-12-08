@@ -1,10 +1,10 @@
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import type { I18nString } from '../i18n/i18n.string.dto'
+import type { LocaleStringVm } from "../cms-integration/locale-string.vm.ts";
+import type {  ArtworkImage } from "../cms-integration/cms-types.ts";
 
 export interface ArtworkDto {
-  dimensions: string
-  material: I18nString
-  photo: { alt: I18nString; image: SanityImageSource }
-  title: I18nString
-  year: string
+  title: LocaleStringVm;
+  material: LocaleStringVm;
+  year: string;
+  dimensions: string;
+  photo: ArtworkImage;
 }

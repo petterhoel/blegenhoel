@@ -178,7 +178,7 @@ export type Artwork = {
   material?: LocaleString
   year?: string
   dimmenstions?: string
-  photo?: ArtworkImage
+  photo: ArtworkImage
 }
 
 export type SanityImageCrop = {
@@ -251,7 +251,7 @@ export type ArtworkImage = {
     crop?: SanityImageCrop
     _type: 'image'
   }
-  alt?: LocaleText
+  alt: LocaleText
 }
 
 export type LocaleString = {
@@ -332,7 +332,7 @@ export type ForsideGallerierQueryResult = {
       material?: LocaleString
       year?: string
       dimmenstions?: string
-      photo?: ArtworkImage
+      photo: ArtworkImage
     } | null
   }> | null
 } | null
@@ -348,6 +348,32 @@ export type BioQueryResult =
       }
     }
   | 'result-error'
+
+// Source: ../site/src/gallery/gallery.client.ts
+// Variable: galleryQuery
+// Query: coalesce(  *[_type == "web-gallery" && gallerySlug.current == 'sf'][0]{    galleryImages[]->,    galleryName  }, 'no-result')
+export type GalleryQueryResult =
+  | {
+      galleryImages: Array<{
+        _id: string
+        _type: 'artwork'
+        _createdAt: string
+        _updatedAt: string
+        _rev: string
+        title?: LocaleString
+        material?: LocaleString
+        year?: string
+        dimmenstions?: string
+        photo: ArtworkImage
+      }>
+      galleryName: LocaleString
+    }
+  | 'no-result'
+// Variable: allGalleriesQuery
+// Query: *[_type == "publishedGalleries"][0]{  'slugs': galleryList[]->gallerySlug.current}
+export type AllGalleriesQueryResult = {
+  slugs: Array<string> | null
+} | null
 
 // Source: ../site/src/exhibition/exhibition.client.ts
 // Variable: exhibitionQuery
@@ -369,32 +395,6 @@ export type ExhibitionQueryResult = Array<{
     | 'trio-utstilling'
     | null
 }>
-
-// Source: ../site/src/gallery/gallery.client.ts
-// Variable: galleryQuery
-// Query: coalesce(  *[_type == "web-gallery" && gallerySlug.current == 'sdf'][0]{    galleryImages[]->,    galleryName  }, 'no-result')
-export type GalleryQueryResult =
-  | {
-      galleryImages: Array<{
-        _id: string
-        _type: 'artwork'
-        _createdAt: string
-        _updatedAt: string
-        _rev: string
-        title?: LocaleString
-        material?: LocaleString
-        year?: string
-        dimmenstions?: string
-        photo?: ArtworkImage
-      }>
-      galleryName: LocaleString
-    }
-  | 'no-result'
-// Variable: allGalleriesQuery
-// Query: *[_type == "publishedGalleries"][0]{  'slugs': galleryList[]->gallerySlug.current}
-export type AllGalleriesQueryResult = {
-  slugs: Array<string> | null
-} | null
 
 // Source: ../site/src/menu/menu.client.ts
 // Variable: menuQuery
@@ -426,9 +426,9 @@ declare module '@sanity/client' {
     '*[_type == "aboutWorks"][0]': AboutQueryResult
     "*[_type == \"publishedGalleries\"][0] {\n  galleryList[]-> {\n    'slug': gallerySlug.current,\n    galleryName {no, en},\n    'topImage': galleryImages[0]->\n  }\n}": ForsideGallerierQueryResult
     "coalesce(*[_type == \"biography\"][0]{\n  'biography': { \n      'no': coalesce(biography.no, \"\"), \n      'en': coalesce(biography.en, \"\") \n    }\n  },\n  'result-error')": BioQueryResult
-    "*[_type == \"exhibition\" && visibility]{\n  'exhibitionName': {\n    'no': exhibitionName.no,\n    'en': exhibitionName.en\n  },\n  'spaceName': {\n    'no': spaceName.no,\n    'en': spaceName.en\n  },\n  exhibitionFirstDay,\n  type,\n}\n| order(exhibitionFirstDay desc)": ExhibitionQueryResult
-    "coalesce(\n  *[_type == \"web-gallery\" && gallerySlug.current == 'sdf'][0]{\n    galleryImages[]->,\n    galleryName\n  }, 'no-result')": GalleryQueryResult
+    "coalesce(\n  *[_type == \"web-gallery\" && gallerySlug.current == 'sf'][0]{\n    galleryImages[]->,\n    galleryName\n  }, 'no-result')": GalleryQueryResult
     '*[_type == "publishedGalleries"][0]{\n  \'slugs\': galleryList[]->gallerySlug.current\n}': AllGalleriesQueryResult
+    "*[_type == \"exhibition\" && visibility]{\n  'exhibitionName': {\n    'no': exhibitionName.no,\n    'en': exhibitionName.en\n  },\n  'spaceName': {\n    'no': spaceName.no,\n    'en': spaceName.en\n  },\n  exhibitionFirstDay,\n  type,\n}\n| order(exhibitionFirstDay desc)": ExhibitionQueryResult
     '*[_type == "publishedGalleries"][0] {\n  galleryList[]-> {\n    galleryName {no, en},\n    \'slug\' : gallerySlug.current\n    }}': MenuQueryResult
     "coalesce(*[_type == \"seo\"][0]{\n    'keywords': coalesce(keywords, ''), \n    'description': coalesce(description, ''),\n  }, \n  'result-error'\n  )": SeoQueryResult
   }

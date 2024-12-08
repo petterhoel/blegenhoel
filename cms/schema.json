@@ -1008,7 +1008,7 @@
           "type": "inline",
           "name": "artworkImage"
         },
-        "optional": true
+        "optional": false
       }
     }
   },
@@ -1430,7 +1430,7 @@
             "type": "inline",
             "name": "localeText"
           },
-          "optional": true
+          "optional": false
         }
       }
     }

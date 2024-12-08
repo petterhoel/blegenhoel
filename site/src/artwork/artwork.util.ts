@@ -13,7 +13,7 @@ export const mapArtworkDtoToVm = (
     dimensions: dimensions,
     material: material[lang],
     year: year,
-    alt: photo.alt[lang],
+    alt: photo.alt[lang] ?? '',
     aspectRatio,
     urls,
   }
