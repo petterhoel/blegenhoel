@@ -111,11 +111,13 @@ export const webGallery = defineType({
     select: {
       title: 'galleryName',
       display: 'display',
+      image: 'galleryImages.0.photo.image'
     },
     prepare(selection) {
-      const { title } = selection
+      const { title, image } = selection
       return {
         title: title?.no ?? 'ingen tittel enda',
+        media: image ?? null
       }
     },
   },
