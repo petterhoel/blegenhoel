@@ -1,39 +1,44 @@
-import { defineField, defineType } from 'sanity'
+import {defineField, defineType, ValidationContext} from 'sanity'
 
 interface GalleryVm {
-  display: boolean
+  galleryId: string,
+  galleryName: string,
   galleryImages: {
-    _id: string
+    imageId: string
     name: string
   }[]
-  galleryName: string
 }
 
-const isNotAlreadyInDisplayedGallery = async (elm, context) => {
-  const thisGallery =
-    context.document.galleryImages?.map((elm) => elm._ref) ?? []
-  const currentId = context.document._id
-  const client = context.getClient({ apiVersion: '2024-01-01' })
-  const otherGalleries =
-    (await client.fetch(`*[_type == "web-gallery" && _id != '${currentId}']{
-	display,
-	'galleryImages': galleryImages[]->{
-	_id,
-	'name': title.no
-	}, 
-	'galleryName': galleryName.no}`)) as GalleryVm[]
+const isNotAlreadyInDisplayedGallery = async (context: ValidationContext) => {
+  const images = (context.document?.galleryImages ?? []) as {_id: string,name: string, _ref: string}[];
+  const imageRefs = images.map((elm) => elm._ref) ?? []
 
-  const galleriesWithDupes = otherGalleries
-    .filter((g: { display: boolean }) => g.display)
-    .filter((og: { galleryImages: { _id: string }[] }) =>
-      thisGallery.some((id: string) =>
-        og.galleryImages.some((i: { _id: string }) => i._id === id)
-      )
-    )
+  const currentId = context.document?._id.replace('drafts.', '')
+
+  const client = context.getClient({ apiVersion: '2024-01-01' })
+  const query = `*[_type == "web-gallery" && _id != '${currentId}']{
+    'galleryId': _id,
+    'galleryName': galleryName.no,
+    'galleryImages':galleryImages[]-> {
+      'imageId': _id,
+      'name': title.no
+  }}`
+  const allOtherGalleries = await client.fetch<GalleryVm[]>(query)
+
+  const publishedIdQuery = `*[_type == "publishedGalleries"][0]{
+  'ids': galleryList[]._ref
+}`
+  const publishedIds = await client.fetch<{ids: string[]}>(publishedIdQuery);
+  const publishedGalleries = allOtherGalleries.filter((g) => publishedIds.ids.some(pid => pid === g.galleryId))
+
+  const galleriesWithDupes = publishedGalleries
+    .filter((og: GalleryVm) => imageRefs
+      .some((ref: string) => og.galleryImages
+        .some(({imageId}) => imageId === ref)))
     .map((g) => ({
       galleryName: g.galleryName.trim(),
       imageNames: g.galleryImages
-        .filter((i) => thisGallery.includes(i._id))
+        .filter((i) => imageRefs.includes(i.imageId))
         .map((i) => i.name.trim()),
     }))
   if (!galleriesWithDupes.length) {
@@ -77,8 +82,8 @@ export const webGallery = defineType({
         rule.unique(),
         rule
           .custom(
-            async (value, context) =>
-              await isNotAlreadyInDisplayedGallery(value, context)
+            async (_, context) =>
+              await isNotAlreadyInDisplayedGallery(context)
           )
           .warning(),
       ],
