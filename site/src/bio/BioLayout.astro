@@ -23,7 +23,7 @@ const title = t('title.bio')
 
 <Layout title={title}>
   <article>
-    <CmsPortableText value={biography[language]} />
+    <CmsPortableText content={biography[language]} />
     <ExhibitionList vm={exhibitionListVm} />
   </article>
   <aside>
