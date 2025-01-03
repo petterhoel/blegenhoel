@@ -14,7 +14,6 @@
     "dev:cms": "npm run dev --workspace=cms",
     "dev:site": "npm run dev --workspace=site",
     "build": "npm run build --workspace=site",
-    "deploy": "npm run deploy --workspace=site",
     "build:cms": "npm run build --workspace=cms",
     "deploy:cms": "npm run deploy --workspace=cms",
     "login:cms": "npm run login --workspace=cms",
@@ -45,8 +44,8 @@
     "prettier-plugin-astro": "^0.14.1",
     "sass": "1.83.0",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.18.0",
+    "typescript-eslint": "^8.19.0",
     "vitest": "2.1.8",
-    "wrangler": "3.95.0"
+    "wrangler": "3.99.0"
   }
 }
