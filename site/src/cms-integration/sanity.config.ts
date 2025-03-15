@@ -3,7 +3,7 @@ export const sanityConfig: SanityConfig = {
   dataset: import.meta.env?.SANITY_DATASET ?? '',
   useCdn: false,
   perspective: 'published',
-  apiVersion: '2024-11-22', // use current UTC date - see "specifying API version"!
+  apiVersion: '2025-03-15', // use current UTC date - see "specifying API version"!
   token: '',
 }
 

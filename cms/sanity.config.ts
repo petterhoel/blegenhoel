@@ -54,6 +54,9 @@ export default defineConfig({
         ? input.filter(({ action }) => action && singletonActions.has(action))
         : input,
   },
+  releases: {
+    enabled: false
+  },
   scheduledPublishing: {
     enabled: false,
   },
