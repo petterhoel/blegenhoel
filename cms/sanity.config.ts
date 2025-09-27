@@ -5,6 +5,7 @@ import { structureTool } from 'sanity/structure'
 import { NavBarWithBundleChecker } from './navbar/navbar'
 import { schemaTypes } from './schemas'
 import { singletonTypes, structure } from './structure'
+import { StudioLogo } from './navbar/studio-logo'
 
 export const singletonSet = new Set(singletonTypes)
 
@@ -24,6 +25,8 @@ const title = `Belgenhoel ${dataset === 'production' ? '' : dataset}`.trim()
 export default defineConfig({
   name,
   title,
+  // @ts-expect-error typefeil
+  icon: StudioLogo,
   projectId,
   dataset,
   plugins: [
