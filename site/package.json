@@ -14,13 +14,13 @@
     "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.5",
-    "@astrojs/ts-plugin": "1.10.5",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/ts-plugin": "^1.10.6",
     "@astrojs/upgrade": "0.6.2",
-    "@sanity/client": "7.12.1",
+    "@sanity/client": "7.13.2",
     "@sanity/image-url": "1.2.0",
-    "astro": "5.15.4",
-    "astro-portabletext": "0.11.3",
-    "groq": "4.14.2"
+    "astro": "^5.16.5",
+    "astro-portabletext": "0.12.0",
+    "groq": "4.21.1"
   }
 }
